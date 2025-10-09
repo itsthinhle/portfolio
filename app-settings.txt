@@ -1,0 +1,32 @@
+Z-index
+  header: 50
+
+Shadow
+  Default: shadow-xl
+
+Opacity
+  Shadow
+    Default: 25
+
+Animation
+  Default: 250
+
+Border radius
+  Default: xl
+
+Width:
+  Container: max-w-7xl (1280px)
+  breakpoint between laptop and smaller devices: lg (512px)
+
+Text
+  Default: text-lg
+
+Size
+  Avatar: 40px
+
+Spacing
+  Padding
+    Default: 6
+  Margin
+    Default: 6
+  Between multiple mutual items: 2
