@@ -1,0 +1,1 @@
+export const lg = 1024
