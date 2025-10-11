@@ -1,9 +1,8 @@
 import Header from '@/components/header'
-import {GoogleTagManager} from '@next/third-parties/google'
+import {GoogleAnalytics} from '@next/third-parties/google'
 import clsx from 'clsx'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import Head from 'next/head'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -22,7 +21,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return <html lang="en">
-    <GoogleTagManager gtmId="GTM-TKVK2RCD" />
+    <GoogleAnalytics gaId="G-DLJ3T4840G" />
     <body
       className={
         clsx([
