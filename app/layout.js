@@ -22,9 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return <html lang="en">
-    <Head>
-      <GoogleTagManager gtmId="GTM-TKVK2RCD" />
-    </Head>
+    <GoogleTagManager gtmId="GTM-TKVK2RCD" />
     <body
       className={
         clsx([
