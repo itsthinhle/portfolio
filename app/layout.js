@@ -1,7 +1,9 @@
 import Header from '@/components/header'
+import {GoogleTagManager} from '@next/third-parties/google'
 import clsx from 'clsx'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+import Head from 'next/head'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -20,12 +22,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return <html lang="en">
+    <Head>
+      <GoogleTagManager gtmId="GTM-TKVK2RCD" />
+    </Head>
     <body
       className={
         clsx([
           `${geistSans.variable} ${geistMono.variable} antialiased`,
-        // max-w-7xl: best practice for container
-        // grid-rows-[auto_auto_1fr_auto]: 4 rows
+          // max-w-7xl: best practice for container
+          // grid-rows-[auto_auto_1fr_auto]: 4 rows
           'grid min-h-dvh grid-rows-[auto_auto_1fr_auto]',
           'bg-light dark:bg-dark text-dark dark:text-light text-lg'
         ])}>

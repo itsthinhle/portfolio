@@ -940,6 +940,33 @@ export const { auth, signIn, signOut } = NextAuth({
 });
 ```
 
+## Third-party scripts
+
+Install the `@next/third-parties` library:
+
+### Google tag manager
+
+To load Google Tag Manager for all routes, include the component directly in your root layout and pass in your GTM container ID:
+
+```tsx
+import { GoogleTagManager } from '@next/third-parties/google'
+ 
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <GoogleTagManager gtmId="GTM-XYZ" />
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+
+
 # ESLint Stylistic
 
 ESLint Stylistic is a collection of stylistic rules for ESLint, migrated from `eslint` core and `@typescript-eslint` repo to shift the maintenance effort to the community.
