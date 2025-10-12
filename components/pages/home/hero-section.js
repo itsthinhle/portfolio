@@ -9,7 +9,7 @@ import React from 'react'
 
 export default function HeroSection() {
   return <section>
-    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+    <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-32 sm:py-48 lg:py-56">
       <section className={'text-center'}>
         <h1
           className={'text-5xl sm:text-8xl font-semibold tracking-tight text-balance mb-8'}>
@@ -28,9 +28,9 @@ export default function HeroSection() {
             prefetch={true}>
             <PrimaryButton
               aria-label="View my projects"
-              className={'flex items-center gap-2'}>
+              className={'flex items-center gap-2 w-fit whitespace-nowrap'}>
               <HugeiconsIcon icon={SourceCodeIcon} />
-              View my projects
+              <p>View my projects</p>
             </PrimaryButton>
           </Link>
         </div>
