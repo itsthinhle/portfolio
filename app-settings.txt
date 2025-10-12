@@ -35,9 +35,9 @@ Spacing
   Between multiple mutual items: 2
 
 Hero section:
-  Header text:
-    Padding:
-        y: py-32 sm:py-48 lg:py-56
-    Font: text-5xl sm:text-8xl font-semibold tracking-tight text-balance
-    Margin: mb-8
+  Header text: text-5xl sm:text-8xl font-semibold tracking-tight py-32 sm:py-48 lg:py-56 mb-8
   Descriptive text: text-lg sm:text-2xl/8 font-medium text-pretty text-gray-500 dark:text-gray-400
+
+Content section
+  Heading text: text-4xl sm:text-6xl font-semibold tracking-tight text-pretty mb-6
+  Descriptive text: leading-8 text-2xl text-gray-700 dark:text-gray-300
