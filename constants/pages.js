@@ -1,25 +1,25 @@
-import {HugeiconsIcon} from '@hugeicons/react'
-import {Home01Icon, Mail02Icon, UserCircleIcon, WorkflowCircle06Icon} from '@hugeicons-pro/core-stroke-rounded'
-
 export const homePage = {
   path: '/',
   title: 'Home',
-  description: 'Welcome!',
-  icon: <HugeiconsIcon icon={Home01Icon} />
+  description: 'Welcome!'
 }
 
 export const aboutMePage = {
   path: '/about-me',
   title: 'About me',
-  description: 'About me - Thinhwritesbugs.',
-  icon: <HugeiconsIcon icon={UserCircleIcon} />
+  description: 'About me - Thinhwritesbugs.'
 }
 
 export const projectsPage = {
   path: '/projects',
   title: 'Projects',
-  description: 'My projects.',
-  icon: <HugeiconsIcon icon={WorkflowCircle06Icon} />
+  description: 'My projects.'
+}
+
+export const blogsPage = {
+  path: '/blogs',
+  title: 'Blogs',
+  description: 'My blog.'
 }
 
 export const saleAndRentalListingsProjectPage = {
@@ -31,6 +31,7 @@ export const saleAndRentalListingsProjectPage = {
 export const contactMePage = {
   path: '/contact-me',
   title: 'Contact me',
-  description: 'Contact me.',
-  icon: <HugeiconsIcon icon={Mail02Icon} />
+  description: 'Contact me.'
 }
+
+export const mainPages = [homePage, aboutMePage, projectsPage, blogsPage, contactMePage]

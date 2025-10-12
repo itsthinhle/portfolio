@@ -32,7 +32,6 @@ export default function HeaderNavigationBar() {
     }
   }, [])
 
-  console.log('test navigation bar')
   return <>
     <div
       className={clsx([

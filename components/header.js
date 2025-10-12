@@ -7,7 +7,6 @@ export default function Header() {
   const sentinelRef = useRef(null)
   const headerRef = useRef(null)
 
-  console.log('test header')
   /* Set shadow for header when scrolling */
   useEffect(() => {
     const observeSentinel = ([entry]) => {
