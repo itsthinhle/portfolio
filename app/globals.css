@@ -3,9 +3,9 @@
 /* Custom themes */
 @theme {
   --color-light: var(--color-white);
-  --color-light-accent: var(--color-emerald-700);
+  --color-light-accent: var(--color-green-700);
   --color-dark: var(--color-black);
-  --color-dark-accent: var(--color-emerald-300);
+  --color-dark-accent: var(--color-green-300);
 }
 
 @utility container-layout {

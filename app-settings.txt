@@ -1,3 +1,6 @@
+Button
+  Default:
+
 Z-index
   header: 50
 
@@ -19,7 +22,7 @@ Width:
   breakpoint between laptop and smaller devices: lg (512px)
 
 Text
-  Default: text-lg
+  Default: text-base sm:text-lg
 
 Size
   Avatar: 40px
@@ -30,3 +33,11 @@ Spacing
   Margin
     Default: 6
   Between multiple mutual items: 2
+
+Hero section:
+  Header text:
+    Padding:
+        y: py-32 sm:py-48 lg:py-56
+    Font: text-5xl sm:text-8xl font-semibold tracking-tight text-balance
+    Margin: mb-8
+  Descriptive text: text-lg sm:text-2xl/8 font-medium text-pretty text-gray-500 dark:text-gray-400

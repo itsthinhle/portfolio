@@ -26,10 +26,9 @@ export default function RootLayout({ children }) {
       className={
         clsx([
           `${geistSans.variable} ${geistMono.variable} antialiased`,
-          // max-w-7xl: best practice for container
           // grid-rows-[auto_auto_1fr_auto]: 4 rows
           'grid min-h-dvh grid-rows-[auto_auto_1fr_auto]',
-          'bg-light dark:bg-dark text-dark dark:text-light text-lg'
+          'bg-light dark:bg-dark text-dark dark:text-light text-base sm:text-lg'
         ])}>
       <Header />
       <main>
