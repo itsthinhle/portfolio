@@ -14,7 +14,7 @@ const HeaderNavigationMenu = memo(() => {
       mainPages
         .map((_navigationItem, _index) => {
           return <Link
-            aria-label={_navigationItem.title}
+            aria-label={_navigationItem.name}
             key={_index}
             href={_navigationItem.path}
             prefetch={true}
@@ -24,7 +24,7 @@ const HeaderNavigationMenu = memo(() => {
                 ? 'text-light-accent dark:text-dark-accent'
                 : 'hover:text-light-accent dark:hover:text-dark-accent'
             ])}>
-            {_navigationItem.title}
+            {_navigationItem.name}
           </Link>
         })
     }
