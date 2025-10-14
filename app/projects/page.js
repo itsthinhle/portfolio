@@ -1,3 +1,4 @@
+import TitleSection from '@/components/pages/projects/title-section'
 import {projectsPage} from '@/constants/pages'
 import Head from 'next/head'
 
@@ -20,5 +21,8 @@ export default function Home() {
       <meta property="og:image:width" content="<generated>" />
       <meta property="og:image:height" content="<generated>" />
     </Head>
+    <div className={'py-24 sm:py-32'}>
+      <TitleSection />
+    </div>
   </>
 }

@@ -21,7 +21,7 @@ export const projectsPage = {
   name: 'Projects',
   metadata: {
     title: 'My projects | Thinh writes bugs',
-    description: 'A wide range of projects reflects my studies and personal interests. Feel free to take a look.'
+    description: 'A wide range of projects reflects my studies and personal interests.'
   }
 }
 
