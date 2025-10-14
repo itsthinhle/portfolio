@@ -35,7 +35,7 @@ export default function HeaderNavigationBar() {
   return <>
     <div
       className={clsx([
-        'container-layout py-6 flex justify-between items-center',
+        'page-px py-6 flex justify-between items-center',
       ])}>
       <Link
         aria-label={'Website logo'}

@@ -1,6 +1,8 @@
-import IntroductionSection from '@/components/pages/about-me/introduction-section'
+import ContentSection from '@/components/sections/content'
 import {aboutMePage} from '@/constants/pages'
 import Head from 'next/head'
+import Image from 'next/image'
+import React from 'react'
 
 export const metadata = {
   title: aboutMePage.metadata.title,
@@ -21,6 +23,32 @@ export default function Home() {
       <meta property="og:image:width" content="<generated>" />
       <meta property="og:image:height" content="<generated>" />
     </Head>
-    <IntroductionSection />
+    <ContentSection className={'container-w flex flex-col md:flex-row gap-x-12 gap-y-16 lg:gap-y-10 items-center'}>
+      <div className={'basis-2/5'}>
+        <Image
+          src="/avatar.jpg"
+          width={352}
+          height={352}
+          priority={true}
+          className="profile-image-border-radius mx-auto"
+          alt="Screenshots of the dashboard project showing desktop version"
+        />
+      </div>
+      <section className={'basis-3/5'}>
+        <h1
+          className={'content-section-heading-text mb-4'}>
+          Tat Thinh Le
+        </h1>
+        <p className="content-section-sub-heading-text mb-8">
+          Software engineer & Data scientist
+        </p>
+        <p
+          className={'content-section-normal-text text-gray-600 dark:text-gray-400'}>
+          I have 3 years of experience in software development, with a strong focus on
+          quality, meeting deadlines, and ensuring client satisfaction. In my free time,
+          I enjoy coding or going around capturing moments through photography.
+        </p>
+      </section>
+    </ContentSection>
   </>
 }

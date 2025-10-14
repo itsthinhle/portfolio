@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
           `${geistSans.variable} ${geistMono.variable} antialiased`,
           // grid-rows-[auto_auto_1fr_auto]: 4 rows
           'grid min-h-dvh grid-rows-[auto_auto_1fr_auto]',
-          'bg-light dark:bg-dark text-dark dark:text-light text-base sm:text-lg'
+          'default-bg-color text-dark dark:text-light text-base sm:text-lg'
         ])}>
       <Header />
       <main>

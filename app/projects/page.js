@@ -1,6 +1,7 @@
-import TitleSection from '@/components/pages/projects/title-section'
+import ContentSection from '@/components/sections/content'
 import {projectsPage} from '@/constants/pages'
 import Head from 'next/head'
+import React from 'react'
 
 export const metadata = {
   title: projectsPage.metadata.title,
@@ -21,8 +22,21 @@ export default function Home() {
       <meta property="og:image:width" content="<generated>" />
       <meta property="og:image:height" content="<generated>" />
     </Head>
-    <div className={'py-24 sm:py-32'}>
-      <TitleSection />
-    </div>
+    <ContentSection className={'container-w'}>
+      <section
+        className={'pb-10 sm:pb-16 border-b border-gray-200 dark:border-gray-700 text-center'}>
+        <h1
+          className={'blog-section-heading-text mb-4'}>
+          Projects
+        </h1>
+        <p className="blog-section-sub-heading-text">
+          A wide range of projects reflects my studies and personal interests.
+        </p>
+      </section>
+      <section
+        className={'py-10 sm:py-16'}>
+
+      </section>
+    </ContentSection>
   </>
 }

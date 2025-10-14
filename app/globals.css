@@ -8,9 +8,53 @@
   --color-dark-accent: var(--color-green-300);
 }
 
-@utility container-layout {
-  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+/* Color */
+
+@utility default-bg-color {
+  @apply bg-light dark:bg-dark;
 }
+
+/* Spacing & Size */
+
+@utility container-w {
+  @apply mx-auto max-w-7xl;
+}
+
+@utility page-px {
+  @apply px-4 sm:px-6 lg:px-8
+}
+
+/* Text */
+
+@utility blog-section-heading-text {
+  @apply text-4xl sm:text-6xl font-semibold tracking-tight text-pretty;
+}
+
+@utility blog-section-sub-heading-text {
+  @apply leading-8 text-xl text-gray-600 dark:text-gray-300;
+}
+
+@utility content-section-heading-text {
+  @apply blog-section-heading-text;
+}
+
+@utility content-section-sub-heading-text {
+  @apply leading-8 text-2xl text-gray-700 dark:text-gray-300;
+}
+
+@utility content-section-normal-text {
+  @apply text-lg leading-7;
+}
+
+@utility hero-section-heading-text {
+  @apply text-5xl sm:text-8xl font-semibold tracking-tight text-balance;
+}
+
+@utility hero-section-sub-heading-text {
+  @apply text-lg sm:text-2xl/8 font-medium text-pretty text-gray-500 dark:text-gray-400;
+}
+
+/* Others */
 
 @utility profile-image-border-radius {
   border-radius: 43% 57% 42% 58% / 49% 39% 61% 51%;

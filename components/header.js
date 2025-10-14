@@ -60,8 +60,8 @@ export default function Header() {
     <header
       ref={headerRef}
       className={clsx([
-        'sticky top-0 z-50 transition-box-shadow duration-250',
-        'bg-light dark:bg-dark'
+        'sticky top-0 z-50 transition-shadow duration-250',
+        'default-bg-color'
       ])}>
       <HeaderNavigationBar />
     </header>
