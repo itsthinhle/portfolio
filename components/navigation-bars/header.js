@@ -54,7 +54,6 @@ export default function HeaderNavigationBar() {
         <HugeiconsIcon icon={Menu01Icon} />
       </button>
     </div>
-
     <VerticalNavigationMenu
       ref={verticalNavigationMenuRef} />
   </>
