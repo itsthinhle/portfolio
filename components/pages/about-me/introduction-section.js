@@ -1,11 +1,9 @@
-import {HugeiconsIcon} from '@hugeicons/react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import React from 'react'
 
 // Used template in Content Sections in Tailwind
 export default function IntroductionSection() {
-  console.log('IntroductionSection')
   return <div>
     <div className={clsx([
       'container-layout py-24 sm:py-32',
