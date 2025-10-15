@@ -27,11 +27,11 @@
 /* Text */
 
 @utility blog-section-heading-text {
-  @apply text-4xl sm:text-6xl font-semibold tracking-tight text-pretty;
+  @apply text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-pretty;
 }
 
 @utility blog-section-sub-heading-text {
-  @apply leading-8 text-xl text-gray-600 dark:text-gray-300;
+  @apply leading-8 text-lg lg:text-xl text-gray-600 dark:text-gray-300;
 }
 
 @utility content-section-heading-text {
@@ -39,19 +39,19 @@
 }
 
 @utility content-section-sub-heading-text {
-  @apply leading-8 text-2xl text-gray-700 dark:text-gray-300;
+  @apply leading-8 text-xl lg:text-2xl text-gray-700 dark:text-gray-300;
 }
 
 @utility content-section-normal-text {
-  @apply text-lg leading-7;
+  @apply leading-7;
 }
 
 @utility hero-section-heading-text {
-  @apply text-5xl sm:text-8xl font-semibold tracking-tight text-balance;
+  @apply text-5xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-balance;
 }
 
 @utility hero-section-sub-heading-text {
-  @apply text-lg sm:text-2xl/8 font-medium text-pretty text-gray-500 dark:text-gray-400;
+  @apply text-lg sm:text-xl lg:text-2xl leading-8 font-medium text-pretty text-gray-500 dark:text-gray-400;
 }
 
 /* Others */

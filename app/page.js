@@ -28,7 +28,7 @@ export default function HomePage() {
     </Head>
     <HeroSection className={'container-w text-center'}>
       <h1
-        className={'hero-section-heading-text mb-8'}>
+        className={'hero-section-heading-text mb-8 lg:mb-10'}>
         From curiosity<br />to reality
       </h1>
       <p className={'hero-section-sub-heading-text mb-10'}>

@@ -27,8 +27,8 @@ export default function Home() {
       <div className={'basis-2/5'}>
         <Image
           src="/avatar.jpg"
-          width={352}
-          height={352}
+          width={304}
+          height={304}
           priority={true}
           className="profile-image-border-radius mx-auto"
           alt="Screenshots of the dashboard project showing desktop version"
@@ -36,10 +36,10 @@ export default function Home() {
       </div>
       <section className={'basis-3/5'}>
         <h1
-          className={'content-section-heading-text mb-4'}>
-          Tat Thinh Le
+          className={'content-section-heading-text text-center md:text-left mb-4'}>
+          Thinh Le
         </h1>
-        <p className="content-section-sub-heading-text mb-8">
+        <p className="content-section-sub-heading-text text-center md:text-left mb-8">
           Software engineer & Data scientist
         </p>
         <p
