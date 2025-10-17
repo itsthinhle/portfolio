@@ -14,10 +14,13 @@
   @apply bg-light dark:bg-dark;
 }
 
+/* Layouts */
+
+
 /* Spacing & Size */
 
 @utility container-w {
-  @apply mx-auto max-w-7xl;
+  @apply mx-auto container;
 }
 
 @utility page-px {

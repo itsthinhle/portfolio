@@ -1,21 +1,23 @@
 import ContentSection from '@/components/sections/content'
-import {aboutMePage} from '@/constants/pages'
 import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
 
+const pageTitle = 'About me | Thinh writes bugs'
+const pageDescription = 'A short introduction about me.'
+
 export const metadata = {
-  title: aboutMePage.metadata.title,
-  description: aboutMePage.metadata.title
+  title: pageTitle,
+  description: pageDescription
 }
 
 export default function Home() {
   return <>
     <Head>
-      <meta property="og:title" content={aboutMePage.metadata.title} />
+      <meta property="og:title" content={pageTitle} />
       <meta
         property="og:description"
-        content={aboutMePage.metadata.description}
+        content={pageDescription}
       />
       <meta property="og:image" content="<generated>" />
       <meta property="og:image:alt" content="About me page" />
@@ -27,16 +29,15 @@ export default function Home() {
       <div className={'basis-2/5'}>
         <Image
           src="/avatar.jpg"
-          width={304}
-          height={304}
+          width={320}
+          height={320}
           priority={true}
           className="profile-image-border-radius mx-auto"
           alt="Screenshots of the dashboard project showing desktop version"
         />
       </div>
       <section className={'basis-3/5'}>
-        <h1
-          className={'content-section-heading-text text-center md:text-left mb-4'}>
+        <h1 className={'content-section-heading-text text-center md:text-left mb-4'}>
           Thinh Le
         </h1>
         <p className="content-section-sub-heading-text text-center md:text-left mb-8">

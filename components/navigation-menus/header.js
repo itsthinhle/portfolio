@@ -1,6 +1,6 @@
 import {usePathname} from 'next/navigation'
 import React, {memo} from 'react'
-import {mainPages} from '@/constants/pages'
+import {mainNavigationItems} from '@/constants/navigation-items'
 import Link from 'next/link'
 import {isActiveNavigationItem} from '@/utilities/navigation-item'
 import clsx from 'clsx'
@@ -11,7 +11,7 @@ const HeaderNavigationMenu = memo(() => {
   return <nav
     className={'hidden lg:inline-flex lg:space-x-8 lg:items-center'}>
     {
-      mainPages
+      mainNavigationItems
         .map((_navigationItem, _index) => {
           return <Link
             aria-label={_navigationItem.name}

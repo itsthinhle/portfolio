@@ -3,8 +3,8 @@ import ContentSection from '@/components/sections/content'
 import Head from 'next/head'
 import React from 'react'
 
-const pageTitle = 'My projects | Thinh writes bugs'
-const pageDescription = 'A wide range of projects reflects my studies and personal interests.'
+const pageTitle = 'Project: Sale and Rental Listings | Thinh writes bugs'
+const pageDescription = 'Search for sale and rental listings across the US, integrating interactive data visualizations to analyze trends and insights in the housing market.'
 
 export const metadata = {
   title: pageTitle,
@@ -26,15 +26,7 @@ export default function Home() {
       <meta property="og:image:height" content="<generated>" />
     </Head>
     <ContentSection className={'container-w'}>
-      <section className={'text-center'}>
-        <h1 className={'blog-section-heading-text mb-4'}>
-          Projects
-        </h1>
-        <p className="blog-section-sub-heading-text">
-          A wide range of projects reflects my studies and personal interests.
-        </p>
-      </section>
-      <Projects />
+      a
     </ContentSection>
   </>
 }

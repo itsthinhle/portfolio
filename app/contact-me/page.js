@@ -1,18 +1,15 @@
-import {contactMePage} from '@/constants/pages'
 import Head from 'next/head'
 
-export const metadata = {
-  title: contactMePage.metadata.title,
-  description: contactMePage.metadata.title
-}
+const pageTitle = 'Contact me | Thinh writes bugs'
+const pageDescription = 'Let\'s get in touch.'
 
 export default function Home() {
   return <>
     <Head>
-      <meta property="og:title" content={contactMePage.metadata.title} />
+      <meta property="og:title" content={pageTitle} />
       <meta
         property="og:description"
-        content={contactMePage.metadata.description}
+        content={pageDescription}
       />
       <meta property="og:image" content="<generated>" />
       <meta property="og:image:alt" content="Contact me page" />

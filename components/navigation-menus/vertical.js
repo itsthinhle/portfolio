@@ -1,6 +1,6 @@
 import {usePathname} from 'next/navigation'
 import React, {memo} from 'react'
-import {mainPages} from '@/constants/pages'
+import {mainNavigationItems} from '@/constants/navigation-items'
 import Link from 'next/link'
 import {isActiveNavigationItem} from '@/utilities/navigation-item'
 import clsx from 'clsx'
@@ -21,7 +21,7 @@ const VerticalNavigationMenu = memo(({
       'shadow-xl shadow-light-accent/25 dark:shadow-dark-accent/25 flex flex-col space-y-5 pb-6'
     ])}>
     {
-      mainPages
+      mainNavigationItems
         .map((_navigationItem, _index) => {
           return <Link
             aria-label={_navigationItem.name}

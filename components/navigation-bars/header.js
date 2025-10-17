@@ -3,7 +3,7 @@ import React, {useEffect, useRef} from 'react'
 import {HugeiconsIcon} from '@hugeicons/react'
 import {Menu01Icon, QuillWrite02Icon} from '@hugeicons-pro/core-stroke-rounded'
 import Link from 'next/link'
-import {homePage} from '@/constants/pages'
+import {home} from '@/constants/navigation-items'
 import HeaderNavigationMenu from '@/components/navigation-menus/header'
 import VerticalNavigationMenu from '@/components/navigation-menus/vertical'
 import {lg} from '@/constants/screen-breakpoints'
@@ -39,7 +39,7 @@ export default function HeaderNavigationBar() {
       ])}>
       <Link
         aria-label={'Website logo'}
-        href={homePage.path}
+        href={home.path}
         prefetch={true}>
         <HugeiconsIcon icon={QuillWrite02Icon} size={32} />
       </Link>

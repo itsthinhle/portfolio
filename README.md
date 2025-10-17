@@ -132,9 +132,9 @@ export default function Page() {
 
 ## Nested routes
 
-To create a nested route, nest folders inside each other and add `pages.js` files inside them.
+To create a nested route, nest folders inside each other and add `navigation-items.js` files inside them.
 
-Example: `/app/dashboard/pages.js` is associated with the `/dashboard` path.
+Example: `/app/dashboard/navigation-items.js` is associated with the `/dashboard` path.
 
 ## Layout
 
@@ -343,7 +343,7 @@ Stream specific components using React **Suspense**.
 
 Example:
 
-Delete all instances of fetchRevenue() and its data from the parent component (`/dashboard/(overview)/pages.js`):
+Delete all instances of fetchRevenue() and its data from the parent component (`/dashboard/(overview)/navigation-items.js`):
 
 ```tsx
 ...
