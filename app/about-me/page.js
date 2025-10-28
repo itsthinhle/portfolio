@@ -1,4 +1,7 @@
 import ContentSection from '@/components/sections/content'
+import ContentSectionHeadingText from '@/components/texts/headings/content-section'
+import ContentSectionNormalText from '@/components/texts/normal/content-section'
+import ContentSectionSubHeadingText from '@/components/texts/sub-headings/content-section'
 import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
@@ -25,7 +28,7 @@ export default function Home() {
       <meta property="og:image:width" content="<generated>" />
       <meta property="og:image:height" content="<generated>" />
     </Head>
-    <ContentSection className={'container-w flex flex-col md:flex-row gap-x-12 gap-y-16 lg:gap-y-10 items-center'}>
+    <ContentSection className={'container-layout flex flex-col md:flex-row gap-x-12 gap-y-16 lg:gap-y-10 items-center'}>
       <div className={'basis-2/5'}>
         <Image
           src="/avatar.jpg"
@@ -37,18 +40,17 @@ export default function Home() {
         />
       </div>
       <section className={'basis-3/5'}>
-        <h1 className={'content-section-heading-text text-center md:text-left mb-4'}>
-          Thinh Le
-        </h1>
-        <p className="content-section-sub-heading-text text-center md:text-left mb-8">
+        <ContentSectionHeadingText className={'text-center md:text-left mb-4'}>
+          Tat Thinh Le
+        </ContentSectionHeadingText>
+        <ContentSectionSubHeadingText className={'text-center md:text-left mb-8'}>
           Software engineer & Data scientist
-        </p>
-        <p
-          className={'content-section-normal-text text-gray-600 dark:text-gray-400'}>
+        </ContentSectionSubHeadingText>
+        <ContentSectionNormalText>
           I have 3 years of experience in software development, with a strong focus on
           quality, meeting deadlines, and ensuring client satisfaction. In my free time,
           I enjoy coding or going around capturing moments through photography.
-        </p>
+        </ContentSectionNormalText>
       </section>
     </ContentSection>
   </>

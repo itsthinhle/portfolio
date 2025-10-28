@@ -25,8 +25,5 @@ export default function Home() {
       <meta property="og:image:width" content="<generated>" />
       <meta property="og:image:height" content="<generated>" />
     </Head>
-    <ContentSection className={'container-w'}>
-      a
-    </ContentSection>
   </>
 }

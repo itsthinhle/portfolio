@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-export default function BlogCard({
+export default function VerticalContentCard({
   path,
   creation_date,
   cover_image_path,
@@ -34,12 +34,12 @@ export default function BlogCard({
       aria-label={title}
       className={'mb-5'}
       href={path}>
-      <h3
+      <h2
         className={'font-semibold text-lg lg:text-xl leading-6 hover:text-light-accent dark:hover:text-dark-accent'}>
         {title}
-      </h3>
+      </h2>
     </Link>
-    <p className={'grow line-clamp-3 text-sm lg:text-base leading-6 text-gray-600 dark:text-gray-400 mb-3'}>
+    <p className={'grow line-clamp-3 text-sm lg:text-base leading-6 text-gray-600 dark:text-gray-400 mb-8'}>
       {description}
     </p>
     <div className={'justify-self-end flex gap-2 items-center'}>
