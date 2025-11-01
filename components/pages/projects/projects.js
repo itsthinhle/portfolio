@@ -1,9 +1,9 @@
 import VerticalContentCard from '@/components/cards/vertical-content'
-import {getProjects} from '@/db/neon/database'
+import {getAppProjects} from '@/db/neon/database'
 import React from 'react'
 
 export default async function Projects() {
-  const projects = await getProjects()
+  const projects = await getAppProjects()
 
   return <section className={'pt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16'}>
     {projects.map((_project, _index) => {

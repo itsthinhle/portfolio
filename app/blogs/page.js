@@ -7,7 +7,7 @@ import React from 'react'
 const pageTitle = 'My blogs | Thinh writes bugs'
 const pageDescription = 'A space where I share my knowledge and the things I discover along my journey.'
 
-export default function Home() {
+export default function BlogsPage() {
   return <>
     <Head>
       <meta property="og:title" content={pageTitle} />

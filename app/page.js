@@ -5,9 +5,7 @@ import HeroSectionSubHeadingText from '@/components/texts/sub-headings/hero-sect
 import {projects} from '@/constants/navigation-items'
 import {ArrowRight02Icon} from '@hugeicons-pro/core-stroke-rounded'
 import {HugeiconsIcon} from '@hugeicons/react'
-import clsx from 'clsx'
 import Head from 'next/head'
-import Link from 'next/link'
 import React from 'react'
 
 const pageTitle = 'Home | Thinh writes bugs'

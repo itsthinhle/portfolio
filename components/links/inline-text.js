@@ -2,14 +2,14 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import React from 'react'
 
-/* Use as button link but display as text only */
-export default function TextLink({
-  className, ariaLabel, href, children, prefetch = false
+export default function InlineTextLink({
+  className, ariaLabel, href, target = undefined, children, prefetch = false
 }) {
   return <Link
+    target={target}
     className={clsx([
       className,
-      'leading-6 font-semibold'
+      'font-semibold text-blue-700 dark:text-blue-300',
     ])}
     aria-label={ariaLabel}
     href={href}

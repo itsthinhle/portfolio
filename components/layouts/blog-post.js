@@ -1,9 +1,27 @@
+import ContentSection from '@/components/sections/content'
+import BlogSectionHeadingText from '@/components/texts/headings/blog-section'
+import {toLongDate} from '@/utilities/datetime'
 import React from 'react'
 
 export default function BlogPostLayout({
-  className, children
+  creation_date,
+  title,
+  containerSectionClassName,
+  // mb-10 if below is normal text, mb-16 if below is a sub heading
+  titleClassName,
+  children
 }) {
-  return <section className={`page-px py-24 sm:py-32 ${className}`}>
+  return <ContentSection className={`${containerSectionClassName}`}>
+    <section className={'container-layout mb-10'}>
+      <time
+        dateTime={creation_date}
+        className={'font-semibold mb-2 text-gray-500 dark:text-gray-400'}>
+        {toLongDate(creation_date)}
+      </time>
+      <BlogSectionHeadingText className={titleClassName}>
+        {title}
+      </BlogSectionHeadingText>
+    </section>
     {children}
-  </section>
+  </ContentSection>
 }

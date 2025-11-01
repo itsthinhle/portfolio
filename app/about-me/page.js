@@ -14,7 +14,7 @@ export const metadata = {
   description: pageDescription
 }
 
-export default function Home() {
+export default function AboutMePage() {
   return <>
     <Head>
       <meta property="og:title" content={pageTitle} />

@@ -3,7 +3,7 @@ import Head from 'next/head'
 const pageTitle = 'Contact me | Thinh writes bugs'
 const pageDescription = 'Let\'s get in touch.'
 
-export default function Home() {
+export default function ContactMePage() {
   return <>
     <Head>
       <meta property="og:title" content={pageTitle} />

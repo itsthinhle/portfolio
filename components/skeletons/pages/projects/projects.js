@@ -1,5 +1,6 @@
 import React from 'react'
 
+/* Update the number of projects when you add more */
 export default function ProjectsSkeleton() {
   const generateBlogCards = () => {
     let numberOfProjects = 1
@@ -13,7 +14,7 @@ export default function ProjectsSkeleton() {
         <div
           className={'aspect-video sm:aspect-2/1 lg:aspect-3/2 object-cover rounded-2xl bg-gray-200 dark:bg-gray-700 mb-8'}>
         </div>
-        {/* Time */}
+        {/* Creation date */}
         <div className={'h-4 lg:h-5 bg-gray-200 dark:bg-gray-700 w-1/2 rounded-full mb-3'}></div>
         {/* Title */}
         <div className={'h-6 bg-gray-200 dark:bg-gray-700 w-full rounded-full mb-5'}></div>

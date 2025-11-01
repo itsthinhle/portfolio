@@ -1,8 +1,7 @@
 import Projects from '@/components/pages/projects/projects'
 import ContentSection from '@/components/sections/content'
 import ProjectsSkeleton from '@/components/skeletons/pages/projects/projects'
-import ContentSectionHeadingText from '@/components/texts/headings/content-section'
-import ContentSectionSubHeadingText from '@/components/texts/sub-headings/content-section'
+import BlogSectionSubHeadingText from '@/components/texts/sub-headings/blog-section'
 import Head from 'next/head'
 import React, {Suspense} from 'react'
 
@@ -14,7 +13,7 @@ export const metadata = {
   description: pageDescription
 }
 
-export default function Home() {
+export default function ProjectsPage() {
   return <>
     <Head>
       <meta property="og:title" content={pageTitle} />
@@ -30,12 +29,12 @@ export default function Home() {
     </Head>
     <ContentSection className={'container-layout'}>
       <section className={'text-center'}>
-        <ContentSectionHeadingText className={'mb-4'}>
+        <BlogSectionHeadingText className={'mb-4'}>
           Projects
-        </ContentSectionHeadingText>
-        <ContentSectionSubHeadingText>
+        </BlogSectionHeadingText>
+        <BlogSectionSubHeadingText>
           A wide range of projects reflects my studies and personal interests.
-        </ContentSectionSubHeadingText>
+        </BlogSectionSubHeadingText>
       </section>
       <Suspense fallback={<ProjectsSkeleton />}>
         <Projects />

@@ -17,7 +17,7 @@ const VerticalNavigationMenu = memo(({
   return <nav
     ref={ref}
     className={clsx([
-      'hidden absolute left-0 right-0 page-px rounded-b-xl bg-light dark:bg-dark',
+      'hidden absolute left-0 right-0 page-px rounded-b-2xl bg-light dark:bg-dark',
       'shadow-xl shadow-light-accent/25 dark:shadow-dark-accent/25 flex flex-col space-y-5 pb-6'
     ])}>
     {
