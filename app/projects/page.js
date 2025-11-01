@@ -1,6 +1,7 @@
 import Projects from '@/components/pages/projects/projects'
 import ContentSection from '@/components/sections/content'
 import ProjectsSkeleton from '@/components/skeletons/pages/projects/projects'
+import BlogSectionHeadingText from '@/components/texts/headings/blog-section'
 import BlogSectionSubHeadingText from '@/components/texts/sub-headings/blog-section'
 import Head from 'next/head'
 import React, {Suspense} from 'react'
