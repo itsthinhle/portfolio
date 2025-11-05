@@ -13,14 +13,19 @@ export const projects = {
   name: 'Projects'
 }
 
+export const saleAndRentalListingsProject = {
+  path: '/projects/sale-and-rental-listings',
+  name: 'Sale and Rental Listings'
+}
+
 const blogs = {
   path: '/blogs',
   name: 'Blogs'
 }
 
-export const saleAndRentalListingsProject = {
-  path: '/projects/sale-and-rental-listings',
-  name: 'Sale and Rental Listings'
+export const cryptocurrencyInvestmentBlog = {
+  path: '/blogs/cryptocurrency-investment',
+  name: 'Cryptocurrency Investment'
 }
 
 export const contactMePage = {

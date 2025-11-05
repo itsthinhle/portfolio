@@ -1,7 +1,7 @@
 import BlogPostLayout from '@/components/layouts/blog-post'
 import InlineTextLink from '@/components/links/inline-text'
 import {saleAndRentalListingsProject} from '@/constants/navigation-items'
-import {getAppProjectCreationDateAndTitleByPath} from '@/db/neon/database'
+import {getAppCardCreationDateAndTitleByPath} from '@/db/neon/database'
 import Head from 'next/head'
 import React from 'react'
 
@@ -14,7 +14,7 @@ export const metadata = {
 }
 
 export default async function SaleAndRentalListingsPage() {
-  const projectMetadata = (await getAppProjectCreationDateAndTitleByPath(
+  const metadata = (await getAppCardCreationDateAndTitleByPath(
     saleAndRentalListingsProject.path))[0]
   
   return <>
@@ -25,14 +25,14 @@ export default async function SaleAndRentalListingsPage() {
         content={pageDescription}
       />
       <meta property="og:image" content="<generated>" />
-      <meta property="og:image:alt" content="Projects page" />
+      <meta property="og:image:alt" content="Index page" />
       <meta property="og:image:type" content="<generated>" />
       <meta property="og:image:width" content="<generated>" />
       <meta property="og:image:height" content="<generated>" />
     </Head>
     <BlogPostLayout
-      creation_date={projectMetadata.creation_date}
-      title={projectMetadata.title}>
+      creation_date={metadata.creation_date}
+      title={metadata.title}>
       <section className={'container-layout'}>
         <p className={'mb-8'}>
           This project searches for rental and sale listings in the US. As API key usage

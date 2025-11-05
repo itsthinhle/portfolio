@@ -1,8 +1,8 @@
-import Projects from '@/components/pages/projects/projects'
+import Projects from '@/components/pages/projects'
 import ContentSection from '@/components/sections/content'
 import ProjectsSkeleton from '@/components/skeletons/pages/projects/projects'
-import BlogSectionHeadingText from '@/components/texts/headings/blog-section'
-import BlogSectionSubHeadingText from '@/components/texts/sub-headings/blog-section'
+import ContentSectionHeadingText from '@/components/texts/headings/content-section'
+import ContentSectionSubHeadingText from '@/components/texts/sub-headings/content-section'
 import Head from 'next/head'
 import React, {Suspense} from 'react'
 
@@ -23,20 +23,18 @@ export default function ProjectsPage() {
         content={pageDescription}
       />
       <meta property="og:image" content="<generated>" />
-      <meta property="og:image:alt" content="Projects page" />
+      <meta property="og:image:alt" content="Index page" />
       <meta property="og:image:type" content="<generated>" />
       <meta property="og:image:width" content="<generated>" />
       <meta property="og:image:height" content="<generated>" />
     </Head>
     <ContentSection className={'container-layout'}>
-      <section className={'text-center'}>
-        <BlogSectionHeadingText className={'mb-4'}>
-          Projects
-        </BlogSectionHeadingText>
-        <BlogSectionSubHeadingText>
-          A wide range of projects reflects my studies and personal interests.
-        </BlogSectionSubHeadingText>
-      </section>
+      <ContentSectionHeadingText className={'mb-2 text-center'}>
+        Projects
+      </ContentSectionHeadingText>
+      <ContentSectionSubHeadingText className={'text-center mb-16 lg:mb-20'}>
+        A wide range of projects reflects my studies and personal interests.
+      </ContentSectionSubHeadingText>
       <Suspense fallback={<ProjectsSkeleton />}>
         <Projects />
       </Suspense>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 /* Update the number of projects when you add more */
-export default function ProjectsSkeleton() {
+export default function BlogsSkeleton() {
   const generateBlogCards = () => {
     let numberOfProjects = 1
     const cards = []

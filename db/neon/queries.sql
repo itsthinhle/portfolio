@@ -1,42 +1,57 @@
 /* DROP TABLES */
-DROP TABLE app_projects;
+DROP TABLE app_cards;
 
 
 
 /* CREATE TABLES */
 
-CREATE TABLE app_projects (
+CREATE TABLE app_cards (
 	/* App path to open in new url */
 	path				varchar(100) PRIMARY KEY,
     creation_date 		date,
     cover_image_path 	varchar(100),
     title 				varchar(100),
 	description 		varchar(150),
-	tags				varchar(100)
+	tags				varchar(100),
+	type				varchar(20)
 );
+
+CREATE INDEX IF NOT EXISTS type_index
+ON app_cards(type);
 
 
 
 /* INSERT DATA */
 
--- app_projects
+-- app_cards
 
-INSERT INTO app_projects VALUES (
+INSERT INTO app_cards VALUES (
 	'/projects/sale-and-rental-listings',
 	'2024-12-17',
 	'/projects/sale-and-rental-listings.jpg',
 	'Sale and rental listings',
 	'Search for sale and rental listings across the US.',
-	'Google Maps API; RentCast API'
+	'Google Maps API; RentCast API',
+	'project'
+);
+
+INSERT INTO app_cards VALUES (
+	'/blogs/cryptocurrency-investment',
+	'2025-11-05',
+	'/blogs/cryptocurrency-investment.jpg',
+	'Cryptocurrency Investment',
+	'My journey of learning how to invest in cryptocurrency from scratch.',
+	'Cryptocurrency; Investment; Learn',
+	'blog'
 );
 
 
 
 /* UPDATE DATA */
 
--- app_projects
+-- app_cards
 
-UPDATE app_projects SET
+UPDATE app_cards SET
 	description = ''
 WHERE path = '/projects/sale-and-rental-listings';
 
@@ -44,9 +59,9 @@ WHERE path = '/projects/sale-and-rental-listings';
 
 /* SELECT DATA */
 
--- app_projects
+-- app_cards
 
-SELECT * FROM app_projects;
+SELECT * FROM app_cards;
 
 
 

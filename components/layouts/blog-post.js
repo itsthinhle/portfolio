@@ -1,5 +1,5 @@
 import ContentSection from '@/components/sections/content'
-import BlogSectionHeadingText from '@/components/texts/headings/blog-section'
+import ContentSectionHeadingText from '@/components/texts/headings/content-section'
 import {toLongDate} from '@/utilities/datetime'
 import React from 'react'
 
@@ -18,9 +18,9 @@ export default function BlogPostLayout({
         className={'font-semibold mb-2 text-gray-500 dark:text-gray-400'}>
         {toLongDate(creation_date)}
       </time>
-      <BlogSectionHeadingText className={titleClassName}>
+      <ContentSectionHeadingText className={titleClassName}>
         {title}
-      </BlogSectionHeadingText>
+      </ContentSectionHeadingText>
     </section>
     {children}
   </ContentSection>

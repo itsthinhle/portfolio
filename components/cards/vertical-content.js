@@ -14,7 +14,7 @@ export default function VerticalContentCard({
 }) {
   return <article className={'flex flex-col'}>
     <Link
-      aria-label={`Link to the ${title} project via the cover image`}
+      aria-label={`Cover image link of ${title} content`}
       className={'mb-8'}
       href={path}>
       <Image
@@ -22,7 +22,7 @@ export default function VerticalContentCard({
         width={607}
         height={341.17}
         className={'aspect-video sm:aspect-2/1 lg:aspect-3/2 object-cover rounded-2xl'}
-        alt={`Cover image of the ${title} project`}
+        alt={`Cover image of the ${title} content`}
       />
     </Link>
     <time
@@ -42,7 +42,7 @@ export default function VerticalContentCard({
     <p className={'grow line-clamp-3 text-sm lg:text-base leading-6 text-gray-600 dark:text-gray-400 mb-8'}>
       {description}
     </p>
-    <div className={'justify-self-end flex gap-2 items-center'}>
+    <div className={'flex gap-2 items-center'}>
       {tags.split('; ').map((_tag, _index) => {
         return (
           <p

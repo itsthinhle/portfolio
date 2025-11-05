@@ -2,7 +2,7 @@ import ContentSection from '@/components/sections/content'
 
 import React from 'react'
 
-export default function BlogPostSkeleton() {
+export default function BlogPostLayoutSkeleton() {
   return <ContentSection className={'animate-pulse'}>
     <section className={'container-layout'}>
       {/* Creation date */}
