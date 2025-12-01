@@ -11,17 +11,23 @@ export default function ProjectsSkeleton() {
       cards.push(<article
         key={numberOfProjects}
         className={'flex flex-col animate-pulse'}>
+        {/* Cover image */}
         <div
           className={'aspect-video sm:aspect-2/1 lg:aspect-3/2 object-cover rounded-2xl bg-gray-200 dark:bg-gray-700 mb-8'}>
         </div>
         {/* Creation date */}
-        <div className={'h-4 lg:h-5 bg-gray-200 dark:bg-gray-700 w-1/2 rounded-full mb-3'}></div>
+        <div className={'w-1/4 h-3 lg:h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-3'}></div>
         {/* Title */}
-        <div className={'h-6 bg-gray-200 dark:bg-gray-700 w-full rounded-full mb-5'}></div>
+        <div className={'w-1/2 h-6 bg-gray-200 dark:bg-gray-700 rounded-full mb-5'}></div>
         {/* Description */}
-        <div className={'h-18 bg-gray-200 dark:bg-gray-700 w-full rounded-md mb-8'}></div>
+        <div className={'mb-8'}>
+          <div className={'w-9/10 h-4 lg:h-4.5 my-2 bg-gray-200 dark:bg-gray-700 rounded-full'}></div>
+          <div className={'w-full h-4 lg:h-4.5 my-2 bg-gray-200 dark:bg-gray-700 rounded-full'}></div>
+          <div className={'w-4/5 h-4 lg:h-4.5 my-2 bg-gray-200 dark:bg-gray-700 rounded-full'}></div>
+        </div>
         {/* Tags */}
         <div className={'flex gap-2 items-center'}>
+          {tagDiv}
           {tagDiv}
           {tagDiv}
           {tagDiv}
@@ -33,7 +39,7 @@ export default function ProjectsSkeleton() {
     return cards
   }
 
-  return <section className={'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16'}>
+  return <div className={'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16'}>
     {generateBlogCards()}
-  </section>
+  </div>
 }

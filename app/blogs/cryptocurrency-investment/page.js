@@ -1,7 +1,7 @@
 import BlogPostLayout from '@/components/layouts/blog-post'
 import InlineTextLink from '@/components/links/inline-text'
 import {cryptocurrencyInvestmentBlog} from '@/constants/navigation-items'
-import {getAppCardCreationDateAndTitleByPath} from '@/db/neon/database'
+import {getAppCardCreationDateAndTitleByPath} from '@/apis/databases/neon'
 import Head from 'next/head'
 import React from 'react'
 

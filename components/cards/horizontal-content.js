@@ -25,7 +25,7 @@ export default function HorizontalContentCard({
         alt={`Cover image of the ${title} content`}
       />
     </Link>
-    <section className={'flex flex-col'}>
+    <div className={'flex flex-col grow'}>
       <time
         dateTime={creation_date}
         className={'text-xs lg:text-sm mb-3 text-gray-500 dark:text-gray-400'}>
@@ -57,6 +57,6 @@ export default function HorizontalContentCard({
           )
         })}
       </div>
-    </section>
+    </div>
   </article>
 }

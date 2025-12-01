@@ -9,10 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@googlemaps/markerclusterer": "^2.6.2",
     "@hugeicons-pro/core-stroke-rounded": "^1.1.0",
     "@hugeicons/react": "^1.1.1",
     "@neondatabase/serverless": "^1.0.2",
     "@next/third-parties": "^15.5.4",
+    "@vis.gl/react-google-maps": "^1.7.1",
     "next": "^15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0"

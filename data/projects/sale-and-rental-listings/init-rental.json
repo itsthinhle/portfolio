@@ -1,0 +1,311 @@
+[
+  {
+    "id": "541-Philadelphia-Ave,-Egg-Harbor-City,-NJ-08215",
+    "formattedAddress": "541 Philadelphia Ave, Egg Harbor City, NJ 08215",
+    "addressLine1": "541 Philadelphia Ave",
+    "addressLine2": null,
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "stateFips": "34",
+    "zipCode": "08215",
+    "county": "Atlantic",
+    "countyFips": "001",
+    "latitude": 39.535381,
+    "longitude": -74.640388,
+    "propertyType": "Apartment",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "squareFootage": 750,
+    "status": "Active",
+    "price": 1700,
+    "listingType": "Standard",
+    "listedDate": "2025-01-03T00:00:00.000Z",
+    "removedDate": null,
+    "createdDate": "2025-07-18T00:00:00.000Z",
+    "lastSeenDate": "2025-11-27T03:11:49.504Z",
+    "daysOnMarket": 329,
+    "history": {
+      "2025-01-03": {
+        "event": "Rental Listing",
+        "price": 1700,
+        "listingType": "Standard",
+        "listedDate": "2025-01-03T00:00:00.000Z",
+        "removedDate": null,
+        "daysOnMarket": 329
+      }
+    }
+  },
+  {
+    "id": "705-W-White-Horse-Pike,-Egg-Harbor-City,-NJ-08215",
+    "formattedAddress": "705 W White Horse Pike, Egg Harbor City, NJ 08215",
+    "addressLine1": "705 W White Horse Pike",
+    "addressLine2": null,
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "stateFips": "34",
+    "zipCode": "08215",
+    "county": "Atlantic",
+    "countyFips": "001",
+    "latitude": 39.499097,
+    "longitude": -74.604265,
+    "propertyType": "Single Family",
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "squareFootage": 1666,
+    "lotSize": 18731,
+    "yearBuilt": 1960,
+    "status": "Active",
+    "price": 2625,
+    "listingType": "Standard",
+    "listedDate": "2025-09-09T00:00:00.000Z",
+    "removedDate": null,
+    "createdDate": "2021-05-10T01:18:43.231Z",
+    "lastSeenDate": "2025-11-27T03:01:55.026Z",
+    "daysOnMarket": 80,
+    "mlsName": "BrightMLS",
+    "mlsNumber": "NJAC2020670",
+    "listingAgent": {
+      "name": "Andrew Baus",
+      "phone": "8569045636",
+      "email": "andrew.baus@foxroach.com",
+      "website": "www.andrewbaus.foxroach.com"
+    },
+    "listingOffice": {
+      "name": "BHHS Fox & Roach Washington-Gloucester Home Marketing Center",
+      "email": "clientservices@foxroach.com",
+      "website": "https://washington-gloucester.foxroach.com"
+    },
+    "history": {
+      "2025-09-09": {
+        "event": "Rental Listing",
+        "price": 2625,
+        "listingType": "Standard",
+        "listedDate": "2025-09-09T00:00:00.000Z",
+        "removedDate": null,
+        "daysOnMarket": 80
+      }
+    }
+  },
+  {
+    "id": "509-Buffalo-Ave,-Egg-Harbor-City,-NJ-08215",
+    "formattedAddress": "509 Buffalo Ave, Egg Harbor City, NJ 08215",
+    "addressLine1": "509 Buffalo Ave",
+    "addressLine2": null,
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "stateFips": "34",
+    "zipCode": "08215",
+    "county": "Atlantic",
+    "countyFips": "001",
+    "latitude": 39.533021,
+    "longitude": -74.63932,
+    "propertyType": "Single Family",
+    "bedrooms": 3,
+    "bathrooms": 1.5,
+    "squareFootage": 1505,
+    "lotSize": 12197,
+    "yearBuilt": 1940,
+    "status": "Active",
+    "price": 2900,
+    "listingType": "Standard",
+    "listedDate": "2025-09-16T00:00:00.000Z",
+    "removedDate": null,
+    "createdDate": "2025-09-07T00:00:00.000Z",
+    "lastSeenDate": "2025-11-27T03:01:54.971Z",
+    "daysOnMarket": 73,
+    "mlsName": "BrightMLS",
+    "mlsNumber": "NJAC2020774",
+    "listingAgent": {
+      "name": "Carmen Ibarra",
+      "phone": "6094127747",
+      "email": "carmen.ibarra@kw.com",
+      "website": "http://carmenibarra.kw.com"
+    },
+    "listingOffice": {
+      "name": "Keller Williams Realty - Ocean City",
+      "phone": "6093995454",
+      "email": "klrw903@kw.com"
+    },
+    "history": {
+      "2025-09-06": {
+        "event": "Rental Listing",
+        "price": 3000,
+        "listingType": "Standard",
+        "listedDate": "2025-09-06T00:00:00.000Z",
+        "removedDate": "2025-09-10T00:00:00.000Z",
+        "daysOnMarket": 4
+      },
+      "2025-09-16": {
+        "event": "Rental Listing",
+        "price": 2900,
+        "listingType": "Standard",
+        "listedDate": "2025-09-16T00:00:00.000Z",
+        "removedDate": null,
+        "daysOnMarket": 73
+      }
+    }
+  },
+  {
+    "id": "102-Saint-Louis-Ave,-Egg-Harbor-City,-NJ-08215",
+    "formattedAddress": "102 Saint Louis Ave, Egg Harbor City, NJ 08215",
+    "addressLine1": "102 Saint Louis Ave",
+    "addressLine2": null,
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "stateFips": "34",
+    "zipCode": "08215",
+    "county": "Atlantic",
+    "countyFips": "001",
+    "latitude": 39.525833,
+    "longitude": -74.642942,
+    "propertyType": "Multi-Family",
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "squareFootage": 2984,
+    "lotSize": 7405,
+    "yearBuilt": 1910,
+    "status": "Active",
+    "price": 2000,
+    "listingType": "Standard",
+    "listedDate": "2025-09-24T00:00:00.000Z",
+    "removedDate": null,
+    "createdDate": "2025-01-17T00:00:00.000Z",
+    "lastSeenDate": "2025-11-27T03:01:54.942Z",
+    "daysOnMarket": 65,
+    "mlsName": "MoreMLS",
+    "mlsNumber": "22529055",
+    "listingAgent": {
+      "name": "Michael Monica",
+      "phone": "7328301535",
+      "email": "mmonica444@comcast.net",
+      "website": "http://piercegroupre.com/"
+    },
+    "listingOffice": {
+      "name": "Keller Williams Shore Properties",
+      "phone": "7328301535",
+      "email": "klrw998@kw.com",
+      "website": "http://kwshoreproperties.com/"
+    },
+    "history": {
+      "2025-01-16": {
+        "event": "Rental Listing",
+        "price": 2400,
+        "listingType": "Standard",
+        "listedDate": "2025-01-16T00:00:00.000Z",
+        "removedDate": "2025-07-18T00:00:00.000Z",
+        "daysOnMarket": 183
+      },
+      "2025-09-24": {
+        "event": "Rental Listing",
+        "price": 2000,
+        "listingType": "Standard",
+        "listedDate": "2025-09-24T00:00:00.000Z",
+        "removedDate": null,
+        "daysOnMarket": 65
+      }
+    }
+  },
+  {
+    "id": "418-Hamburg-Ave,-Egg-Harbor-City,-NJ-08215",
+    "formattedAddress": "418 Hamburg Ave, Egg Harbor City, NJ 08215",
+    "addressLine1": "418 Hamburg Ave",
+    "addressLine2": null,
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "stateFips": "34",
+    "zipCode": "08215",
+    "county": "Atlantic",
+    "countyFips": "001",
+    "latitude": 39.535166,
+    "longitude": -74.654147,
+    "propertyType": "Single Family",
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "squareFootage": 1440,
+    "lotSize": 11326,
+    "yearBuilt": 1930,
+    "status": "Active",
+    "price": 2500,
+    "listingType": "Standard",
+    "listedDate": "2025-09-29T00:00:00.000Z",
+    "removedDate": null,
+    "createdDate": "2025-09-30T00:00:00.000Z",
+    "lastSeenDate": "2025-11-27T03:01:54.913Z",
+    "daysOnMarket": 60,
+    "mlsName": "MoreMLS",
+    "mlsNumber": "22529473",
+    "listingAgent": {
+      "name": "Michael Monica",
+      "phone": "7328301535",
+      "email": "mmonica444@comcast.net",
+      "website": "http://piercegroupre.com/"
+    },
+    "listingOffice": {
+      "name": "Keller Williams Shore Properties",
+      "phone": "7328301535",
+      "email": "klrw998@kw.com",
+      "website": "http://kwshoreproperties.com/"
+    },
+    "history": {
+      "2025-09-29": {
+        "event": "Rental Listing",
+        "price": 2500,
+        "listingType": "Standard",
+        "listedDate": "2025-09-29T00:00:00.000Z",
+        "removedDate": null,
+        "daysOnMarket": 60
+      }
+    }
+  },
+  {
+    "id": "5263-White-Horse-Pike,-Egg-Harbor-City,-NJ-08215",
+    "formattedAddress": "5263 White Horse Pike, Egg Harbor City, NJ 08215",
+    "addressLine1": "5263 White Horse Pike",
+    "addressLine2": null,
+    "city": "Egg Harbor City",
+    "state": "NJ",
+    "stateFips": "34",
+    "zipCode": "08215",
+    "county": "Atlantic",
+    "countyFips": "001",
+    "latitude": 39.553505,
+    "longitude": -74.684773,
+    "propertyType": "Single Family",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "squareFootage": 1100,
+    "yearBuilt": 1960,
+    "status": "Active",
+    "price": 2100,
+    "listingType": "Standard",
+    "listedDate": "2025-09-30T00:00:00.000Z",
+    "removedDate": null,
+    "createdDate": "2025-10-01T00:00:00.000Z",
+    "lastSeenDate": "2025-11-27T02:33:53.803Z",
+    "daysOnMarket": 59,
+    "mlsName": "BrightMLS",
+    "mlsNumber": "NJAC2021044",
+    "listingAgent": {
+      "name": "Joe Wiessner",
+      "phone": "6095611010",
+      "email": "joe@joewiessner.com",
+      "website": "http://www.thinkw.com"
+    },
+    "listingOffice": {
+      "name": "Joe Wiessner Realty",
+      "phone": "6095611010",
+      "email": "joe@joewiessner.com",
+      "website": "http://www.thinkw.com"
+    },
+    "history": {
+      "2025-09-30": {
+        "event": "Rental Listing",
+        "price": 2100,
+        "listingType": "Standard",
+        "listedDate": "2025-09-30T00:00:00.000Z",
+        "removedDate": null,
+        "daysOnMarket": 59
+      }
+    }
+  }
+]
