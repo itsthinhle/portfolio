@@ -1,7 +1,6 @@
 import BlogPostLayout from '@/components/layouts/blog-post'
-import InlineTextLink from '@/components/links/inline-text'
 import {cryptocurrencyInvestmentBlog} from '@/constants/navigation-items'
-import {getAppCardCreationDateAndTitleByPath} from '@/apis/databases/neon'
+import {getAppCardCreationDateAndTitleByPath} from '@/actions/databases/neon'
 import Head from 'next/head'
 import React from 'react'
 
@@ -14,9 +13,6 @@ export const metadata = {
 }
 
 export default async function CryptocurrencyInvestmentPage() {
-  const metadata = (await getAppCardCreationDateAndTitleByPath(
-    cryptocurrencyInvestmentBlog.path))[0]
-
   return <>
     <Head>
       <meta property="og:title" content={pageTitle} />
@@ -31,9 +27,8 @@ export default async function CryptocurrencyInvestmentPage() {
       <meta property="og:image:height" content="<generated>" />
     </Head>
     <BlogPostLayout
-      creation_date={metadata.creation_date}
-      title={metadata.title}>
-      
+      creation_date={'2025-11-05'}
+      title={'Cryptocurrency Investment'}>
     </BlogPostLayout>
   </>
 }

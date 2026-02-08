@@ -3,26 +3,86 @@
 /* Custom themes */
 @theme {
   --color-light: var(--color-white);
-  --color-light-accent: var(--color-green-700);
-  --color-dark: var(--color-black);
-  --color-dark-accent: var(--color-green-300);
-}
+  --color-light-accent: var(--color-cyan-700);
+  --color-light-backdrop: var(--color-gray-500);
+  --color-light-error: var(--color-red-700);
+  --color-light-link: var(--color-indigo-700);
+  --color-light-skeleton: var(--color-gray-200);
+  --color-light-normal-text: var(--color-gray-600);
+  --color-light-boundary: var(--color-gray-300);
 
-/* Color */
+  --color-dark: var(--color-black);
+  --color-dark-accent: var(--color-cyan-300);
+  --color-dark-backdrop: var(--color-gray-900);
+  --color-dark-error: var(--color-red-400);
+  --color-dark-link: var(--color-sky-400);
+  --color-dark-skeleton: var(--color-gray-700);
+  --color-dark-normal-text: var(--color-gray-400);
+  --color-dark-boundary: var(--color-gray-600);
+
+  --breakpoint-4xl: 128rem;
+  --spacing-10xl: 104rem;
+}
 
 /* Layouts */
 
 @utility container-layout {
-  @apply mx-auto container;
+  @apply mx-auto max-w-7xl 4xl:max-w-10xl;
 }
 
 /* Spacing */
 
 @utility page-px {
-  @apply px-4 sm:px-6 lg:px-8
+  @apply px-4 sm:px-6 lg:px-8;
 }
 
-/* Text */
+@utility heading-2-my {
+  @apply mt-16 mb-6;
+}
+
+/* Texts */
+
+/* Controls (form controls) */
+
+@utility control {
+  @apply block w-full rounded-md py-1.5 pl-3 text-sm lg:text-base
+  outline-1 -outline-offset-1 focus:outline-2 focus:-outline-offset-2;
+}
+
+@utility select {
+  @apply control data-[state=open]:outline-2 data-[state=open]:-outline-offset-2 pr-9;
+}
+
+@utility control-boundary-normal {
+  @apply outline-light-boundary dark:outline-dark-boundary
+  focus:outline-light-accent dark:focus:outline-dark-accent;
+}
+
+@utility select-boundary-normal {
+  @apply control-boundary-normal
+  data-[state=open]:outline-light-accent dark:data-[state=open]:outline-dark-accent;
+}
+
+@utility control-boundary-error {
+  @apply outline-light-error dark:outline-dark-error
+  focus:outline-light-error dark:focus:outline-dark-error;
+}
+
+@utility combo-box-button {
+  @apply flex items-center justify-center;
+}
+
+@utility combo-box-options-container { /* The container of options */
+  @apply max-h-36 lg:max-h-40 overflow-y-auto z-1 data-[empty]:invisible
+  border border-gray-300 dark:border-gray-600 rounded-md
+  bg-light dark:bg-dark text-sm lg:text-base;
+}
+
+@utility combo-box-option {
+  @apply px-3 py-2 select-none
+  data-[highlighted]:text-light dark:data-[highlighted]:text-dark
+  data-[highlighted]:bg-light-accent dark:data-[highlighted]:bg-dark-accent;
+}
 
 /* Others */
 

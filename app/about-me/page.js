@@ -1,6 +1,6 @@
 import ContentSection from '@/components/sections/content'
 import ContentSectionHeadingText from '@/components/texts/headings/content-section'
-import ContentSectionNormalText from '@/components/texts/normal/content-section'
+import NormalText from '@/components/texts/normal'
 import ContentSectionSubHeadingText from '@/components/texts/sub-headings/content-section'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -46,11 +46,11 @@ export default function AboutMePage() {
         <ContentSectionSubHeadingText className={'text-center md:text-left mb-8'}>
           Software engineer & Data scientist
         </ContentSectionSubHeadingText>
-        <ContentSectionNormalText>
+        <NormalText>
           I have 3 years of experience in software development, with a strong focus on
           quality, meeting deadlines, and ensuring client satisfaction. In my free time,
           I enjoy coding or going around capturing moments through photography.
-        </ContentSectionNormalText>
+        </NormalText>
       </section>
     </ContentSection>
   </>

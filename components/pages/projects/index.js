@@ -1,5 +1,5 @@
 import VerticalContentCard from '@/components/cards/vertical-content'
-import {getAppProjectCards} from '@/apis/databases/neon'
+import {getAppProjectCards} from '@/actions/databases/neon'
 import React from 'react'
 
 export default async function Projects() {

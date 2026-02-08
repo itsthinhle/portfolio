@@ -14,13 +14,13 @@ export default function Header() {
         if (!entry.isIntersecting) {
           headerRef.current.classList.add(
             'shadow-xl',
-            'shadow-light-accent/25',
-            'dark:shadow-dark-accent/25')
+            'shadow-dark/25',
+            'dark:shadow-light/25')
         } else {
           headerRef.current.classList.remove(
             'shadow-xl',
-            'shadow-light-accent/25',
-            'dark:shadow-dark-accent/25')
+            'shadow-dark/25',
+            'dark:shadow-light/25')
         }
       }
     }

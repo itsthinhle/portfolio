@@ -1,5 +1,5 @@
 import HorizontalContentCard from '@/components/cards/horizontal-content'
-import {getAppBlogCards} from '@/apis/databases/neon'
+import {getAppBlogCards} from '@/actions/databases/neon'
 import React from 'react'
 
 export default async function Blogs() {

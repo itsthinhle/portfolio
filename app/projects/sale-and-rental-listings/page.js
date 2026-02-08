@@ -1,14 +1,13 @@
-import {getInitialListingDtos} from '@/apis/projects/sale-and-rental-listings'
-import MapAndPanels from '@/app/projects/sale-and-rental-listings/map-and-panels'
+import {getInitialListingDtos} from '@/actions/projects/sale-and-rental-listings'
+import MapSection from '@/app/projects/sale-and-rental-listings/components/map-section'
 import BlogPostLayout from '@/components/layouts/blog-post'
 import InlineTextLink from '@/components/links/inline-text'
 import Heading2 from '@/components/texts/headings/2'
-import {saleAndRentalListingsProject} from '@/constants/navigation-items'
-import {getAppCardCreationDateAndTitleByPath} from '@/apis/databases/neon'
+import NormalText from '@/components/texts/normal'
 import Head from 'next/head'
 import React from 'react'
 
-const pageTitle = 'Project: Sale and Rental Listings | Thinh writes bugs'
+const pageTitle = 'Project: Sale and Rental Listings (USA) | Thinh writes bugs'
 const pageDescription = 'Search for sale and rental listings across the US, integrating interactive data visualizations to analyze trends and insights in the housing market.'
 
 export const metadata = {
@@ -17,10 +16,7 @@ export const metadata = {
 }
 
 export default async function SaleAndRentalListingsPage() {
-  const metadata = (await getAppCardCreationDateAndTitleByPath(
-    saleAndRentalListingsProject.path))[0]
   const initialListingDtos = await getInitialListingDtos()
-
   return <>
     <Head>
       <meta property="og:title" content={pageTitle} />
@@ -35,11 +31,11 @@ export default async function SaleAndRentalListingsPage() {
       <meta property="og:image:height" content="<generated>" />
     </Head>
     <BlogPostLayout
-      creation_date={metadata.creation_date}
-      title={metadata.title}>
+      creation_date={'2025-12-13T13:10:10.366Z'}
+      title={'Sale and Rental Listings (USA)'}>
       <section className={'container-layout'}>
-        <Heading2>Introduction</Heading2>
-        <p className={'mb-8'}>
+        <Heading2 className={'heading-2-my'}>Introduction</Heading2>
+        <NormalText className={'mb-8'}>
           This project searches for rental and sale listings in the US. As API key
           usage is limited (50 times), please create an account on the{' '}
           <InlineTextLink
@@ -48,11 +44,11 @@ export default async function SaleAndRentalListingsPage() {
             href={'https://app.rentcast.io/app'}>
             RentCast
           </InlineTextLink> website and generate your own API key.
-        </p>
-        <p className={'mb-2'}>
+        </NormalText>
+        <NormalText className={'mb-2'}>
           Notes:
-        </p>
-        <ul className="list-disc list-outside pl-8 mb-8">
+        </NormalText>
+        <ul className="list-disc list-outside pl-8 mb-8 text-light-normal-text dark:text-dark-normal-text">
           <li>This site won&#39;t store your API key, only use it to fetch data
             from RentCast API.
           </li>
@@ -61,17 +57,18 @@ export default async function SaleAndRentalListingsPage() {
           </li>
           <li>The first load may be slow due to the free backend host.</li>
         </ul>
-        <p className={'mb-8'}>
+        <NormalText className={'mb-8'}>
           Tutorial video:
-        </p>
-        <iframe className={'aspect-video max-w-5xl bg-gray-200 dark:bg-gray-700 mx-auto rounded-xl'}
+        </NormalText>
+        <iframe className={'aspect-video max-w-5xl bg-light-skeleton dark:bg-dark-skeleton mx-auto rounded-xl'}
           src="https://www.youtube.com/embed/U_ToOJHbHPE?si=nntelKsa0JQ0kOHV"
           title="YouTube video player" frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-        <Heading2>Map</Heading2>
-        <MapAndPanels
-          initialListingDtos={initialListingDtos} />
+        <MapSection
+          initialListingDtos={initialListingDtos}
+          googleMapApiKey={process.env.GOOGLE_MAP_API_KEY}
+          googleMapId={process.env.GOOGLE_MAP_ID} />
       </section>
     </BlogPostLayout>
   </>

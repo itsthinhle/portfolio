@@ -35,3 +35,5 @@ Spacing
 Giữ text size theo breakpoint của tailwind template, thêm breakpoint lg: cho màn hình 2k
 
 Cập nhật folder name của projects nhớ cập nhật lại path trong database
+
+

@@ -5,7 +5,7 @@ export default function ProjectsSkeleton() {
   const generateBlogCards = () => {
     let numberOfProjects = 1
     const cards = []
-    const tagDiv = <div className={'h-7 lg:h-8 bg-gray-200 dark:bg-gray-700 rounded-full grow'}></div>
+    const tagDiv = <div className={'h-7 lg:h-8 bg-light-skeleton dark:bg-dark-skeleton rounded-full grow'}></div>
 
     while (numberOfProjects > 0) {
       cards.push(<article
@@ -13,17 +13,17 @@ export default function ProjectsSkeleton() {
         className={'flex flex-col animate-pulse'}>
         {/* Cover image */}
         <div
-          className={'aspect-video sm:aspect-2/1 lg:aspect-3/2 object-cover rounded-2xl bg-gray-200 dark:bg-gray-700 mb-8'}>
+          className={'aspect-video sm:aspect-2/1 lg:aspect-3/2 object-cover rounded-2xl bg-light-skeleton dark:bg-dark-skeleton mb-8'}>
         </div>
         {/* Creation date */}
-        <div className={'w-1/4 h-3 lg:h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-3'}></div>
+        <div className={'w-1/4 h-3 lg:h-4 bg-light-skeleton dark:bg-dark-skeleton rounded-full mb-3'}></div>
         {/* Title */}
-        <div className={'w-1/2 h-6 bg-gray-200 dark:bg-gray-700 rounded-full mb-5'}></div>
+        <div className={'w-1/2 h-6 bg-light-skeleton dark:bg-dark-skeleton rounded-full mb-5'}></div>
         {/* Description */}
         <div className={'mb-8'}>
-          <div className={'w-9/10 h-4 lg:h-4.5 my-2 bg-gray-200 dark:bg-gray-700 rounded-full'}></div>
-          <div className={'w-full h-4 lg:h-4.5 my-2 bg-gray-200 dark:bg-gray-700 rounded-full'}></div>
-          <div className={'w-4/5 h-4 lg:h-4.5 my-2 bg-gray-200 dark:bg-gray-700 rounded-full'}></div>
+          <div className={'w-9/10 h-4 lg:h-4.5 my-2 bg-light-skeleton dark:bg-dark-skeleton rounded-full'}></div>
+          <div className={'w-full h-4 lg:h-4.5 my-2 bg-light-skeleton dark:bg-dark-skeleton rounded-full'}></div>
+          <div className={'w-4/5 h-4 lg:h-4.5 my-2 bg-light-skeleton dark:bg-dark-skeleton rounded-full'}></div>
         </div>
         {/* Tags */}
         <div className={'flex gap-2 items-center'}>

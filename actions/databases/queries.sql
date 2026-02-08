@@ -27,9 +27,9 @@ ON app_cards(type);
 
 INSERT INTO app_cards VALUES (
 	'/projects/sale-and-rental-listings',
-	'2024-12-17',
+	'2025-12-13T13:10:10.366Z',
 	'/projects/sale-and-rental-listings.jpg',
-	'Sale and rental listings',
+	'Sale and rental listings (USA)',
 	'Search for sale and rental listings across the US.',
 	'Google Maps API; RentCast API',
 	'project'
@@ -52,7 +52,8 @@ INSERT INTO app_cards VALUES (
 -- app_cards
 
 UPDATE app_cards SET
-	description = ''
+	creation_date = '2025-12-13T13:10:10.366Z',
+	title = 'Sale and rental listings (USA)'
 WHERE path = '/projects/sale-and-rental-listings';
 
 
@@ -62,6 +63,11 @@ WHERE path = '/projects/sale-and-rental-listings';
 -- app_cards
 
 SELECT * FROM app_cards;
+
+-- locat
+SELECT * FROM states;
+
+SELECT * FROM cities;
 
 
 

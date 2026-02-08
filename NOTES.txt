@@ -1,0 +1,9 @@
+Màu sắc:
+ - Theme dark cần phải chỉnh vì màu nền mình chọn là black chứ không như tailwind
+ - Opacity nên tăng/giảm 0.25
+ - Màu nền
+    - badge: bg-gray-800/75
+
+Cỡ chữ (font size)
+ - Giữ nguyên font size của chữ dưới lg breakpoint và tăng 1 size cho font chữ từ lg trở đi
+ Ví dụ: text-5xl sm:text-7xl sẽ thành text-5xl sm:text-7xl lg:text-8xl (thêm lg:text-8xl)

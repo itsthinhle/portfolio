@@ -1,7 +1,7 @@
 import TextLink from '@/components/links/text'
 import HeroSection from '@/components/sections/hero'
 import HeroSectionHeadingText from '@/components/texts/headings/hero-section'
-import HeroSectionSubHeadingText from '@/components/texts/sub-headings/hero-section'
+import NormalText from '@/components/texts/normal'
 import {projects} from '@/constants/navigation-items'
 import {ArrowRight02Icon} from '@hugeicons-pro/core-stroke-rounded'
 import {HugeiconsIcon} from '@hugeicons/react'
@@ -34,10 +34,10 @@ export default function HomePage() {
       <HeroSectionHeadingText className={'mb-8'}>
         From curiosity<br />to reality
       </HeroSectionHeadingText>
-      <HeroSectionSubHeadingText className={'mb-10'}>
+      <NormalText className={'mb-10 text-lg sm:text-xl lg:text-2xl leading-8 font-medium text-pretty'}>
         &ldquo;A creative mind builds not just for answers,<br />but to
         explore and to share what it discovers.&rdquo;
-      </HeroSectionSubHeadingText>
+      </NormalText>
       <div className={'flex justify-center'}>
         <TextLink
           ariaLabel={'View my projects link'}

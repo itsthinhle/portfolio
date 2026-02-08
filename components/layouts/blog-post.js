@@ -15,7 +15,7 @@ export default function BlogPostLayout({
     <section className={'container-layout mb-10'}>
       <time
         dateTime={creation_date}
-        className={'font-semibold mb-2 text-gray-500 dark:text-gray-400'}>
+        className={'font-semibold mb-2 text-gray-500 dark:text-gray-400/75'}>
         {toLongDate(creation_date)}
       </time>
       <ContentSectionHeadingText className={titleClassName}>

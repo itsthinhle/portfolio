@@ -1,3 +1,5 @@
+import Badge from '@/components/badge'
+import NormalText from '@/components/texts/normal'
 import {toLongDate} from '@/utilities/datetime'
 import clsx from 'clsx'
 import Image from 'next/image'
@@ -28,7 +30,7 @@ export default function HorizontalContentCard({
     <div className={'flex flex-col grow'}>
       <time
         dateTime={creation_date}
-        className={'text-xs lg:text-sm mb-3 text-gray-500 dark:text-gray-400'}>
+        className={'text-xs lg:text-sm mb-3 text-gray-500 dark:text-gray-400/75'}>
         {toLongDate(creation_date)}
       </time>
       <Link
@@ -40,20 +42,16 @@ export default function HorizontalContentCard({
           {title}
         </h2>
       </Link>
-      <p className={'line-clamp-5 text-sm lg:text-base leading-6 text-gray-600 dark:text-gray-400 mb-8'}>
+      <NormalText className={'line-clamp-5 text-sm lg:text-base leading-6 mb-8'}>
         {description}
-      </p>
+      </NormalText>
       <div className={'flex gap-2 items-center'}>
         {tags.split('; ').map((_tag, _index) => {
           return (
-            <p
-              key={_index}
-              className={clsx([
-                'font-medium px-3 py-1.5 rounded-full text-xs lg:text-sm',
-                'bg-gray-100 dark:bg-gray-800',
-              ])}>
+            <Badge
+              key={_index}>
               {_tag}
-            </p>
+            </Badge>
           )
         })}
       </div>

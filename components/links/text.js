@@ -9,7 +9,7 @@ export default function TextLink({
   return <Link
     className={clsx([
       className,
-      'leading-6 font-semibold'
+      'leading-6 font-semibold hover:text-light-accent dark:hover:text-dark-accent'
     ])}
     aria-label={ariaLabel}
     href={href}

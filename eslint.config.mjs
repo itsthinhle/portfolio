@@ -41,18 +41,17 @@ const eslintConfig = [
           'ImportDeclaration': 1,
           'flatTernaryExpressions': true,
           'offsetTernaryExpressions': true,
-          'ignoreComments': true
+          'ignoreComments': false
         }
       ],
       '@stylistic/indent-binary-ops': [1, 2],
-      '@stylistic/jsx-indent-props': [1, 2],
+      '@stylistic/jsx-indent-props': [1, 'first'],
       '@stylistic/array-bracket-newline': [1, 'consistent'],
       '@stylistic/semi': [1, 'never'],
       '@stylistic/max-len': [1, {
-        'code': 90,
-        'comments': 93,
-        'ignoreComments': false,
-        'ignoreTrailingComments': false,
+        'code': 100,
+        'ignoreComments': true,
+        'ignoreTrailingComments': true,
         'ignoreUrls': true,
         'ignoreStrings': true,
         'ignoreTemplateLiterals': true

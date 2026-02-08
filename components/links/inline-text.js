@@ -9,7 +9,7 @@ export default function InlineTextLink({
     target={target}
     className={clsx([
       className,
-      'font-semibold text-blue-700 dark:text-blue-300',
+      'font-semibold text-light-link dark:text-dark-link hover:underline',
     ])}
     aria-label={ariaLabel}
     href={href}

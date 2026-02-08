@@ -1,17 +1,17 @@
 'use client'
-import {APIProvider, Map} from '@vis.gl/react-google-maps'
+import {APIProvider, ColorScheme, Map} from '@vis.gl/react-google-maps'
+import {memo} from 'react'
 
 
-export default function GoogleMap ({
+const GoogleMap = memo(({
   apiKey,
   mapId,
   defaultZoom = 6,
   defaultCenter = {lat: 38.986, lng: -100.363},
   mapClassName = '',
-  gestureHandling = 'greedy',
+  gestureHandling = 'cooperative',
   children
-}) {
-
+}) => {
   return <APIProvider apiKey={apiKey}>
     <Map
       // onCameraChanged={(e) => console.log(e.detail.zoom)}
@@ -20,8 +20,11 @@ export default function GoogleMap ({
       // Required for AdvancedMarker
       mapId={mapId}
       className={mapClassName}
-      gestureHandling={gestureHandling}>
+      gestureHandling={gestureHandling}
+      colorScheme={ColorScheme.FOLLOW_SYSTEM}>
       {children}
     </Map>
   </APIProvider>
-}
+})
+
+export default GoogleMap
