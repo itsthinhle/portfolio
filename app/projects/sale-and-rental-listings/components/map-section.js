@@ -6,6 +6,7 @@ import listingUpdateTypeConstant from '@/app/projects/sale-and-rental-listings/c
 import panelConstant from '@/app/projects/sale-and-rental-listings/constants/panel'
 import SaleAndRentalListingsContext from '@/app/projects/sale-and-rental-listings/context'
 import InGroupButton from '@/components/buttons/in-group'
+import LoadingIcon from '@/components/icons/loading'
 import Heading2 from '@/components/texts/headings/2'
 import {
   Search01Icon,
@@ -97,7 +98,7 @@ export default function MapSection({
           className={'rounded-l-md'}
           isDisabled={listingUpdateType === listingUpdateTypeConstant.search}>
           {listingUpdateType === listingUpdateTypeConstant.search ?
-              <HugeiconsIcon icon={Loading03Icon} className={'size-5 lg:size-6 animate-spin'} />
+              <LoadingIcon className={'size-5 lg:size-6'} />
             : <HugeiconsIcon icon={Search01Icon} className={'size-5 lg:size-6'} />}
 
           <span className={'ml-2 hidden sm:inline'}>Search</span>
@@ -141,14 +142,13 @@ export default function MapSection({
           <FilterListingsPanel
             ref={filterListingsPanelRef} />
         </div>
-        <div
+        {listingUpdateType !== listingUpdateTypeConstant.none && <div
           className={clsx(
             'absolute inset-0 flex justify-center items-center',
-            'px-4 py-8 bg-red-500 opacity-75 z-1'
+            'bg-light-backdrop/75 dark:bg-dark-backdrop/50 opacity-75 z-2'
           )}>
-          <FilterListingsPanel
-            ref={filterListingsPanelRef} />
-        </div>
+          <LoadingIcon className={'size-12 lg:size-14'} />
+        </div>}
       </SaleAndRentalListingsContext.Provider>
     </div>
   </>

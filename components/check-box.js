@@ -6,7 +6,6 @@ export default function CheckBox({
   name,
   defaultChecked = true
 }) {
-  // Or a custom loading skeleton component
   return <div className="flex h-6 shrink-0 items-center">
     <div className="group grid size-4 grid-cols-1">
       <input

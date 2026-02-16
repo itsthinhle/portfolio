@@ -29,7 +29,8 @@ export default function SearchListingsForm({
 
   const {
     setListingDtos,
-    setListingUpdateType
+    setListingUpdateType,
+    hideBackdropAndActivePanel
   } = useContext(SaleAndRentalListingsContext)
 
   useEffect(() => {
@@ -80,6 +81,7 @@ export default function SearchListingsForm({
     }
 
     setListingUpdateType(listingUpdateTypeConstant.search)
+    hideBackdropAndActivePanel()
 
     searchListings(formData)
       .then(_listingDtos => {
@@ -88,7 +90,6 @@ export default function SearchListingsForm({
       })
   }
 
-  // Or a custom loading skeleton component
   return <form onSubmit={onFormSubmit} className={className}>
     <div className="mb-6 grid grid-cols-1 sm:grid-cols-8 gap-6">
       <div className="sm:col-span-6">

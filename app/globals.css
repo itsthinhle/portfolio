@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Custom themes */
 @theme {
@@ -54,7 +54,7 @@
 }
 
 @utility control-boundary-disabled {
-  @apply outline-light-boundary/75 dark:outline-dark-boundary/75
+  @apply outline-light-boundary/75 dark:outline-dark-boundary/75;
 }
 
 @utility select-boundary-normal {
@@ -95,16 +95,17 @@
   @apply flex items-center justify-center;
 }
 
-@utility combo-box-options-container { /* The container of options */
-  @apply max-h-36 lg:max-h-40 overflow-y-auto z-1 data-[empty]:invisible
+@utility combo-box-options-container {
+  /* The container of options */
+  @apply max-h-36 lg:max-h-40 overflow-y-auto z-1 data-empty:invisible
   border border-gray-300 dark:border-gray-600 rounded-md
   bg-light dark:bg-dark text-sm lg:text-base;
 }
 
 @utility combo-box-option {
   @apply px-3 py-2 select-none
-  data-[highlighted]:text-light dark:data-[highlighted]:text-dark
-  data-[highlighted]:bg-light-accent dark:data-[highlighted]:bg-dark-accent;
+  data-highlighted:text-light dark:data-highlighted:text-dark
+  data-highlighted:bg-light-accent dark:data-highlighted:bg-dark-accent;
 }
 
 /* Others */

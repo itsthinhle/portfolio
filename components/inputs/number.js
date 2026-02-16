@@ -11,7 +11,6 @@ export default function NumberInput({
   errorMessage = '',
   className,
 }) {
-  // Or a custom loading skeleton component
   return <>
     <input
       id={id}

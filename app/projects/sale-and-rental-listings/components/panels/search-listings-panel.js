@@ -8,7 +8,6 @@ const SearchListingsPanel = memo(({
   ref,
   className
 }) => {
-  // Or a custom loading skeleton component
   return <Modal
     ref={ref}
     className={clsx(

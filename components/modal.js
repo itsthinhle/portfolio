@@ -7,7 +7,6 @@ export default function Modal({
   onPointerDown = (_event) => _event.stopPropagation(),
   ref
 }) {
-  // Or a custom loading skeleton component
   return <div
     ref={ref}
     onPointerDown={onPointerDown}

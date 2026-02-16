@@ -10,7 +10,6 @@ export default function TextInput({
   errorMessage = '',
   className,
 }) {
-  // Or a custom loading skeleton component
   return <>
     <input
       id={id}

@@ -5,7 +5,6 @@ export default function Badge({
   children,
   className
 }) {
-  // Or a custom loading skeleton component
   return <span
     className={clsx(
       'font-medium px-2 py-1 rounded-md text-xs lg:text-sm',
