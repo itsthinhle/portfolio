@@ -1,7 +1,6 @@
 import Badge from '@/components/badge'
 import NormalText from '@/components/texts/normal'
 import {toLongDate} from '@/utilities/datetime'
-import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'

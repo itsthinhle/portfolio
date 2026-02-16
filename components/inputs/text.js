@@ -5,7 +5,7 @@ import React from 'react'
 export default function TextInput({
   id,
   name,
-  onControlChange,
+  onInputChange,
   errorCondition = false,
   errorMessage = '',
   className,
@@ -16,7 +16,7 @@ export default function TextInput({
       id={id}
       name={name}
       type="text"
-      onChange={onControlChange}
+      onChange={onInputChange}
       className={clsx(
         'control',
         errorCondition ? 'control-boundary-error' : 'control-boundary-normal',

@@ -2,14 +2,12 @@ import SearchListingsForm from '@/app/projects/sale-and-rental-listings/componen
 import Modal from '@/components/modal'
 import ModalHeadingText from '@/components/texts/headings/modal'
 import clsx from 'clsx'
-import React, {memo, useEffect, useState} from 'react'
+import React, {memo} from 'react'
 
-export default function SearchListingsPanel({
+const SearchListingsPanel = memo(({
   ref,
   className
-}) {
-  const [serverError, setServerError] = useState('')
-
+}) => {
   // Or a custom loading skeleton component
   return <Modal
     ref={ref}
@@ -19,4 +17,6 @@ export default function SearchListingsPanel({
     <ModalHeadingText className={'mb-6'}>Search</ModalHeadingText>
     <SearchListingsForm />
   </Modal>
-}
+})
+
+export default SearchListingsPanel

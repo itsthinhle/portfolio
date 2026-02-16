@@ -6,7 +6,7 @@ import React from 'react'
 export default function NumberInput({
   id,
   name,
-  onControlChange,
+  onInputChange,
   errorCondition = false,
   errorMessage = '',
   className,
@@ -17,7 +17,7 @@ export default function NumberInput({
       id={id}
       name={name}
       type="number"
-      onChange={onControlChange}
+      onChange={onInputChange}
       className={clsx(
         'control',
         errorCondition ? 'control-boundary-error' : 'control-boundary-normal',

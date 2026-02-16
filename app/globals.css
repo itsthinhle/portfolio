@@ -44,13 +44,8 @@
 
 /* Controls (form controls) */
 
-@utility control {
-  @apply block w-full rounded-md py-1.5 pl-3 text-sm lg:text-base
-  outline-1 -outline-offset-1 focus:outline-2 focus:-outline-offset-2;
-}
-
-@utility select {
-  @apply control data-[state=open]:outline-2 data-[state=open]:-outline-offset-2 pr-9;
+@utility control-boundary-width {
+  @apply outline-1 -outline-offset-1 focus:outline-2 focus:-outline-offset-2;
 }
 
 @utility control-boundary-normal {
@@ -58,14 +53,42 @@
   focus:outline-light-accent dark:focus:outline-dark-accent;
 }
 
+@utility control-boundary-disabled {
+  @apply outline-light-boundary/75 dark:outline-dark-boundary/75
+}
+
 @utility select-boundary-normal {
   @apply control-boundary-normal
   data-[state=open]:outline-light-accent dark:data-[state=open]:outline-dark-accent;
 }
 
+@utility checkbox-boundary-normal {
+  @apply outline-light-boundary dark:outline-dark-boundary
+  control-boundary-width
+  focus:outline-light-accent dark:focus:outline-dark-accent
+  checked:bg-dark dark:checked:bg-light
+  checked:outline-dark dark:checked:outline-light;
+}
+
 @utility control-boundary-error {
   @apply outline-light-error dark:outline-dark-error
   focus:outline-light-error dark:focus:outline-dark-error;
+}
+
+/* General control styles & Specific control styles*/
+
+@utility control {
+  @apply block w-full rounded-md py-1.5 pl-3 text-sm lg:text-base
+  control-boundary-width;
+}
+
+@utility select {
+  @apply control data-[state=open]:outline-2 data-[state=open]:-outline-offset-2 pr-9;
+}
+
+@utility checkbox {
+  @apply col-start-1 row-start-1 appearance-none forced-colors:appearance-auto
+  rounded-sm checkbox-boundary-normal;
 }
 
 @utility combo-box-button {

@@ -16,7 +16,7 @@ import React, {useEffect, useState} from 'react'
  * tạo option mới (xem mục creatable trên arkui website)
  *
  * @param options Must be an array of objects
- * @param displayValueKey The key name to display value of an option as object
+ * @param displayValueKeyName The key name to display value of an option as object
  */
 export default function UncontrolledComboBox({
   id,
@@ -24,7 +24,7 @@ export default function UncontrolledComboBox({
   placeholder = '',
   defaultValue = '',
   options,
-  displayValueKey = 'country',
+  displayValueKeyName = 'country',
   onOptionChange,
   errorCondition = false,
   errorMessage = '',
@@ -36,13 +36,13 @@ export default function UncontrolledComboBox({
 
   const { collection, filter, set } = useListCollection({
     initialItems: options,
-    itemToString: (_option) => _option?.[displayValueKey],
+    itemToString: (_option) => _option?.[displayValueKeyName],
     itemToValue: (_option) => {
       if (_option?.value) {
         return _option.value
       }
 
-      return _option?.[displayValueKey]
+      return _option?.[displayValueKeyName]
     },
     filter: contains,
     // Large datasets: limit the number of rendered items in the DOM to improve performance
@@ -74,7 +74,10 @@ export default function UncontrolledComboBox({
       onValueChange={onInternalOptionChange}
       disabled={disabled}
     >
-      <Combobox.Control className={'relative text-sm lg:text-base'}>
+      <Combobox.Control className={clsx(
+        'relative text-sm lg:text-base',
+        {'opacity-75': disabled},
+      )}>
         <Combobox.Input
           className={clsx(
             'control',
@@ -98,7 +101,7 @@ export default function UncontrolledComboBox({
               <Combobox.Item key={index} item={item} className={'combo-box-option'}>
                 {/* Lợi dụng builtin value */}
                 <Combobox.ItemText>
-                  {item[displayValueKey]}
+                  {item[displayValueKeyName]}
                 </Combobox.ItemText>
               </Combobox.Item>
             ))}

@@ -20,7 +20,7 @@ const NEW_OPTION_VALUE = '[[new]]'
  * tạo option mới (xem mục creatable trên arkui website)
  *
  * @param options Must be an array of objects
- * @param displayValueKey The key name to display value of an option as object
+ * @param displayValueKeyName The key name to display value of an option as object
  */
 export default function UncontrolledAndCreatableComboBox({
   id,
@@ -28,7 +28,7 @@ export default function UncontrolledAndCreatableComboBox({
   placeholder = '',
   defaultValue = '',
   options,
-  displayValueKey = 'country',
+  displayValueKeyName = 'country',
   onOptionChange,
   errorCondition = false,
   errorMessage = '',
@@ -41,13 +41,13 @@ export default function UncontrolledAndCreatableComboBox({
 
   const { collection, filter, upsert, update, remove, set } = useListCollection({
     initialItems: options,
-    itemToString: (_option) => _option?.[displayValueKey],
+    itemToString: (_option) => _option?.[displayValueKeyName],
     itemToValue: (_option) => {
       if (_option?.value) {
         return _option.value
       }
 
-      return _option?.[displayValueKey]
+      return _option?.[displayValueKeyName]
     },
     filter: contains,
     // Large datasets: limit the number of rendered items in the DOM to improve performance
@@ -71,7 +71,7 @@ export default function UncontrolledAndCreatableComboBox({
         if (inputValue.trim().length > 0
           && !hasExactMatchOption(collection, inputValue)) {
           const newOption = {
-            [displayValueKey]: inputValue,
+            [displayValueKeyName]: inputValue,
             // Tricky 'value' key to apply builtin methods like upsert, remove
             value: NEW_OPTION_VALUE
           }
@@ -96,7 +96,7 @@ export default function UncontrolledAndCreatableComboBox({
     setOption(setInputValueAsOption(value, inputValue))
     if (value.includes(NEW_OPTION_VALUE)) {
       const updatedOption = {
-        [displayValueKey]: inputValue,
+        [displayValueKeyName]: inputValue,
         value: inputValue, __new__: true }
       // At this step, there will be no option with value: NEW_OPTION_VALUE
       update(NEW_OPTION_VALUE, updatedOption)
@@ -115,15 +115,18 @@ export default function UncontrolledAndCreatableComboBox({
       onOpenChange={onOpenChange}
       value={option}
       onValueChange={onInternalOptionChange}
-      className={'text-sm lg:text-base'}
       allowCustomValue
       disabled={disabled}
     >
-      <Combobox.Control className={'relative'}>
+      <Combobox.Control className={clsx(
+        'relative text-sm lg:text-base',
+        {'opacity-75': disabled},
+      )}>
         <Combobox.Input
           className={clsx(
             'control',
-            errorCondition ? 'control-boundary-error' : 'control-boundary-normal',
+            errorCondition
+              ? 'control-boundary-error' : 'control-boundary-normal',
             className
           )}
           placeholder={placeholder} />
@@ -143,10 +146,10 @@ export default function UncontrolledAndCreatableComboBox({
               <Combobox.Item key={index} item={item} className={'combo-box-option'}>
                 {/* Lợi dụng builtin value */}
                 {item?.value === NEW_OPTION_VALUE ? (
-                  <Combobox.ItemText>+ Create &#34;{item[displayValueKey]}&#34;</Combobox.ItemText>
+                  <Combobox.ItemText>+ Create &#34;{item[displayValueKeyName]}&#34;</Combobox.ItemText>
                 ) : (
                   <Combobox.ItemText>
-                    {item[displayValueKey]} {item.__new__ ? '(new)' : ''}
+                    {item[displayValueKeyName]} {item.__new__ ? '(new)' : ''}
                   </Combobox.ItemText>
                 )}
               </Combobox.Item>

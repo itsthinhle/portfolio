@@ -1,5 +1,7 @@
 import {getCityNamesByStateId, getStatesIds} from '@/actions/databases/neon'
-import {searchListings} from '@/actions/projects/sale-and-rental-listings'
+import {searchListings, validateSearchForm} from '@/actions/projects/sale-and-rental-listings'
+import listingUpdateTypeConstant from '@/app/projects/sale-and-rental-listings/constants/listings-update-status'
+import SaleAndRentalListingsContext from '@/app/projects/sale-and-rental-listings/context'
 import PrimaryButton from '@/components/buttons/primary'
 import CheckBox from '@/components/check-box'
 import UncontrolledComboBox from '@/components/combo-boxes/uncontrolled'
@@ -11,7 +13,7 @@ import ControlLabelText from '@/components/texts/labels/control'
 import ControlErrorMessageText from '@/components/texts/messages/control-error'
 import statusConstant from '@/constants/status'
 import clsx from 'clsx'
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {useDebouncedCallback} from 'use-debounce'
 
 // Separate from the panel to prevent re-rendering the form
@@ -25,21 +27,34 @@ export default function SearchListingsForm({
   const [cities, setCities] = useState([])
   const [cityKey, setCityKey] = useState(0)
 
+  const {
+    setListingDtos,
+    setListingUpdateType
+  } = useContext(SaleAndRentalListingsContext)
+
   useEffect(() => {
     // Get states when the component first loaded
-    getStatesIds().then(_stateIds=> setStateIds(_stateIds))
+    getStatesIds()
+      .then(_stateIds=>
+        setStateIds(_stateIds)
+      )
   }, [])
 
   /* Update error fields */
-  const onControlChange = useDebouncedCallback((_field) => {
-    if (controlsErrors[_field]) {
-      setControlsErrors(prev => ({ ...prev, [_field]: undefined }))
-    }
+  const removeErrorMessages = useDebouncedCallback((_fields = []) => {
+    setControlsErrors(_previousState => {
+      const newState = { ..._previousState }
+
+      _fields.forEach(_field => {
+        newState[_field] = undefined
+      })
+
+      return newState
+    })
   }, 250)
 
   const onStateOptionChange = (_option) => {
-    onControlChange('state')
-    onControlChange('stateAndZipValidation')
+    removeErrorMessages(['state', 'stateAndZipValidation'])
     setCityKey((_key) => _key + 1) // To rerender the city combobox
 
     // Update cities based on the new state
@@ -53,20 +68,26 @@ export default function SearchListingsForm({
 
   const onFormSubmit = async (_event) => {
     _event.preventDefault()
-    const formData = new FormData(_event.target)
+    const formDataInterface = new FormData(_event.target)
+    const formData = Object.fromEntries(formDataInterface.entries())
     // Object.fromEntries: convert Form object to JS object
-    const searchListingsResult = await searchListings(
-      Object.fromEntries(formData.entries()))
+    const searchFormValidation = await validateSearchForm(formData)
 
-    if (searchListingsResult.status === statusConstant.error) {
-      setControlsErrors(searchListingsResult.errors)
+    if (searchFormValidation.status === statusConstant.error) {
+      setControlsErrors(searchFormValidation.errors)
 
       return
     }
 
-    console.log('form looks good', Object.fromEntries(formData.entries()))
+    setListingUpdateType(listingUpdateTypeConstant.search)
+
+    searchListings(formData)
+      .then(_listingDtos => {
+        setListingDtos(_listingDtos)
+        // Note: setListingUpdateType to none in the map component
+      })
   }
-  console.log('test', controlsErrors.rentCastApiKey)
+
   // Or a custom loading skeleton component
   return <form onSubmit={onFormSubmit} className={className}>
     <div className="mb-6 grid grid-cols-1 sm:grid-cols-8 gap-6">
@@ -75,8 +96,8 @@ export default function SearchListingsForm({
         <TextInput
           id="rentCastApiKey"
           name={'rentCastApiKey'}
-          onChange={_event => onControlChange('rentCastApiKey')}
-          errorCondition={controlsErrors.rentCastApiKey}
+          onInputChange={_event => removeErrorMessages(['rentCastApiKey'])}
+          errorCondition={controlsErrors?.rentCastApiKey}
           errorMessage={controlsErrors?.rentCastApiKey?.errors?.[0]}
         />
       </div>
@@ -87,7 +108,7 @@ export default function SearchListingsForm({
           id={'listingFor'}
           name={'listingFor'}
           options={[{listingFor: 'Sale'}, {listingFor: 'Rent'}]}
-          displayValueKey={'listingFor'}
+          displayValueKeyName={'listingFor'}
           defaultValue={['Sale']}
         />
       </div>
@@ -100,9 +121,9 @@ export default function SearchListingsForm({
           id={'state'}
           name={'state'}
           options={stateIds}
-          displayValueKey={'id'}
+          displayValueKeyName={'id'}
           onOptionChange={onStateOptionChange}
-          errorCondition={controlsErrors.state || controlsErrors.stateAndZipValidation}
+          errorCondition={controlsErrors?.state || controlsErrors?.stateAndZipValidation}
           errorMessage={controlsErrors?.state?.errors?.[0]}
         />
       </div>
@@ -120,30 +141,27 @@ export default function SearchListingsForm({
           name={'city'}
           placeholder={'Search cities by state'}
           options={cities}
-          displayValueKey={'city'}
-          onOptionChange={(_option) => onControlChange('city')}
-          errorCondition={controlsErrors.city}
+          displayValueKeyName={'city'}
+          onOptionChange={(_option) => removeErrorMessages(['city'])}
+          errorCondition={controlsErrors?.city}
           errorMessage={controlsErrors?.city?.errors?.[0]}
           disabled={cities.length === 0}
         />
       </div>
 
       <div className="sm:col-span-2">
-        <ControlLabelText htmlFor={'zip'} className={'mb-2'}>Zip</ControlLabelText>
+        <ControlLabelText htmlFor={'zipCode'} className={'mb-2'}>Zip</ControlLabelText>
         <TextInput
-          id="zip"
-          name={'zip'}
-          onChange={_event => {
-            onControlChange('zip')
-            onControlChange('stateAndZipValidation')
-          }}
-          errorCondition={controlsErrors.zip || controlsErrors.stateAndZipValidation}
-          errorMessage={controlsErrors?.zip?.errors?.[0]}
+          id="zipCode"
+          name={'zipCode'}
+          onInputChange={_event => removeErrorMessages(['zipCode', 'stateAndZipValidation'])}
+          errorCondition={controlsErrors?.zipCode || controlsErrors?.stateAndZipValidation}
+          errorMessage={controlsErrors?.zipCode?.errors?.[0]}
         />
       </div>
     </div>
 
-    {controlsErrors.stateAndZipValidation && <ControlErrorMessageText className={'mt-2'}>
+    {controlsErrors?.stateAndZipValidation && <ControlErrorMessageText className={'mt-2'}>
       {controlsErrors.stateAndZipValidation.errors[0]}
     </ControlErrorMessageText>}
 
@@ -171,11 +189,11 @@ export default function SearchListingsForm({
           <ControlLabelText htmlFor={'apartment'} isBold={false}>Apartment</ControlLabelText>
         </div>
         <div className="flex gap-3">
-          <CheckBox id={'manufactured'} name={'manufactured'} />
+          <CheckBox id={'manufactured'} name={'manufactured'} defaultChecked={false} />
           <ControlLabelText htmlFor={'manufactured'} isBold={false}>Manufactured</ControlLabelText>
         </div>
         <div className="flex gap-3">
-          <CheckBox id={'land'} name={'land'} />
+          <CheckBox id={'land'} name={'land'} defaultChecked={false} />
           <ControlLabelText htmlFor={'land'} isBold={false}>Land</ControlLabelText>
         </div>
       </div>
@@ -189,8 +207,8 @@ export default function SearchListingsForm({
           name={'bedrooms'}
           min={0}
           max={100}
-          onChange={_event => onControlChange('bedrooms')}
-          errorCondition={controlsErrors.bedrooms}
+          onInputChange={_event => removeErrorMessages(['bedrooms'])}
+          errorCondition={controlsErrors?.bedrooms}
           errorMessage={controlsErrors?.bedrooms?.errors?.[0]}
         />
       </div>
@@ -199,8 +217,8 @@ export default function SearchListingsForm({
         <NumberInput
           id="bathrooms"
           name={'bathrooms'}
-          onChange={_event => onControlChange('bathrooms')}
-          errorCondition={controlsErrors.bathrooms}
+          onInputChange={_event => removeErrorMessages(['bathrooms'])}
+          errorCondition={controlsErrors?.bathrooms}
           errorMessage={controlsErrors?.bathrooms?.errors?.[0]}
         />
       </div>

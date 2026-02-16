@@ -14,12 +14,7 @@ export default function CheckBox({
         id={id}
         name={name}
         type="checkbox"
-        className={clsx(
-          'col-start-1 row-start-1 appearance-none forced-colors:appearance-auto',
-          'rounded-sm input-normal-outline checked:outline-light-accent dark:checked:outline-dark-accent',
-          'checked:bg-light-accent dark:checked:bg-dark-accent',
-          'indeterminate:outline-light-accent dark:indeterminate:outline-dark-accent',
-          'indeterminate:bg-light-accent dark:indeterminate:bg-dark-accent')} />
+        className={clsx('checkbox')} />
       <svg
         fill="none"
         viewBox="0 0 14 14"

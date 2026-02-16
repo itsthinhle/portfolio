@@ -11,22 +11,22 @@ export default function UncontrolledSelect({
   id,
   name,
   options = [],
-  displayValueKey = 'label',
+  displayValueKeyName = 'label',
   defaultValue = [''],
   className
 }) {
   const collection = createListCollection({
     items: options,
-    itemToString: (_option) => _option?.[displayValueKey],
+    itemToString: (_option) => _option?.[displayValueKeyName],
     itemToValue: (_option) => {
       if (_option?.value) {
         return _option.value
       }
 
-      return _option?.[displayValueKey]
+      return _option?.[displayValueKeyName]
     },
   })
-  console.log('collection.items', collection.items)
+
   return <Select.Root
     id={id}
     name={name}
@@ -56,7 +56,7 @@ export default function UncontrolledSelect({
         <Select.Content className={'combo-box-options-container min-w-(--reference-width)'}>
           {collection.items.map((_option, _index) => (
             <Select.Item key={_index} item={_option} className={'combo-box-option'}>
-              <Select.ItemText>{_option[displayValueKey]}</Select.ItemText>
+              <Select.ItemText>{_option[displayValueKeyName]}</Select.ItemText>
             </Select.Item>
           ))}
         </Select.Content>

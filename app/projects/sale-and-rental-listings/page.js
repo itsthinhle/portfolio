@@ -65,10 +65,7 @@ export default async function SaleAndRentalListingsPage() {
           title="YouTube video player" frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-        <MapSection
-          initialListingDtos={initialListingDtos}
-          googleMapApiKey={process.env.GOOGLE_MAP_API_KEY}
-          googleMapId={process.env.GOOGLE_MAP_ID} />
+        <MapSection initialListingDtos={initialListingDtos} />
       </section>
     </BlogPostLayout>
   </>
