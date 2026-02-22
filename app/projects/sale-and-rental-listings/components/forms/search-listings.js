@@ -22,7 +22,8 @@ import {useDebouncedCallback} from 'use-debounce'
 export default function SearchListingsForm({
   className
 }) {
-  const [controlsErrors, setControlsErrors] = useState({})
+  const [controlsErrorMessages, setControlsErrorMessages] = useState({})
+  const [serverErrorMessage, setServerErrorMessage] = useState(undefined)
   const [stateIds, setStateIds] = useState([])
   const [cities, setCities] = useState([])
   const [cityKey, setCityKey] = useState(0)
@@ -43,7 +44,7 @@ export default function SearchListingsForm({
 
   /* Update error fields */
   const removeErrorMessages = useDebouncedCallback((_fields = []) => {
-    setControlsErrors(_previousState => {
+    setControlsErrorMessages(_previousState => {
       const newState = { ..._previousState }
 
       _fields.forEach(_field => {
@@ -75,17 +76,37 @@ export default function SearchListingsForm({
     const searchFormValidation = await validateSearchForm(formData)
 
     if (searchFormValidation.status === statusConstant.error) {
-      setControlsErrors(searchFormValidation.errors)
+      setControlsErrorMessages(searchFormValidation.errors)
 
       return
     }
 
     setListingUpdateType(listingUpdateTypeConstant.search)
-    hideBackdropAndActivePanel()
 
     searchListings(formData)
-      .then(_listingDtos => {
-        setListingDtos(_listingDtos)
+      .then(_searchResult => { // searchResult can be an array or object
+        console.log('_listingDtos', _searchResult)
+        console.log('type of _listingDtos', Array.isArray(_searchResult))
+        console.log('_listingDtos length', _searchResult.length)
+        if (Array.isArray(_searchResult)) {
+          if (_searchResult.length > 0) {
+            hideBackdropAndActivePanel()
+            setServerErrorMessage(undefined)
+            setListingDtos(_searchResult)
+
+            return
+          }
+
+          // Tell the user there is no results
+          setServerErrorMessage('No results found')
+        }
+        // else: likely an object with error
+        else if (_searchResult?.error && _searchResult?.message) {
+          // Tell the user the error
+          setServerErrorMessage(_searchResult.message)
+        }
+
+        setListingUpdateType(listingUpdateTypeConstant.none)
         // Note: setListingUpdateType to none in the map component
       })
   }
@@ -98,8 +119,8 @@ export default function SearchListingsForm({
           id="rentCastApiKey"
           name={'rentCastApiKey'}
           onInputChange={_event => removeErrorMessages(['rentCastApiKey'])}
-          errorCondition={controlsErrors?.rentCastApiKey}
-          errorMessage={controlsErrors?.rentCastApiKey?.errors?.[0]}
+          errorCondition={controlsErrorMessages?.rentCastApiKey}
+          errorMessage={controlsErrorMessages?.rentCastApiKey?.errors?.[0]}
         />
       </div>
 
@@ -124,8 +145,9 @@ export default function SearchListingsForm({
           options={stateIds}
           displayValueKeyName={'id'}
           onOptionChange={onStateOptionChange}
-          errorCondition={controlsErrors?.state || controlsErrors?.stateAndZipValidation}
-          errorMessage={controlsErrors?.state?.errors?.[0]}
+          errorCondition={controlsErrorMessages?.state
+            || controlsErrorMessages?.stateAndZipValidation}
+          errorMessage={controlsErrorMessages?.state?.errors?.[0]}
         />
       </div>
       
@@ -144,8 +166,8 @@ export default function SearchListingsForm({
           options={cities}
           displayValueKeyName={'city'}
           onOptionChange={(_option) => removeErrorMessages(['city'])}
-          errorCondition={controlsErrors?.city}
-          errorMessage={controlsErrors?.city?.errors?.[0]}
+          errorCondition={controlsErrorMessages?.city}
+          errorMessage={controlsErrorMessages?.city?.errors?.[0]}
           disabled={cities.length === 0}
         />
       </div>
@@ -156,14 +178,16 @@ export default function SearchListingsForm({
           id="zipCode"
           name={'zipCode'}
           onInputChange={_event => removeErrorMessages(['zipCode', 'stateAndZipValidation'])}
-          errorCondition={controlsErrors?.zipCode || controlsErrors?.stateAndZipValidation}
-          errorMessage={controlsErrors?.zipCode?.errors?.[0]}
+          errorCondition={
+            controlsErrorMessages?.zipCode || controlsErrorMessages?.stateAndZipValidation
+          }
+          errorMessage={controlsErrorMessages?.zipCode?.errors?.[0]}
         />
       </div>
     </div>
 
-    {controlsErrors?.stateAndZipValidation && <ControlErrorMessageText className={'mt-2'}>
-      {controlsErrors.stateAndZipValidation.errors[0]}
+    {controlsErrorMessages?.stateAndZipValidation && <ControlErrorMessageText className={'mt-2'}>
+      {controlsErrorMessages.stateAndZipValidation.errors[0]}
     </ControlErrorMessageText>}
 
     <div className="mt-6 mb-6">
@@ -200,7 +224,7 @@ export default function SearchListingsForm({
       </div>
     </div>
 
-    <div className="mb-6 grid grid-cols-2 gap-6">
+    <div className="grid grid-cols-2 gap-6">
       <div>
         <ControlLabelText htmlFor={'bedrooms'} className={'mb-2'}>Bedrooms</ControlLabelText>
         <NumberInput
@@ -209,8 +233,8 @@ export default function SearchListingsForm({
           min={0}
           max={100}
           onInputChange={_event => removeErrorMessages(['bedrooms'])}
-          errorCondition={controlsErrors?.bedrooms}
-          errorMessage={controlsErrors?.bedrooms?.errors?.[0]}
+          errorCondition={controlsErrorMessages?.bedrooms}
+          errorMessage={controlsErrorMessages?.bedrooms?.errors?.[0]}
         />
       </div>
       <div>
@@ -219,15 +243,20 @@ export default function SearchListingsForm({
           id="bathrooms"
           name={'bathrooms'}
           onInputChange={_event => removeErrorMessages(['bathrooms'])}
-          errorCondition={controlsErrors?.bathrooms}
-          errorMessage={controlsErrors?.bathrooms?.errors?.[0]}
+          errorCondition={controlsErrorMessages?.bathrooms}
+          errorMessage={controlsErrorMessages?.bathrooms?.errors?.[0]}
         />
       </div>
     </div>
+
     <PrimaryButton
       type={'submit'}
-      className={'w-full'}>
+      className={'mt-6 w-full'}>
       Search
     </PrimaryButton>
+
+    {serverErrorMessage && <ControlErrorMessageText className={'mt-2 text-center'}>
+      {serverErrorMessage}
+    </ControlErrorMessageText>}
   </form>
 }

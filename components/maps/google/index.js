@@ -9,7 +9,7 @@ const GoogleMap = memo(({
   defaultZoom = 6,
   defaultCenter = {lat: 38.986, lng: -100.363},
   mapClassName = '',
-  gestureHandling = 'greedy',
+  gestureHandling = 'cooperates',
   onIdle,
   children,
   locations = [],
