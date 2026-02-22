@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, {useEffect, useRef} from 'react'
 import {HugeiconsIcon} from '@hugeicons/react'
-import {Menu01Icon, QuillWrite02Icon} from '@hugeicons-pro/core-stroke-rounded'
+import {Menu01Icon, QuillWrite02Icon} from '@hugeicons-pro/core-solid-standard'
 import Link from 'next/link'
 import {home} from '@/constants/navigation-items'
 import HeaderNavigationMenu from '@/components/navigation-menus/header'

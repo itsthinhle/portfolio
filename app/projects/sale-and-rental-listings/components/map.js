@@ -2,7 +2,15 @@ import listingUpdateTypeConstant from '@/app/projects/sale-and-rental-listings/c
 import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/propertyType'
 import SaleAndRentalListingsContext from '@/app/projects/sale-and-rental-listings/context'
 import GoogleMap from '@/components/maps/google'
-import {Home01Icon, Home12Icon, Search01Icon} from '@hugeicons-pro/core-stroke-rounded'
+import {
+  RealEstate02Icon,
+  Settings01Icon,
+  Leaf01Icon,
+  DuplexIcon,
+  ApartmentIcon,
+  House01Icon,
+  House04Icon
+} from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
 import {AdvancedMarker, APIProvider} from '@vis.gl/react-google-maps'
 import clsx from 'clsx'
@@ -16,40 +24,52 @@ const Map = memo(({
     setListingUpdateType
   } = useContext(SaleAndRentalListingsContext)
 
-  const getListingIconBackgroundColorByPrice = (_locationPrice) => {
-    switch (_locationPrice) {
-      case listingDtos[0].price: // min
-        return 'bg-emerald-600'
-      case listingDtos[listingDtos.length - 1].price: // max
-        return 'bg-red-600'
-      default: // 'maximumPrice'
-        return 'bg-pink-200'
+  const getListingIconBackgroundColor = (_propertyType) => {
+    switch (_propertyType) {
+      case propertyTypeConstant.singleFamily:
+        return 'bg-pink-300 dark:bg-pink-600'
+      case propertyTypeConstant.multiFamily:
+        return 'bg-amber-300 dark:bg-amber-600'
+      case propertyTypeConstant.townhouse:
+        return 'bg-purple-300 dark:bg-purple-600'
+      case propertyTypeConstant.condo:
+        return 'bg-sky-300 dark:bg-sky-600'
+      case propertyTypeConstant.apartment:
+        return 'bg-emerald-300 dark:bg-emerald-600'
+      case propertyTypeConstant.manufactured:
+        return 'bg-slate-300 dark:bg-slate-600'
+      default: // land
+        return 'bg-stone-300 dark:bg-stone-600'
     }
   }
 
   const getListingIcon = (_propertyType) => {
     switch (_propertyType) {
       case propertyTypeConstant.singleFamily:
-        return Home01Icon
+        return House04Icon //
       case propertyTypeConstant.multiFamily:
-      case propertyTypeConstant.condo:
+        return DuplexIcon //
       case propertyTypeConstant.townhouse:
+        return House01Icon //
+      case propertyTypeConstant.condo:
+        return RealEstate02Icon //
       case propertyTypeConstant.apartment:
+        return ApartmentIcon //
       case propertyTypeConstant.manufactured:
+        return Settings01Icon //
       default: // land
-        return Home01Icon
+        return Leaf01Icon //
     }
   }
 
   const renderListingIcon = (_locationDto) => {
     return <div className={clsx([
-      'flex items-center justify-center rounded-full p-1.5 text-white',
-      'bg-red-200'
-      //getListingIconBackgroundColorByPrice(_locationDto.price)
+      'flex items-center justify-center rounded-full p-1.5 text-gray-600 dark:text-gray-200',
+      getListingIconBackgroundColor(_locationDto.propertyType)
     ])}>
       {<HugeiconsIcon
         icon={getListingIcon(_locationDto.propertyType)}
-        className={'size-6 lg:size-7'} />}
+        className={'size-5 lg:size-6'} />}
     </div>
 
   }

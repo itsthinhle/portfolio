@@ -12,7 +12,7 @@ import {
   Search01Icon,
   FilterHorizontalIcon,
   Loading03Icon
-} from '@hugeicons-pro/core-stroke-rounded'
+} from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
 import clsx from 'clsx'
 import React, {useEffect, useRef, useState} from 'react'
