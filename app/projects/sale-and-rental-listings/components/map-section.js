@@ -14,6 +14,7 @@ import {
   Loading03Icon
 } from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
+import {APIProvider} from '@vis.gl/react-google-maps'
 import clsx from 'clsx'
 import React, {useEffect, useRef, useState} from 'react'
 
@@ -123,9 +124,11 @@ export default function MapSection({
         setListingUpdateType,
         hideBackdropAndActivePanel
       }}>
-        <Map
-          listingDtos={filteredListingDtos}>
-        </Map>
+        <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}>
+          <Map
+            listingDtos={filteredListingDtos}>
+          </Map>
+        </APIProvider>
         {/* Panel backdrop */}
         <div
           ref={backdropRef}

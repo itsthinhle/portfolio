@@ -98,7 +98,7 @@
 @utility combo-box-options-container {
   /* The container of options */
   @apply max-h-36 lg:max-h-40 overflow-y-auto z-1 data-empty:invisible
-  border border-gray-300 dark:border-gray-600 rounded-md
+  border border-light-boundary dark:border-dark-boundary rounded-md
   bg-light dark:bg-dark text-sm lg:text-base;
 }
 

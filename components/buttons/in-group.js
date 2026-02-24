@@ -19,7 +19,7 @@ export default function InGroupButton({
     className={clsx([
       'relative inline-flex items-center',
       'px-3 py-2 text-sm lg:text-base font-semibold',
-      'inset-ring inset-ring-gray-300 dark:inset-ring-gray-600',
+      'inset-ring inset-ring-light-boundary dark:inset-ring-dark-boundary',
       'hover:bg-light-accent dark:hover:bg-dark-accent',
       'hover:text-light dark:hover:text-dark focus:z-10',
       {

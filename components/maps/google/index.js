@@ -31,11 +31,11 @@ const GoogleMap = memo(({
   }, [map, locations, latKeyName, longKeyName])
 
   return <Map
+    // Required for AdvancedMarker
+    mapId={mapId}
     // onCameraChanged={(e) => console.log(e.detail.zoom)}
     defaultZoom={defaultZoom}
     defaultCenter={defaultCenter}
-    // Required for AdvancedMarker
-    mapId={mapId}
     className={mapClassName}
     gestureHandling={gestureHandling}
     colorScheme={ColorScheme.FOLLOW_SYSTEM}

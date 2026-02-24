@@ -1,6 +1,4 @@
 import BlogPostLayout from '@/components/layouts/blog-post'
-import {cryptocurrencyInvestmentBlog} from '@/constants/navigation-items'
-import {getAppCardCreationDateAndTitleByPath} from '@/actions/databases/neon'
 import Head from 'next/head'
 import React from 'react'
 
