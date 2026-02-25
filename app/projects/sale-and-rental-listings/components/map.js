@@ -16,15 +16,25 @@ import {
 import {HugeiconsIcon} from '@hugeicons/react'
 import {AdvancedMarker} from '@vis.gl/react-google-maps'
 import clsx from 'clsx'
-import React, {memo, useCallback, useContext, useEffect, useMemo, useState} from 'react'
+import React, {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo, 
+  useRef,
+  useState
+} from 'react'
 
 
 const Map = memo(({
   listingDtos = []
 }) => {
   const [selectedListingDto, setSelectedListingDto] = useState(undefined)
+  const [listingInfoPopupSize, setListingInfoPopupSize] = useState({ width: 0, height: 0 })
+  const listingInfoPopupRef = useRef(null)
   const map = useMap()
-  
+
   const {
     listingUpdateType,
     setListingUpdateType
@@ -67,6 +77,7 @@ const Map = memo(({
         return Leaf01Icon //
     }
   }
+
   const renderListingIcon = useCallback((_locationDto) => {
     return <div className={clsx([
       'flex items-center justify-center rounded-full p-1.5 text-light',
@@ -90,14 +101,26 @@ const Map = memo(({
     // shift the center of the map view to a specific geographical coordinate
     // without changing the zoom level
     map.panTo({
-      lat: selectedListingDto.latitude,
-      lng: selectedListingDto.longitude
+      lat: selectedListingDto?.latitude,
+      lng: selectedListingDto?.longitude
     })
+
+    map.panBy(0, -map.getDiv().clientHeight / 6)
 
   }, [selectedListingDto, map])
 
+  // fires before the browser repaints the screen
+  useEffect(() => {
+    if (!listingInfoPopupRef.current) return
+
+    setListingInfoPopupSize({
+      width: listingInfoPopupRef.current.offsetWidth,
+      height: listingInfoPopupRef.current.offsetHeight
+    })
+
+  }, [selectedListingDto])
+
   const markers = useMemo(() => {
-    console.log('markers created')
     return listingDtos?.map((_listingDto, _index) => <AdvancedMarker
       key={_index}
       title={_listingDto.title}
@@ -118,64 +141,63 @@ const Map = memo(({
     {/* Render Markers */}
     {markers}
 
-    {selectedListingDto && (
-      <AdvancedMarker
-        className={clsx(
-          'bg-white max-w-sm px-3 py-2 rounded-md',
-          'text-xs lg:text-sm text-dark',
-          'transform -translate-y-11.5 relative',
-          'after:content-[""] after:absolute',
-          'after:left-1/2 after:-translate-x-1/2 after:top-full',
-          'after:border-8 after:border-transparent after:border-t-white')}
-        position={{
-          lat: selectedListingDto.latitude,
-          lng: selectedListingDto.longitude
-        }}
-        zIndex={501}
-      >
-        <div className={'flex justify-between'}>
-          <p className={'font-medium mb-2'}>{selectedListingDto.propertyType}</p>
-          <button
-            className={'cursor-pointer'}
-            onClick={(_event) => {
-              _event.stopPropagation()
-              setSelectedListingDto(null)
-            }}>
-            X
-          </button>
-        </div>
-        <div className="grid grid-cols-2 gap-y-0.5">
-          {selectedListingDto.fullAddress && <p className={'col-span-2'}>
-            <span className={'font-semibold'}>Address</span>: {selectedListingDto.fullAddress}
-          </p>}
-          {selectedListingDto.price !== undefined && <p className={'col-span-2'}>
-            <span className={'font-semibold'}>Price</span>: ${selectedListingDto.price.toLocaleString()}
-          </p>}
-          {selectedListingDto.bedrooms !== undefined && <p>
-            <span className={'font-semibold'}>Bedrooms</span>: {selectedListingDto.bedrooms}
-          </p>}
-          {selectedListingDto.bathrooms !== undefined && <p>
-            <span className={'font-semibold'}>Bathrooms</span>: {selectedListingDto.bathrooms}
-          </p>}
-          {selectedListingDto.livingArea !== undefined && <p>
-            <span className={'font-semibold'}>Living area</span>: {selectedListingDto.livingArea}
-          </p>}
-          {selectedListingDto.lotArea !== undefined && <p>
-            <span className={'font-semibold'}>Lot area</span>: {selectedListingDto.lotArea}
-          </p>}
-          {selectedListingDto.hoaFee !== undefined && <p className={'col-span-2'}>
-            <span className={'font-semibold'}>HOA fee</span>: {selectedListingDto.hoaFee}
-          </p>}
-          {selectedListingDto.listingOfficeName && <p className={'col-span-2'}>
-            <span className={'font-semibold'}>Agent company</span>: {selectedListingDto.listingOfficeName}
-          </p>}
-          {selectedListingDto.listingAgentName && <p className={'col-span-2'}>
-            <span
-              className={'font-semibold'}>Agent contact</span>: {selectedListingDto.listingAgentName}, {formatPhoneNumber(selectedListingDto.listingAgentPhone) ?? 'Unknown agent phone number'}
-          </p>}
-        </div>
-      </AdvancedMarker>
-    )}
+    <AdvancedMarker
+      ref={listingInfoPopupRef}
+      className={clsx(
+        'bg-white max-w-sm px-3 py-2 rounded-md relative',
+        'text-xs lg:text-sm text-dark',
+        'after:content-[""] after:absolute',
+        'after:left-1/2 after:-translate-x-1/2 after:top-full',
+        'after:border-8 after:border-transparent after:border-t-white')}
+      position={selectedListingDto ? {
+        lat: selectedListingDto.latitude,
+        lng: selectedListingDto.longitude
+      }: undefined}
+      anchorTop={`-${listingInfoPopupSize.height + 44}px`}
+      zIndex={selectedListingDto ? 501 : -1}
+    >
+      <div className={'flex justify-between'}>
+        <p className={'font-medium mb-2'}>{selectedListingDto?.propertyType}</p>
+        <button
+          className={'cursor-pointer'}
+          onClick={(_event) => {
+            _event.stopPropagation()
+            setSelectedListingDto(null)
+          }}>
+          X
+        </button>
+      </div>
+      <div className="grid grid-cols-2 gap-y-0.5">
+        {selectedListingDto?.fullAddress && <p className={'col-span-2'}>
+          <span className={'font-semibold'}>Address</span>: {selectedListingDto?.fullAddress}
+        </p>}
+        {selectedListingDto?.price !== undefined && <p className={'col-span-2'}>
+          <span className={'font-semibold'}>Price</span>: ${selectedListingDto?.price.toLocaleString()}
+        </p>}
+        {selectedListingDto?.bedrooms !== undefined && <p>
+          <span className={'font-semibold'}>Bedrooms</span>: {selectedListingDto?.bedrooms}
+        </p>}
+        {selectedListingDto?.bathrooms !== undefined && <p>
+          <span className={'font-semibold'}>Bathrooms</span>: {selectedListingDto?.bathrooms}
+        </p>}
+        {selectedListingDto?.livingArea !== undefined && <p>
+          <span className={'font-semibold'}>Living area</span>: {selectedListingDto?.livingArea}
+        </p>}
+        {selectedListingDto?.lotArea !== undefined && <p>
+          <span className={'font-semibold'}>Lot area</span>: {selectedListingDto?.lotArea}
+        </p>}
+        {selectedListingDto?.hoaFee !== undefined && <p className={'col-span-2'}>
+          <span className={'font-semibold'}>HOA fee</span>: {selectedListingDto?.hoaFee}
+        </p>}
+        {selectedListingDto?.listingOfficeName && <p className={'col-span-2'}>
+          <span className={'font-semibold'}>Agent company</span>: {selectedListingDto?.listingOfficeName}
+        </p>}
+        {selectedListingDto?.listingAgentName && <p className={'col-span-2'}>
+          <span
+            className={'font-semibold'}>Agent contact</span>: {selectedListingDto?.listingAgentName}, {formatPhoneNumber(selectedListingDto?.listingAgentPhone) ?? 'Unknown agent phone number'}
+        </p>}
+      </div>
+    </AdvancedMarker>
   </GoogleMap>
 })
 
