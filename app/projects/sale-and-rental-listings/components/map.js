@@ -11,7 +11,8 @@ import {
   DuplexIcon,
   ApartmentIcon,
   House01Icon,
-  Home09Icon
+  Home09Icon,
+  Cancel01Icon
 } from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
 import {AdvancedMarker} from '@vis.gl/react-google-maps'
@@ -21,7 +22,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
-  useMemo, 
+  useMemo,
   useRef,
   useState
 } from 'react'
@@ -153,18 +154,18 @@ const Map = memo(({
         lat: selectedListingDto.latitude,
         lng: selectedListingDto.longitude
       }: undefined}
-      anchorTop={`-${listingInfoPopupSize.height + 44}px`}
+      anchorTop={`-${listingInfoPopupSize.height + 48}px`}
       zIndex={selectedListingDto ? 501 : -1}
     >
-      <div className={'flex justify-between'}>
-        <p className={'font-medium mb-2'}>{selectedListingDto?.propertyType}</p>
+      <div className={'flex justify-between mb-2'}>
+        <p className={'font-medium'}>{selectedListingDto?.propertyType}</p>
         <button
-          className={'cursor-pointer'}
+          className={'cursor-pointer text-center'}
           onClick={(_event) => {
             _event.stopPropagation()
             setSelectedListingDto(null)
           }}>
-          X
+          <HugeiconsIcon className={'size-4'} icon={Cancel01Icon} />
         </button>
       </div>
       <div className="grid grid-cols-2 gap-y-0.5">
