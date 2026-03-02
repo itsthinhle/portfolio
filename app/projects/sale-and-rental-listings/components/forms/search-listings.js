@@ -72,12 +72,12 @@ export default function SearchListingsForm({
     _event.preventDefault()
     const formDataInterface = new FormData(_event.target)
     const formData = Object.fromEntries(formDataInterface.entries())
+
     // Object.fromEntries: convert Form object to JS object
     const searchFormValidation = await validateSearchForm(formData)
 
     if (searchFormValidation.status === statusConstant.error) {
       setControlsErrorMessages(searchFormValidation.errors)
-
       return
     }
 
@@ -85,9 +85,6 @@ export default function SearchListingsForm({
 
     searchListings(formData)
       .then(_searchResult => { // searchResult can be an array or object
-        console.log('_listingDtos', _searchResult)
-        console.log('type of _listingDtos', Array.isArray(_searchResult))
-        console.log('_listingDtos length', _searchResult.length)
         if (Array.isArray(_searchResult)) {
           if (_searchResult.length > 0) {
             hideBackdropAndActivePanel()
@@ -192,7 +189,7 @@ export default function SearchListingsForm({
 
     <div className="mt-6 mb-6">
       <ControlLabelText className={'mb-2'}>Property type</ControlLabelText>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2">
         <div className="flex gap-3">
           <CheckBox id={'singleFamily'} name={'singleFamily'} />
           <ControlLabelText htmlFor={'singleFamily'} isBold={false}>Single Family</ControlLabelText>
@@ -214,17 +211,17 @@ export default function SearchListingsForm({
           <ControlLabelText htmlFor={'apartment'} isBold={false}>Apartment</ControlLabelText>
         </div>
         <div className="flex gap-3">
-          <CheckBox id={'manufactured'} name={'manufactured'} defaultChecked={false} />
+          <CheckBox id={'manufactured'} name={'manufactured'} />
           <ControlLabelText htmlFor={'manufactured'} isBold={false}>Manufactured</ControlLabelText>
         </div>
         <div className="flex gap-3">
-          <CheckBox id={'land'} name={'land'} defaultChecked={false} />
+          <CheckBox id={'land'} name={'land'} />
           <ControlLabelText htmlFor={'land'} isBold={false}>Land</ControlLabelText>
         </div>
       </div>
     </div>
 
-    <div className="grid grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 xs:grid-cols-2 gap-6">
       <div>
         <ControlLabelText htmlFor={'bedrooms'} className={'mb-2'}>Bedrooms</ControlLabelText>
         <NumberInput

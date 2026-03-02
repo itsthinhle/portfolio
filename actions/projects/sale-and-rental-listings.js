@@ -1,5 +1,5 @@
 'use server'
-import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/propertyType'
+import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/property-type'
 import statusConstant from '@/constants/status'
 import apiUtility from '@/utilities/api'
 import {promises as fs} from 'fs'

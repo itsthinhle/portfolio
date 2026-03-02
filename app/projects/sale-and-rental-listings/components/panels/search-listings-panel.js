@@ -18,7 +18,7 @@ const SearchListingsPanel = memo(({
   return <Modal
     ref={ref}
     className={clsx(
-      `hidden min-w-sm w-full sm:max-w-lg max-h-full overflow-y-auto ${className}`
+      `hidden w-full sm:max-w-xl max-h-full overflow-y-auto ${className}`
     )}>
     <div className={'flex justify-between mb-6'}>
       <ModalHeadingText>Search</ModalHeadingText>

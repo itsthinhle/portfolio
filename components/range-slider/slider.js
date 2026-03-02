@@ -4,21 +4,16 @@ import noUiSlider from 'nouislider'
 
 const RangeSlider = ({
   min = 0,
-  filteredMin = 0,
-  max = 100,
-  filteredMax = 100,
-  behaviour = 'drag-tap',
+  max = 1000,
+  behaviour = 'drag',
   step,
-  toValue,
-  fromValue,
-  onChange,
-  containerClassName,
-  tooltipClassName,
-  ref
+  onSlide,
+  className
 }) => {
-  const rangeSliderContainerRef = useRef(null)
+  const ref = useRef(null)
 
   useEffect(() => {
+    console.log('rerender')
     if (!ref || !ref.current) {
       return
     }
@@ -27,31 +22,29 @@ const RangeSlider = ({
 
     /* Create the range slider */
     noUiSlider.create(rangeSliderElement, {
-      start: [20, 80],
-      connect: true,
+      // Set start and end when the component first load
+      start: [min, max],
+      connect: true, // should the handlers connect to each other?
+      behaviour: behaviour,
       range: {
-        'min': 0,
-        'max': 100
-      }
+        'min': min,
+        'max': max
+      },
+      step: step,
     })
+
+    /* Create on update event */
+    if (onSlide) {
+      rangeSliderElement.noUiSlider.on('slide', onSlide)
+    }
 
     return () => {
       rangeSliderElement.noUiSlider.destroy()
     }
-  }, [ref])
+    // Note: parent component must wrap events in useCallback
+  }, [max, min, onSlide, step])
 
-  return <div className={clsx([
-    containerClassName
-  ])}>
-    <div
-      ref={rangeSliderContainerRef}
-      className={clsx([
-        'pb-1.5 lg:pb-2.25 pt-9 lg:pt-10.75'
-      ])}>
-      <div
-        ref={ref}></div>
-    </div>
-  </div>
+  return <div className={className} ref={ref}></div>
 }
 
 export default RangeSlider

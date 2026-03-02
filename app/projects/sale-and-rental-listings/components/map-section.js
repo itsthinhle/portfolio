@@ -101,14 +101,16 @@ export default function MapSection({
           {listingUpdateType === listingUpdateTypeConstant.search ?
               <LoadingIcon className={'size-5 lg:size-6'} />
             : <HugeiconsIcon icon={Search01Icon} className={'size-5 lg:size-6'} />}
-
           <span className={'ml-2 hidden sm:inline'}>Search</span>
         </InGroupButton>
         <InGroupButton
           ariaLabel={'Filter listings button'}
           onClick={() => togglePanel(panelConstant.filter)}
-          className={'-ml-px rounded-r-md'}>
-          <HugeiconsIcon icon={FilterHorizontalIcon} className={'size-5 lg:size-6'} />
+          className={'-ml-px rounded-r-md'}
+          isDisabled={listingUpdateType === listingUpdateTypeConstant.filter}>
+          {listingUpdateType === listingUpdateTypeConstant.filter ?
+              <LoadingIcon className={'size-5 lg:size-6'} />
+            : <HugeiconsIcon icon={FilterHorizontalIcon} className={'size-5 lg:size-6'} />}
           <span className={'ml-2 hidden sm:inline'}>Filter</span>
         </InGroupButton>
       </span>
@@ -119,7 +121,9 @@ export default function MapSection({
       'shadow-sm shadow-dark/25 dark:shadow-light/25'
     )}>
       <SaleAndRentalListingsContext.Provider value={{
+        listingDtos,
         setListingDtos,
+        setFilteredListingDtos,
         listingUpdateType,
         setListingUpdateType,
         hideBackdropAndActivePanel

@@ -1,7 +1,8 @@
 import listingUpdateTypeConstant from '@/app/projects/sale-and-rental-listings/constants/listings-update-status'
-import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/propertyType'
+import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/property-type'
 import SaleAndRentalListingsContext from '@/app/projects/sale-and-rental-listings/context'
 import GoogleMap from '@/components/maps/google'
+import {toCurrencyFormat} from '@/utilities/number'
 import {formatPhoneNumber} from '@/utilities/phone-number'
 import {useMap} from '@vis.gl/react-google-maps'
 import {
@@ -169,34 +170,34 @@ const Map = memo(({
         </button>
       </div>
       <div className="grid grid-cols-2 gap-y-0.5">
-        {selectedListingDto?.fullAddress && <p className={'col-span-2'}>
+        <p className={'col-span-2'}>
           <span className={'font-semibold'}>Address</span>: {selectedListingDto?.fullAddress}
-        </p>}
-        {selectedListingDto?.price !== undefined && <p className={'col-span-2'}>
-          <span className={'font-semibold'}>Price</span>: ${selectedListingDto?.price.toLocaleString()}
-        </p>}
-        {selectedListingDto?.bedrooms !== undefined && <p>
-          <span className={'font-semibold'}>Bedrooms</span>: {selectedListingDto?.bedrooms}
-        </p>}
-        {selectedListingDto?.bathrooms !== undefined && <p>
-          <span className={'font-semibold'}>Bathrooms</span>: {selectedListingDto?.bathrooms}
-        </p>}
-        {selectedListingDto?.livingArea !== undefined && <p>
-          <span className={'font-semibold'}>Living area</span>: {selectedListingDto?.livingArea}
-        </p>}
-        {selectedListingDto?.lotArea !== undefined && <p>
-          <span className={'font-semibold'}>Lot area</span>: {selectedListingDto?.lotArea}
-        </p>}
-        {selectedListingDto?.hoaFee !== undefined && <p className={'col-span-2'}>
-          <span className={'font-semibold'}>HOA fee</span>: {selectedListingDto?.hoaFee}
-        </p>}
-        {selectedListingDto?.listingOfficeName && <p className={'col-span-2'}>
-          <span className={'font-semibold'}>Agent company</span>: {selectedListingDto?.listingOfficeName}
-        </p>}
-        {selectedListingDto?.listingAgentName && <p className={'col-span-2'}>
+        </p>
+        <p className={'col-span-2'}>
+          <span className={'font-semibold'}>Price</span>: {toCurrencyFormat(selectedListingDto?.price)}
+        </p>
+        <p>
+          <span className={'font-semibold'}>Bedrooms</span>: {selectedListingDto?.bedrooms ?? 'N/A'}
+        </p>
+        <p>
+          <span className={'font-semibold'}>Bathrooms</span>: {selectedListingDto?.bathrooms ?? 'N/A'}
+        </p>
+        <p>
+          <span className={'font-semibold'}>Living area</span>: {selectedListingDto?.livingArea ?? 'N/A'}
+        </p>
+        <p>
+          <span className={'font-semibold'}>Lot area</span>: {selectedListingDto?.lotArea ?? 'N/A'}
+        </p>
+        <p className={'col-span-2'}>
+          <span className={'font-semibold'}>HOA fee</span>: {selectedListingDto?.hoaFee ?? 'N/A'}
+        </p>
+        <p className={'col-span-2'}>
+          <span className={'font-semibold'}>Agent company</span>: {selectedListingDto?.listingOfficeName ?? 'N/A'}
+        </p>
+        <p className={'col-span-2'}>
           <span
-            className={'font-semibold'}>Agent contact</span>: {selectedListingDto?.listingAgentName}, {formatPhoneNumber(selectedListingDto?.listingAgentPhone) ?? 'Unknown agent phone number'}
-        </p>}
+            className={'font-semibold'}>Agent contact</span>: {selectedListingDto?.listingAgentName}, {formatPhoneNumber(selectedListingDto?.listingAgentPhone) ?? '<Unknown phone number>'}
+        </p>
       </div>
     </AdvancedMarker>
   </GoogleMap>
