@@ -98,6 +98,10 @@ const Map = memo(({
   }
 
   useEffect(() => {
+    setSelectedListingDto(undefined)
+  }, [listingDtos])
+
+  useEffect(() => {
     if (!map || !selectedListingDto) return
 
     // shift the center of the map view to a specific geographical coordinate
@@ -109,7 +113,7 @@ const Map = memo(({
 
     map.panBy(0, -map.getDiv().clientHeight / 6)
 
-  }, [selectedListingDto, map])
+  }, [selectedListingDto])
 
   // fires before the browser repaints the screen
   useEffect(() => {
@@ -156,7 +160,7 @@ const Map = memo(({
         lng: selectedListingDto.longitude
       }: undefined}
       anchorTop={`-${listingInfoPopupSize.height + 48}px`}
-      zIndex={selectedListingDto ? 501 : -1}
+      zIndex={selectedListingDto ? 501 : -1} // max 500 items in total
     >
       <div className={'flex justify-between mb-2'}>
         <p className={'font-medium'}>{selectedListingDto?.propertyType}</p>
