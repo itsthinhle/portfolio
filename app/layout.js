@@ -1,4 +1,5 @@
 import Header from '@/components/header'
+import ChatBotWidget from '@/components/widgets/chat-bot'
 import {GoogleAnalytics} from '@next/third-parties/google'
 import clsx from 'clsx'
 import { Geist, Geist_Mono } from 'next/font/google'
@@ -23,12 +24,13 @@ export default function RootLayout({ children }) {
           `${geistSans.variable} ${geistMono.variable} antialiased`,
           // grid-rows-[auto_auto_1fr_auto]: 4 rows
           'grid min-h-dvh grid-rows-[auto_auto_1fr_auto]',
-          'bg-light dark:bg-dark text-dark dark:text-light text-base lg:text-lg leading-7'
+          'bg-light dark:bg-dark text-dark dark:text-light text-base lg:text-lg leading-7 relative'
         ])}>
       <Header />
       <main>
         {children}
       </main>
+      <ChatBotWidget />
       <a>footer</a>
     </body>
   </html>

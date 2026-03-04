@@ -13,8 +13,22 @@ const RangeSlider = ({
   const ref = useRef(null)
 
   useEffect(() => {
-    console.log('rerender')
-    if (!ref || !ref.current) {
+    if (!ref.current || !ref.current.noUiSlider) {
+      return
+    }
+
+    ref.current.noUiSlider.updateOptions({
+      start: [min, max],
+      range: {
+        'min': min,
+        'max': max
+      }
+    })
+   
+  }, [min, max])
+
+  useEffect(() => {
+    if (!ref.current) {
       return
     }
 
@@ -41,8 +55,7 @@ const RangeSlider = ({
     return () => {
       rangeSliderElement.noUiSlider.destroy()
     }
-    // Note: parent component must wrap events in useCallback
-  }, [max, min, onSlide, step])
+  }, [])
 
   return <div className={className} ref={ref}></div>
 }

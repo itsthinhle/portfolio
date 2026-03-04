@@ -200,7 +200,11 @@ const Map = memo(({
         </p>
         <p className={'col-span-2'}>
           <span
-            className={'font-semibold'}>Agent contact</span>: {selectedListingDto?.listingAgentName}, {formatPhoneNumber(selectedListingDto?.listingAgentPhone) ?? '<Unknown phone number>'}
+            className={'font-semibold'}>Agent contact</span>:  {
+            !selectedListingDto?.listingAgentName || selectedListingDto?.listingAgentPhone
+              ? 'N/A'
+              : `${selectedListingDto?.listingAgentName}, ${formatPhoneNumber(selectedListingDto?.listingAgentPhone)}`
+          }
         </p>
       </div>
     </AdvancedMarker>

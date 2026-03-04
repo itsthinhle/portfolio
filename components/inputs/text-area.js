@@ -2,22 +2,26 @@ import ControlErrorMessageText from '@/components/texts/messages/control-error'
 import clsx from 'clsx'
 import React from 'react'
 
-// May look similart to text input but useful for future features
-export default function NumberInput({
+export default function TextAreaInput({
   id,
   name,
+  ariaLabel = '',
   hasBorder = true,
   onInputChange,
   errorCondition = false,
   errorMessage = '',
+  rows,
+  placeholder,
   className,
 }) {
   return <>
-    <input
+    <textarea
       id={id}
+      aria-label={ariaLabel}
       name={name}
-      type="number"
       onChange={onInputChange}
+      rows={rows}
+      placeholder={placeholder}
       className={clsx(
         'control',
         hasBorder && errorCondition ? 'control-boundary-error' : 'control-boundary-normal',

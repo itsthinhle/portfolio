@@ -1,56 +1,10 @@
 'use server'
 import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/property-type'
+import {toListingDto} from '@/app/projects/sale-and-rental-listings/utilities'
 import statusConstant from '@/constants/status'
 import apiUtility from '@/utilities/api'
 import {promises as fs} from 'fs'
 import {z} from 'zod'
-
-function toListingDto(listing) {
-  const result = {
-    fullAddress: listing.formattedAddress,
-    latitude: listing.latitude,
-    longitude: listing.longitude,
-    propertyType: listing.propertyType,
-    listingType: listing.listingType,
-    bedrooms: listing.bedrooms,
-    bathrooms: listing.bathrooms,
-    livingArea: listing.squareFootage,
-    lotArea: listing.lotSize,
-    yearBuilt: listing.yearBuilt,
-    price: listing.price,
-    daysOnMarket: listing.daysOnMarket,
-    status: listing.status
-  }
-
-  if (listing.hoa) {
-    result.hoaFee = listing.hoa.fee
-  }
-
-  if (listing.listingOffice) {
-    result.listingOfficeName = listing.listingOffice.name
-    result.listingOfficePhone = listing.listingOffice.phone
-    result.listingOfficeEmail = listing.listingOffice.email
-  }
-
-  if (listing.listingAgent) {
-    result.listingAgentName = listing.listingAgent.name
-    result.listingAgentPhone = listing.listingAgent.phone
-    result.listingAgentEmail = listing.listingAgent.email
-  }
-
-  if (listing.history) {
-    result.history = Object.entries(listing.history).map(([_date, _event]) => {
-      return {
-        date: _date,
-        event: _event.event,
-        price: _event.price,
-        daysOnMarket: _event.daysOnMarket
-      }
-    })
-  }
-
-  return result
-}
 
 export async function getInitialListingDtos() {
   try {
@@ -202,110 +156,110 @@ export async function searchListings(
   }
 
   return apiUtility.get(url, headers)
-
-  // return [
-  //   {
-  //     'id': '753-Carter-St-NW,-Atlanta,-GA-30314',
-  //     'formattedAddress': '753 Carter St NW, Atlanta, GA 30314',
-  //     'addressLine1': '753 Carter St NW',
-  //     'addressLine2': null,
-  //     'city': 'Atlanta',
-  //     'state': 'GA',
-  //     'stateFips': '13',
-  //     'zipCode': '30314',
-  //     'county': 'Fulton',
-  //     'countyFips': '121',
-  //     'latitude': 33.756642,
-  //     'longitude': -84.41212,
-  //     'propertyType': 'Land',
-  //     'lotSize': 3746,
-  //     'status': 'Active',
-  //     'price': 60000,
-  //     'listingType': 'Standard',
-  //     'listedDate': '2025-04-06T00:00:00.000Z',
-  //     'removedDate': null,
-  //     'createdDate': '2025-04-07T00:00:00.000Z',
-  //     'lastSeenDate': '2026-02-14T11:27:05.692Z',
-  //     'daysOnMarket': 315,
-  //     'mlsName': 'GeorgiaMLS',
-  //     'mlsNumber': '10494695',
-  //     'listingAgent': {
-  //       'name': 'Menecia Jackson',
-  //       'phone': '6785259009',
-  //       'email': 'meneciajackson@kw.com',
-  //       'website': 'http://mj.kw.com'
-  //     },
-  //     'listingOffice': {
-  //       'name': 'Keller Williams Realty Cityside',
-  //       'phone': '7708746200',
-  //       'email': 'nicole@zercherhomes.com',
-  //       'website': 'http://kwcityside.com/'
-  //     },
-  //     'history': {
-  //       '2025-04-06': {
-  //         'event': 'Sale Listing',
-  //         'price': 60000,
-  //         'listingType': 'Standard',
-  //         'listedDate': '2025-04-06T00:00:00.000Z',
-  //         'removedDate': null,
-  //         'daysOnMarket': 315
-  //       }
-  //     }
-  //   },
-  //   {
-  //     'id': '2870-Pharr-Ct,-South-NW-Apt-1209,-Atlanta,-GA-30305',
-  //     'formattedAddress': '2870 Pharr Ct, South NW Apt 1209, Atlanta, GA 30305',
-  //     'addressLine1': '2870 Pharr Ct',
-  //     'addressLine2': 'South NW Apt 1209',
-  //     'city': 'Atlanta',
-  //     'state': 'GA',
-  //     'stateFips': '13',
-  //     'zipCode': '30305',
-  //     'county': 'Fulton',
-  //     'countyFips': '121',
-  //     'latitude': 33.834043,
-  //     'longitude': -84.385749,
-  //     'propertyType': 'Condo',
-  //     'bedrooms': 1,
-  //     'bathrooms': 1,
-  //     'squareFootage': 807,
-  //     'lotSize': 828,
-  //     'yearBuilt': 1988,
-  //     'hoa': {
-  //       'fee': 479
-  //     },
-  //     'status': 'Active',
-  //     'price': 249400,
-  //     'listingType': 'Standard',
-  //     'listedDate': '2025-04-04T00:00:00.000Z',
-  //     'removedDate': null,
-  //     'createdDate': '2025-04-05T00:00:00.000Z',
-  //     'lastSeenDate': '2026-02-14T11:27:05.690Z',
-  //     'daysOnMarket': 317,
-  //     'mlsName': 'FMLS',
-  //     'mlsNumber': '7553565',
-  //     'listingAgent': {
-  //       'name': 'Trevor Russell',
-  //       'phone': '4043752180',
-  //       'email': 'trevorrussell@compass.com',
-  //       'website': 'https://closedwithlove.com/'
-  //     },
-  //     'listingOffice': {
-  //       'name': 'COMPASS',
-  //       'phone': '4046686621',
-  //       'email': 'beth.butler@compass.com',
-  //       'website': 'www.compass.com'
-  //     },
-  //     'history': {
-  //       '2025-04-04': {
-  //         'event': 'Sale Listing',
-  //         'price': 249400,
-  //         'listingType': 'Standard',
-  //         'listedDate': '2025-04-04T00:00:00.000Z',
-  //         'removedDate': null,
-  //         'daysOnMarket': 317
-  //       }
-  //     }
-  //   }
-  // ].map(_listings => toListingDto(_listings))
 }
+
+// return [
+//   {
+//     'id': '753-Carter-St-NW,-Atlanta,-GA-30314',
+//     'formattedAddress': '753 Carter St NW, Atlanta, GA 30314',
+//     'addressLine1': '753 Carter St NW',
+//     'addressLine2': null,
+//     'city': 'Atlanta',
+//     'state': 'GA',
+//     'stateFips': '13',
+//     'zipCode': '30314',
+//     'county': 'Fulton',
+//     'countyFips': '121',
+//     'latitude': 33.756642,
+//     'longitude': -84.41212,
+//     'propertyType': 'Land',
+//     'lotSize': 3746,
+//     'status': 'Active',
+//     'price': 60000,
+//     'listingType': 'Standard',
+//     'listedDate': '2025-04-06T00:00:00.000Z',
+//     'removedDate': null,
+//     'createdDate': '2025-04-07T00:00:00.000Z',
+//     'lastSeenDate': '2026-02-14T11:27:05.692Z',
+//     'daysOnMarket': 315,
+//     'mlsName': 'GeorgiaMLS',
+//     'mlsNumber': '10494695',
+//     'listingAgent': {
+//       'name': 'Menecia Jackson',
+//       'phone': '6785259009',
+//       'email': 'meneciajackson@kw.com',
+//       'website': 'http://mj.kw.com'
+//     },
+//     'listingOffice': {
+//       'name': 'Keller Williams Realty Cityside',
+//       'phone': '7708746200',
+//       'email': 'nicole@zercherhomes.com',
+//       'website': 'http://kwcityside.com/'
+//     },
+//     'history': {
+//       '2025-04-06': {
+//         'event': 'Sale Listing',
+//         'price': 60000,
+//         'listingType': 'Standard',
+//         'listedDate': '2025-04-06T00:00:00.000Z',
+//         'removedDate': null,
+//         'daysOnMarket': 315
+//       }
+//     }
+//   },
+//   {
+//     'id': '2870-Pharr-Ct,-South-NW-Apt-1209,-Atlanta,-GA-30305',
+//     'formattedAddress': '2870 Pharr Ct, South NW Apt 1209, Atlanta, GA 30305',
+//     'addressLine1': '2870 Pharr Ct',
+//     'addressLine2': 'South NW Apt 1209',
+//     'city': 'Atlanta',
+//     'state': 'GA',
+//     'stateFips': '13',
+//     'zipCode': '30305',
+//     'county': 'Fulton',
+//     'countyFips': '121',
+//     'latitude': 33.834043,
+//     'longitude': -84.385749,
+//     'propertyType': 'Condo',
+//     'bedrooms': 1,
+//     'bathrooms': 1,
+//     'squareFootage': 807,
+//     'lotSize': 828,
+//     'yearBuilt': 1988,
+//     'hoa': {
+//       'fee': 479
+//     },
+//     'status': 'Active',
+//     'price': 249400,
+//     'listingType': 'Standard',
+//     'listedDate': '2025-04-04T00:00:00.000Z',
+//     'removedDate': null,
+//     'createdDate': '2025-04-05T00:00:00.000Z',
+//     'lastSeenDate': '2026-02-14T11:27:05.690Z',
+//     'daysOnMarket': 317,
+//     'mlsName': 'FMLS',
+//     'mlsNumber': '7553565',
+//     'listingAgent': {
+//       'name': 'Trevor Russell',
+//       'phone': '4043752180',
+//       'email': 'trevorrussell@compass.com',
+//       'website': 'https://closedwithlove.com/'
+//     },
+//     'listingOffice': {
+//       'name': 'COMPASS',
+//       'phone': '4046686621',
+//       'email': 'beth.butler@compass.com',
+//       'website': 'www.compass.com'
+//     },
+//     'history': {
+//       '2025-04-04': {
+//         'event': 'Sale Listing',
+//         'price': 249400,
+//         'listingType': 'Standard',
+//         'listedDate': '2025-04-04T00:00:00.000Z',
+//         'removedDate': null,
+//         'daysOnMarket': 317
+//       }
+//     }
+//   }
+// ].map(_listings => toListingDto(_listings))

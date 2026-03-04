@@ -1,3 +1,4 @@
+import {getStatesIds} from '@/actions/databases/neon'
 import listingTypeConstant from '@/app/projects/sale-and-rental-listings/constants/listing-type'
 import listingUpdateTypeConstant from '@/app/projects/sale-and-rental-listings/constants/listings-update-status'
 import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/property-type'
@@ -11,7 +12,7 @@ import {toCurrencyFormat, toNearestStep} from '@/utilities/number'
 import clsx from 'clsx'
 import React, {
   useCallback,
-  useContext,
+  useContext, useEffect,
   useMemo,
   useState
 } from 'react'
@@ -44,17 +45,21 @@ export default function FilterListingsForm({
   } = useMemo(() =>
     getMinAndMaxOfLivingAndLotAreas(listingDtos), [listingDtos])
 
-  const [priceRange, setPriceRange] = useState(
-    [minPrice, maxPrice]
-  )
+  const [priceRange, setPriceRange] = useState([minPrice, maxPrice])
+  const [livingAreaRange, setLivingAreaRange] = useState([minLivingArea, maxLivingArea])
+  const [lotAreaRange, setLotAreaRange] = useState([minLotArea, maxLotArea])
 
-  const [livingAreaRange, setLivingAreaRange] = useState(
-    [minLivingArea, maxLivingArea]
-  )
+  useEffect(() => {
+    setPriceRange([minPrice, maxPrice])
+  }, [minPrice, maxPrice])
 
-  const [lotAreaRange, setLotAreaRange] = useState(
-    [minLotArea, maxLotArea]
-  )
+  useEffect(() => {
+    setLivingAreaRange([minLivingArea, maxLivingArea])
+  }, [minLivingArea, maxLivingArea])
+
+  useEffect(() => {
+    setLotAreaRange([minLotArea, maxLotArea])
+  }, [minLotArea, maxLotArea])
 
   const onFormSubmit = async (_event) => {
     _event.preventDefault()
@@ -137,7 +142,6 @@ export default function FilterListingsForm({
 
   const onPriceRangeSlide = useCallback((_handleValues) => {
     setPriceRange(_handleValues)
-    console.log()
   }, [])
 
   const onLivingAreaRangeSlide = useCallback((_handleValues) => {
@@ -227,35 +231,48 @@ export default function FilterListingsForm({
       <div>
         <ControlLabelText
           className={'mb-3.5'}>Living area</ControlLabelText>
-        <RangeSlider
-          min={minLivingArea}
-          max={maxLivingArea}
-          step={100}
-          onSlide={onLivingAreaRangeSlide}
-          className={'mb-3.5'}
-        ></RangeSlider>
-        <p>{
-          parseInt(livingAreaRange[0]).toLocaleString()
-        } - {
-          parseInt(livingAreaRange[1]).toLocaleString()
-        } sqft</p>
+        {minLivingArea !== Number.POSITIVE_INFINITY
+          && maxLivingArea !== Number.NEGATIVE_INFINITY
+          && minLivingArea !== maxLivingArea
+          ? <>
+              <RangeSlider
+                min={minLivingArea}
+                max={maxLivingArea}
+                step={100}
+                onSlide={onLivingAreaRangeSlide}
+                className={'mb-3.5'}
+              ></RangeSlider>
+              <p>{
+                parseInt(livingAreaRange[0]).toLocaleString()
+              } - {
+                parseInt(livingAreaRange[1]).toLocaleString()
+              } sqft</p>
+            </>
+          : <p className={'italic'}>Data is not available</p>}
       </div>
 
       <div>
         <ControlLabelText
           className={'mb-3.5'}>Lot area</ControlLabelText>
-        <RangeSlider
-          min={minLotArea}
-          max={maxLotArea}
-          step={100}
-          onSlide={onLotAreaRangeSlide}
-          className={'mb-3.5'}
-        ></RangeSlider>
-        <p>{
-          parseInt(lotAreaRange[0]).toLocaleString()
-        } - {
-          parseInt(lotAreaRange[1]).toLocaleString()
-        } sqft</p></div>
+        {minLotArea !== Number.POSITIVE_INFINITY
+          && maxLotArea !== Number.NEGATIVE_INFINITY
+          && minLotArea !== maxLotArea
+          ? <>
+              <RangeSlider
+                min={minLotArea}
+                max={maxLotArea}
+                step={100}
+                onSlide={onLotAreaRangeSlide}
+                className={'mb-3.5'}
+              ></RangeSlider>
+              <p>{
+                parseInt(lotAreaRange[0]).toLocaleString()
+              } - {
+                parseInt(lotAreaRange[1]).toLocaleString()
+              } sqft</p>
+            </>
+          : <p className={'italic'}>Data is not available</p>}
+      </div>
     </div>
 
     <PrimaryButton

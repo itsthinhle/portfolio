@@ -1,3 +1,50 @@
+export const toListingDto = (listing) => {
+  const result = {
+    fullAddress: listing.formattedAddress,
+    latitude: listing.latitude,
+    longitude: listing.longitude,
+    propertyType: listing.propertyType,
+    listingType: listing.listingType,
+    bedrooms: listing.bedrooms,
+    bathrooms: listing.bathrooms,
+    livingArea: listing.squareFootage,
+    lotArea: listing.lotSize,
+    yearBuilt: listing.yearBuilt,
+    price: listing.price,
+    daysOnMarket: listing.daysOnMarket,
+    status: listing.status
+  }
+
+  if (listing.hoa) {
+    result.hoaFee = listing.hoa.fee
+  }
+
+  if (listing.listingOffice) {
+    result.listingOfficeName = listing.listingOffice.name
+    result.listingOfficePhone = listing.listingOffice.phone
+    result.listingOfficeEmail = listing.listingOffice.email
+  }
+
+  if (listing.listingAgent) {
+    result.listingAgentName = listing.listingAgent.name
+    result.listingAgentPhone = listing.listingAgent.phone
+    result.listingAgentEmail = listing.listingAgent.email
+  }
+
+  if (listing.history) {
+    result.history = Object.entries(listing.history).map(([_date, _event]) => {
+      return {
+        date: _date,
+        event: _event.event,
+        price: _event.price,
+        daysOnMarket: _event.daysOnMarket
+      }
+    })
+  }
+
+  return result
+}
+
 export const getMinAndMaxOfLivingAndLotAreas = (
   _listingDtos
 ) => {
@@ -17,9 +64,9 @@ export const getMinAndMaxOfLivingAndLotAreas = (
 
     return _result
   }, {
-    minLivingArea: _listingDtos[0].livingArea ?? 10000,
-    maxLivingArea: _listingDtos[0].livingArea ?? 0,
-    minLotArea: _listingDtos[0].lotArea,
-    maxLotArea: _listingDtos[0].lotArea
+    minLivingArea: _listingDtos[0].livingArea ?? Number.POSITIVE_INFINITY,
+    maxLivingArea: _listingDtos[0].livingArea ?? Number.NEGATIVE_INFINITY,
+    minLotArea: _listingDtos[0].lotArea ?? Number.POSITIVE_INFINITY,
+    maxLotArea: _listingDtos[0].lotArea ?? Number.NEGATIVE_INFINITY
   })
 }

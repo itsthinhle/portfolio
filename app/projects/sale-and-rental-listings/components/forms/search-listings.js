@@ -2,6 +2,7 @@ import {getCityNamesByStateId, getStatesIds} from '@/actions/databases/neon'
 import {searchListings, validateSearchForm} from '@/actions/projects/sale-and-rental-listings'
 import listingUpdateTypeConstant from '@/app/projects/sale-and-rental-listings/constants/listings-update-status'
 import SaleAndRentalListingsContext from '@/app/projects/sale-and-rental-listings/context'
+import {toListingDto} from '@/app/projects/sale-and-rental-listings/utilities'
 import PrimaryButton from '@/components/buttons/primary'
 import CheckBox from '@/components/check-box'
 import UncontrolledComboBox from '@/components/combo-boxes/uncontrolled'
@@ -89,7 +90,10 @@ export default function SearchListingsForm({
           if (_searchResult.length > 0) {
             hideBackdropAndActivePanel()
             setServerErrorMessage(undefined)
-            setListingDtos(_searchResult)
+            const sortedListingDto = _searchResult.map(_listings => toListingDto(_listings))
+              .sort((_listing1, _listing2) => _listing1.price - _listing2.price)
+            setListingDtos(sortedListingDto)
+            setListingUpdateType(listingUpdateTypeConstant.none)
 
             return
           }
