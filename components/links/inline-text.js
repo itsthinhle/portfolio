@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 
 export default function InlineTextLink({
-  className, ariaLabel, href, target = undefined, children, prefetch = false
+  className, ariaLabel, href, target = 'undefined', children, prefetch = false
 }) {
   return <Link
     target={target}

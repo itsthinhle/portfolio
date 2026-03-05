@@ -27,6 +27,7 @@ export default function UncontrolledAndCreatableComboBox({
   name,
   placeholder = '',
   defaultValue = '',
+  hasBorder = true,
   options,
   displayValueKeyName = 'country',
   onOptionChange,
@@ -125,8 +126,8 @@ export default function UncontrolledAndCreatableComboBox({
         <Combobox.Input
           className={clsx(
             'control',
-            errorCondition
-              ? 'control-boundary-error' : 'control-boundary-normal',
+            hasBorder ? 'control-boundary-width' : 'outline-none',
+            errorCondition ? 'control-boundary-error' : 'control-boundary-normal',
             className
           )}
           placeholder={placeholder} />

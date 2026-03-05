@@ -1,5 +1,5 @@
 import Header from '@/components/header'
-import ChatBotWidget from '@/components/widgets/chat-bot'
+import ChatBotWidget from '@/components/chat-bot/chat-bot-widget'
 import {GoogleAnalytics} from '@next/third-parties/google'
 import clsx from 'clsx'
 import { Geist, Geist_Mono } from 'next/font/google'

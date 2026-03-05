@@ -80,7 +80,6 @@
 
 @utility control {
   @apply block w-full rounded-md py-1.5 pl-3 text-sm lg:text-base
-  control-boundary-width;
 }
 
 @utility select {

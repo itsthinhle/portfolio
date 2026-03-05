@@ -23,6 +23,7 @@ export default function UncontrolledComboBox({
   name,
   placeholder = '',
   defaultValue = '',
+  hasBorder = true,
   options,
   displayValueKeyName = 'country',
   onOptionChange,
@@ -81,6 +82,7 @@ export default function UncontrolledComboBox({
         <Combobox.Input
           className={clsx(
             'control',
+            hasBorder ? 'control-boundary-width' : 'outline-none',
             errorCondition ? 'control-boundary-error' : 'control-boundary-normal',
             className
           )}

@@ -1,5 +1,5 @@
 'use client'
-import ChatBotWindow from '@/components/chat-bot-window'
+import ChatBotWindow from '@/components/chat-bot/chat-bot-window'
 import {
   Message01Icon
 } from '@hugeicons-pro/core-solid-standard'

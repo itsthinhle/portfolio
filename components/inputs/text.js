@@ -19,7 +19,8 @@ export default function TextInput({
       onChange={onInputChange}
       className={clsx(
         'control',
-        hasBorder && errorCondition ? 'control-boundary-error' : 'control-boundary-normal',
+        hasBorder ? 'control-boundary-width' : 'outline-none',
+        errorCondition ? 'control-boundary-error' : 'control-boundary-normal',
         className
       )}
     />

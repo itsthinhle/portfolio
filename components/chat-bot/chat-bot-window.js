@@ -1,8 +1,11 @@
+import {metadataType} from '@/components/chat-bot/constants/metadata-type'
 import TextAreaInput from '@/components/inputs/text-area'
-import {Cancel01Icon, ChatBotIcon} from '@hugeicons-pro/core-solid-standard'
+import InlineTextLink from '@/components/links/inline-text'
+import {Cancel01Icon, ChatBotIcon, PauseIcon, Search01Icon, SentIcon} from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
 import clsx from 'clsx'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, {useEffect, useRef, useState} from 'react'
 
 export default function ChatBotWindow({
@@ -18,9 +21,7 @@ export default function ChatBotWindow({
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      content: process.env.NODE_ENV === 'production'
-        ? 'Sorry, this function is not available at the moment.'
-        : 'Hi there! I can help you navigate this website quickly. Please start by asking me something.',
+      content: 'Hi there! I can help you navigate this website quickly. Please start by asking me something.',
       payload: {}
     }
   ])
@@ -49,7 +50,7 @@ export default function ChatBotWindow({
           newBotMessage.payload = pointDto.payload
 
           // Page navigation: add a template answer
-          if (pointDto.payload.type === 1) {
+          if (pointDto.payload.type === metadataType.page) {
             const pageNavigationAnswerTemplate = chatbotAnswerTemplateConstant
               .pickRandomTemplate(chatbotAnswerTemplateConstant.pageNavigationTemplates)
 
@@ -108,25 +109,19 @@ export default function ChatBotWindow({
 
   function renderBotMessageByPayload(_message) {
     // Search for page
-    if (_message.payload.type === 1) {
+    if (_message.payload.type === metadataType.page) {
 
       return <>
         {_message.payload.description}
         <br />
         {_message.payload.templateAnswer}
         <span>
-          <Link
-            aria-label={'navigation-link'}
-            className={clsx([
-              'font-medium underline',
-              textTheme.hover.accentColor700
-            ])}
-            to={{
-              pathname: _message.payload.path
-            }}>
+          <InlineTextLink
+            ariaLabel={'navigation-link-in-chat'}
+            className={'font-semibold'}
+            href={_message.payload.path}>
             {_message.payload.title}
-          </Link>
-          {' '}page.
+          </InlineTextLink> page.
         </span>
       </>
     }
@@ -182,6 +177,7 @@ export default function ChatBotWindow({
     <div className={clsx([
       'px-4 py-2 font-semibold rounded-t-lg',
       'bg-dark dark:bg-light text-light dark:text-dark',
+      'border border-dark dark:border-light'
     ])}>
       <div className={'flex justify-between'}>
         <p className={'flex gap-2 items-center'}>
@@ -229,9 +225,9 @@ export default function ChatBotWindow({
 
     {/* Input Area */}
     <div className={clsx([
-      'px-3 py-1.5 flex gap-4 items-center rounded-b-lg border-t-1',
-      // borderTheme.secondaryColor300,
-      // backgroundTheme.primaryColor
+      'px-3 py-1.5 flex gap-4 items-center rounded-b-lg',
+      'bg-light dark:bg-dark',
+      'border border-light-boundary dark:border-dark-boundary'
     ])}>
       <TextAreaInput
         id={'input-message'}
@@ -240,21 +236,20 @@ export default function ChatBotWindow({
         rows={1}
         ariaLabel={'chatbot input message'}
         placeholder={'Ask me something'}
+        className={'resize-none'}
         value={userMessage}
         onValueChange={onUserMessageValueChange}
         onKeyDown={onEnterKeyDown} />
-      {/*<IconButton*/}
-      {/*  isDisabled={process.env.NODE_ENV === 'production'}*/}
-      {/*  ariaLabel={'Send message button'}*/}
-      {/*  onClick={addUserMessageToChatWindow}*/}
-      {/*  className={clsx([*/}
-      {/*    textTheme.hover.accentColor700,*/}
-      {/*    isBotTyping ? 'cursor-default' : 'cursor-pointer'*/}
-      {/*  ])}>*/}
-      {/*  {isBotTyping*/}
-      {/*    ? <HugeiconsIcon icon={PauseIcon} size={24} />*/}
-      {/*    : <HugeiconsIcon icon={SentIcon} size={24} />}*/}
-      {/*</IconButton>*/}
+      <button
+        aria-label={'Send message button'}
+        onClick={addUserMessageToChatWindow}
+        className={clsx([
+          isBotTyping ? 'cursor-default' : 'cursor-pointer'
+        ])}>
+        {isBotTyping
+          ? <HugeiconsIcon icon={PauseIcon} className={'size-5 lg:size-6'} />
+          : <HugeiconsIcon icon={SentIcon} className={'size-5 lg:size-6'} />}
+      </button>
     </div>
   </div>
 }
