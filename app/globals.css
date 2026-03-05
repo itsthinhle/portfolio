@@ -251,7 +251,7 @@
   }
   .noUi-handle {
     cursor: default;
-    @apply rounded-full bg-dark dark:bg-dark border-6 ;
+    @apply rounded-full bg-light dark:bg-dark border-6;
   }
 
   /* Disabled state;

@@ -52,10 +52,9 @@ export default async function SaleAndRentalListingsPage() {
           <li>This site won&#39;t store your API key, only use it to fetch data
             from RentCast API.
           </li>
-          <li>The default data is sale data in New York city in New York state
-            (last update 07/20/2025).
+          <li>The default data is sale data in Atlanta city in Georgia state
+            (last update 02/21/2026).
           </li>
-          <li>The first load may be slow due to the free backend host.</li>
         </ul>
         <NormalText className={'mb-8'}>
           Tutorial video:
