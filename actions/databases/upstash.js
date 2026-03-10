@@ -19,18 +19,17 @@ const embedText = async (_string) => {
     normalize: true,
   })
 
-  console.log(Array.from(output.data))
-
   return Array.from(output.data)
 }
 
 export async function sendMessage(_message) {
   try {
-    return index.query({
-      vector: await embedText(`Query: ${_message}`),
-      topK: 1,
-      includeMetadata: true
-    })
+    return await embedText(`Query: ${_message}`)
+    // return index.query({
+    //   vector: await embedText(`Query: ${_message}`),
+    //   topK: 1,
+    //   includeMetadata: true
+    // })
   } catch (error) {
     throw new Error('Failed to get projects data.')
   }

@@ -38,21 +38,22 @@ export default function ChatBotWindow({
   const addBotMessageToChatWindow = async () => {
     setIsBotTyping(true)
 
+    console.log('Message sent')
     sendMessage(userMessage)
       .then(_responseDto => {
-        console.log(_responseDto)
-        const newBotMessage = {
-          sender: 'bot',
-          content: '',
-          metadata: undefined
-        }
-        
-        if (_responseDto[0].score > 0.6 && _responseDto[0]?.metadata) {
-          newBotMessage.metadata = _responseDto[0].metadata
-        }        
-
-        setMessages((previousMessages) =>
-          [...previousMessages, newBotMessage])
+        console.log('_responseDto', _responseDto)
+        // const newBotMessage = {
+        //   sender: 'bot',
+        //   content: '',
+        //   metadata: undefined
+        // }
+        //
+        // if (_responseDto[0].score > 0.6 && _responseDto[0]?.metadata) {
+        //   newBotMessage.metadata = _responseDto[0].metadata
+        // }
+        //
+        // setMessages((previousMessages) =>
+        //   [...previousMessages, newBotMessage])
       })
 
     setIsBotTyping(false)
