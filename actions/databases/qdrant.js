@@ -2,6 +2,7 @@
 import {QdrantClient} from '@qdrant/js-client-rest'
 import {pipeline} from '@xenova/transformers'
 
+// Required npm package: @qdrant/js-client-rest
 const qdrantClient = new QdrantClient({
   url: 'Unknown',
   apiKey: 'Unknown',

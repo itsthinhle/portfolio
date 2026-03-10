@@ -24,12 +24,11 @@ const embedText = async (_string) => {
 
 export async function sendMessage(_message) {
   try {
-    return await embedText(`Query: ${_message}`)
-    // return index.query({
-    //   vector: await embedText(`Query: ${_message}`),
-    //   topK: 1,
-    //   includeMetadata: true
-    // })
+    return index.query({
+      vector: await embedText(`Query: ${_message}`),
+      topK: 1,
+      includeMetadata: true
+    })
   } catch (error) {
     throw new Error('Failed to get projects data.')
   }
