@@ -43,7 +43,6 @@ async function main() {
   })
 
   const pagePoints = await createPagePoints()
-  console.log(pagePoints)
 
   // Upsert function (uncomment it to update the data --------------------
   // index.upsert(pagePoints)

@@ -7,7 +7,6 @@ const get = async(_url, _headers = {}) => {
 
     return response.json()
   } catch (error) {
-    console.log(error)
     throw error
   }
 }
@@ -25,7 +24,6 @@ const post = async(_url, _body = {}, _headers = {}) => {
 
     return response.json()
   } catch (error) {
-    console.log(error)
     throw error
   }
 }

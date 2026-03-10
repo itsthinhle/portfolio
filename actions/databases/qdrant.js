@@ -23,7 +23,6 @@ const embedText = async (_string) => {
 }
 
 export async function sendMessage(_message) {
-  console.log('_message', _message)
   try {
     return []
     // return qdrantClient.search('portfolio', {
