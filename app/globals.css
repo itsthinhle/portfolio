@@ -7,6 +7,7 @@
   --color-light-backdrop: var(--color-gray-500);
   --color-light-error: var(--color-red-700);
   --color-light-link: var(--color-indigo-700);
+  --color-light-badge: var(--color-gray-100);
   --color-light-skeleton: var(--color-gray-200);
   --color-light-normal-text: var(--color-gray-600);
   --color-light-boundary: var(--color-gray-300);
@@ -16,6 +17,7 @@
   --color-dark-backdrop: var(--color-gray-900);
   --color-dark-error: var(--color-red-400);
   --color-dark-link: var(--color-sky-400);
+  --color-dark-badge: var(--color-gray-700);
   --color-dark-skeleton: var(--color-gray-700);
   --color-dark-normal-text: var(--color-gray-400);
   --color-dark-boundary: var(--color-gray-600);

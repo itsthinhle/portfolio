@@ -8,7 +8,7 @@ export default function Badge({
   return <span
     className={clsx(
       'font-medium px-2 py-1 rounded-md text-xs lg:text-sm',
-      'bg-gray-100 dark:bg-gray-800/75',
+      'bg-light-badge dark:bg-dark-badge/75',
       'text-gray-600 dark:text-gray-400',
       className
     )}>

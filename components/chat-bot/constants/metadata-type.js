@@ -1,4 +1,6 @@
 export const metadataType = {
-  page: 1,
-  faq: 2
+  page: 'page',
+  project: 'project',
+  blog: 'blog',
+  faq: 'faq'
 }

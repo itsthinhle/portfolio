@@ -1,11 +1,11 @@
+import {sendMessage} from '@/actions/databases/upstash'
 import {metadataType} from '@/components/chat-bot/constants/metadata-type'
-import TextAreaInput from '@/components/inputs/text-area'
+import ControlledTextAreaInput from '@/components/inputs/controlled-text-area'
 import InlineTextLink from '@/components/links/inline-text'
 import {Cancel01Icon, ChatBotIcon, PauseIcon, Search01Icon, SentIcon} from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
 import clsx from 'clsx'
 import Image from 'next/image'
-import Link from 'next/link'
 import React, {useEffect, useRef, useState} from 'react'
 
 export default function ChatBotWindow({
@@ -22,7 +22,7 @@ export default function ChatBotWindow({
     {
       sender: 'bot',
       content: 'Hi there! I can help you navigate this website quickly. Please start by asking me something.',
-      payload: {}
+      metadata: {}
     }
   ])
 
@@ -35,28 +35,21 @@ export default function ChatBotWindow({
     setUserMessage(_event.target.value)
   }
 
-  const addBotMessageToChatWindow = () => {
+  const addBotMessageToChatWindow = async () => {
     setIsBotTyping(true)
 
-    chatApi.sendMessage(userMessage)
-      .then(pointDto => {
+    sendMessage(userMessage)
+      .then(_responseDto => {
+        console.log(_responseDto)
         const newBotMessage = {
           sender: 'bot',
           content: '',
-          payload: undefined
+          metadata: undefined
         }
-
-        if (pointDto?.payload) {
-          newBotMessage.payload = pointDto.payload
-
-          // Page navigation: add a template answer
-          if (pointDto.payload.type === metadataType.page) {
-            const pageNavigationAnswerTemplate = chatbotAnswerTemplateConstant
-              .pickRandomTemplate(chatbotAnswerTemplateConstant.pageNavigationTemplates)
-
-            pointDto.payload.templateAnswer = pageNavigationAnswerTemplate
-          }
-        }
+        
+        if (_responseDto[0].score > 0.6 && _responseDto[0]?.metadata) {
+          newBotMessage.metadata = _responseDto[0].metadata
+        }        
 
         setMessages((previousMessages) =>
           [...previousMessages, newBotMessage])
@@ -73,7 +66,7 @@ export default function ChatBotWindow({
     const newUserMessage = {
       sender: 'user',
       content: userMessage,
-      payload: {}
+      metadata: {}
     }
 
     setMessages((previousMessages) =>
@@ -107,34 +100,33 @@ export default function ChatBotWindow({
     />
   }
 
-  function renderBotMessageByPayload(_message) {
-    // Search for page
-    if (_message.payload.type === metadataType.page) {
-
-      return <>
-        {_message.payload.description}
-        <br />
-        {_message.payload.templateAnswer}
-        <span>
-          <InlineTextLink
+  function renderBotMessage(_message) {
+    if (_message.metadata) {
+      if (_message.metadata.type === metadataType.page
+        || _message.metadata.type === metadataType.project
+        || _message.metadata.type === metadataType.blog) {
+        return <>
+          The <InlineTextLink
             ariaLabel={'navigation-link-in-chat'}
+            target={'_self'}
             className={'font-semibold'}
-            href={_message.payload.path}>
-            {_message.payload.title}
-          </InlineTextLink> page.
-        </span>
-      </>
+            href={_message.metadata.path}>
+            {_message.metadata.title}
+          </InlineTextLink> {_message.metadata.type} {_message.metadata.answer}
+        </>
+      }
+      // FAQ
+      else {
+        return <>
+          {_message.metadata.answer}
+        </>
+      }
     }
-    // FAQ
     else {
       return <>
-        {_message.payload.answer}
+        I&#39;m still being trained and can&#39;t answer queries that not related to the website, please try again 😁.
       </>
     }
-  }
-
-  function getNotFoundMessage() {
-    return 'I can only answer queries related to this website, please try again with another query 😁.'
   }
 
   function renderMessageContent(_message) {
@@ -144,9 +136,7 @@ export default function ChatBotWindow({
       return <p
         className={clsx([
           commonClassName,
-          'rounded-br-none',
-          // backgroundTheme.accentColor700, ???
-          // textTheme.primaryColor
+          'rounded-br-none bg-dark dark:bg-light text-light dark:text-dark',
         ])}>
         {_message.content}
       </p>
@@ -155,13 +145,11 @@ export default function ChatBotWindow({
     return <p
       className={clsx([
         commonClassName,
-        'rounded-bl-none bg-gray-100 dark:bg-gray-600/50'
+        'rounded-bl-none bg-light-badge dark:bg-dark-badge/75'
       ])}>
       {_message.content
         ? _message.content
-        : _message.payload
-          ? renderBotMessageByPayload(_message)
-          : getNotFoundMessage()}
+        : renderBotMessage(_message)}
     </p>
   }
 
@@ -207,20 +195,18 @@ export default function ChatBotWindow({
             className={`flex gap-2 items-end ${_message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
             {_message.sender === 'bot' && renderChatProfileImage('/bot-avatar.png', 'Bot')}
             {renderMessageContent(_message)}
-            {/*{renderUtility.renderIfTrue(*/}
-            {/*  _message.sender === 'user',*/}
-            {/*  renderChatProfileImage('/user-avatar.jpg', 'User'))}*/}
+            {_message.sender === 'user' && renderChatProfileImage('/user-avatar.jpg', 'User')}
           </div>
         ))}
       </div>
 
-      {/*  {isBotTyping && (*/}
-      {/*    <div className={`pl-12 mt-2 small-text italic ${textTheme.secondaryColor600}`}>*/}
-      {/*      Chatbot is typing...*/}
-      {/*    </div>*/}
-      {/*  )}*/}
+      {isBotTyping && (
+        <div className={'mt-4 text-sm lg:text-base italic text-light-normal-text dark:text-dark-normal-text'}>
+          Chatbot is typing...
+        </div>
+      )}
 
-      {/*  <div ref={messagesContainerEndRef} />*/}
+      <div ref={messagesContainerEndRef} />
     </div>
 
     {/* Input Area */}
@@ -229,7 +215,7 @@ export default function ChatBotWindow({
       'bg-light dark:bg-dark',
       'border border-light-boundary dark:border-dark-boundary'
     ])}>
-      <TextAreaInput
+      <ControlledTextAreaInput
         id={'input-message'}
         name={'input-message'}
         hasBorder={false}
@@ -238,7 +224,7 @@ export default function ChatBotWindow({
         placeholder={'Ask me something'}
         className={'resize-none'}
         value={userMessage}
-        onValueChange={onUserMessageValueChange}
+        onInputChange={onUserMessageValueChange}
         onKeyDown={onEnterKeyDown} />
       <button
         aria-label={'Send message button'}
