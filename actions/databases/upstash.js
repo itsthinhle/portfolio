@@ -19,6 +19,8 @@ const embedText = async (_string) => {
     normalize: true,
   })
 
+  console.log(Array.from(output.data))
+
   return Array.from(output.data)
 }
 
