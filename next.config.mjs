@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // (Optional) Export as a standalone site
+  output: 'standalone',
   // https://nextjs.org/docs/app/api-reference/config/next-config-js/serverExternalPackages
-  serverExternalPackages: ['onnxruntime-node', '@xenova/transformers'],
+  // Indicate that these packages should not be bundled by webpack
+  serverExternalPackages: ['sharp', 'onnxruntime-node'],
 }
 
 export default nextConfig
