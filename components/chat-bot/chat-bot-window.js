@@ -23,7 +23,7 @@ export default function ChatBotWindow({
       sender: 'bot',
       content: `Hi there! I can help you navigate this website quickly. Please start by asking me something.
 
-Note: The first request may take up to 1 minute while the service restarts from inactivity.`,
+Note: Your first message may take up to 1 minute while the service restarts from inactivity.`,
       metadata: {}
     }
   ])
