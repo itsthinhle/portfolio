@@ -21,7 +21,9 @@ export default function ChatBotWindow({
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      content: 'Hi there! I can help you navigate this website quickly. Please start by asking me something.',
+      content: `Hi there! I can help you navigate this website quickly. Please start by asking me something.
+
+Note: The first request may take up to 1 minute while the service restarts from inactivity.`,
       metadata: {}
     }
   ])
@@ -36,11 +38,8 @@ export default function ChatBotWindow({
   }
 
   const addBotMessageToChatWindow = async () => {
-    setIsBotTyping(true)
-
     sendMessage(userMessage)
       .then(_responseDto => {
-        console.log('_responseDto', _responseDto)
         const newBotMessage = {
           sender: 'bot',
           content: '',
@@ -54,8 +53,6 @@ export default function ChatBotWindow({
         setMessages((previousMessages) =>
           [...previousMessages, newBotMessage])
       })
-
-    setIsBotTyping(false)
   }
 
   const addUserMessageToChatWindow = () => {
@@ -81,7 +78,9 @@ export default function ChatBotWindow({
           _event.preventDefault()
           addUserMessageToChatWindow()
           setUserMessage('')
+          setIsBotTyping(true)
           addBotMessageToChatWindow()
+          setIsBotTyping(false)
         }
       } else {
         // Prevent user from sending message
