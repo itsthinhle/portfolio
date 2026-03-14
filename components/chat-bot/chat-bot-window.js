@@ -159,9 +159,10 @@ Note: Your first message may take up to 1 minute while the service restarts from
       'fixed bottom-21 lg:bottom-23 left-4 sm:left-auto right-4 sm:right-6 lg:right-8 z-40',
       'flex flex-col',
       'w-auto sm:w-144 h-[70vh] md:h-144 rounded-lg shadow-xl',
-      'shadow-dark/25 dark:shadow-light/25 hidden'
-    ])}
-    onClick={(_event) => {_event.stopPropagation()}}>
+      'shadow-dark/25 dark:shadow-light/25 hidden',
+      // Note: Prevent the background scroll when scrolling the chat window
+      'overflow-y-auto overscroll-contain'
+    ])}>
     {/* Header */}
     <div className={clsx([
       'px-4 py-2 font-semibold rounded-t-lg',
@@ -232,7 +233,6 @@ Note: Your first message may take up to 1 minute while the service restarts from
         aria-label={'Send message button'}
         onClick={(_event) => {
           setIsBotTyping(true)
-          setTimeout(() => {}, 30000)
           addUserMessageToChatWindow()
           setUserMessage('')
           addBotMessageToChatWindow()
