@@ -13,6 +13,7 @@ export default function UncontrolledSelect({
   options = [],
   displayValueKeyName = 'label',
   defaultValue = [''],
+  hasBorder = true,
   className
 }) {
   const collection = createListCollection({
@@ -39,6 +40,7 @@ export default function UncontrolledSelect({
       {/* Button */}
       <Select.Trigger className={clsx(
         'select text-left select-boundary-normal',
+        hasBorder ? 'control-boundary-width' : 'outline-none',
         className
       )}>
         <Select.ValueText />

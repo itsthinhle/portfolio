@@ -1,18 +1,11 @@
 import listingUpdateTypeConstant from '@/app/projects/sale-and-rental-listings/constants/listings-update-status'
-import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/property-type'
 import SaleAndRentalListingsContext from '@/app/projects/sale-and-rental-listings/context'
+import {renderListingIconByPropertyType} from '@/app/projects/sale-and-rental-listings/utilities'
 import GoogleMap from '@/components/maps/google'
 import {toCurrencyFormat} from '@/utilities/number'
 import {formatPhoneNumber} from '@/utilities/phone-number'
 import {useMap} from '@vis.gl/react-google-maps'
 import {
-  Building02Icon,
-  Settings01Icon,
-  Leaf01Icon,
-  DuplexIcon,
-  ApartmentIcon,
-  House01Icon,
-  Home09Icon,
   Cancel01Icon
 } from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
@@ -42,54 +35,9 @@ const Map = memo(({
     setListingUpdateType
   } = useContext(SaleAndRentalListingsContext)
 
-  const getListingIconBackgroundColor = (_propertyType) => {
-    switch (_propertyType) {
-      case propertyTypeConstant.singleFamily:
-        return 'bg-red-600'
-      case propertyTypeConstant.multiFamily:
-        return 'bg-fuchsia-600'
-      case propertyTypeConstant.townhouse:
-        return 'bg-yellow-500'
-      case propertyTypeConstant.condo:
-        return 'bg-sky-600'
-      case propertyTypeConstant.apartment:
-        return 'bg-slate-600'
-      case propertyTypeConstant.manufactured:
-        return 'bg-orange-600'
-      default: // land
-        return 'bg-green-600' // ''
-    }
-  }
 
-  const getListingIcon = (_propertyType) => {
-    switch (_propertyType) {
-      case propertyTypeConstant.singleFamily:
-        return Home09Icon //
-      case propertyTypeConstant.multiFamily:
-        return DuplexIcon //
-      case propertyTypeConstant.townhouse:
-        return House01Icon //
-      case propertyTypeConstant.condo:
-        return Building02Icon //
-      case propertyTypeConstant.apartment:
-        return ApartmentIcon //
-      case propertyTypeConstant.manufactured:
-        return Settings01Icon //
-      default: // land
-        return Leaf01Icon //
-    }
-  }
 
-  const renderListingIcon = useCallback((_locationDto) => {
-    return <div className={clsx([
-      'flex items-center justify-center rounded-full p-1.5 text-light',
-      getListingIconBackgroundColor(_locationDto.propertyType)
-    ])}>
-      {<HugeiconsIcon
-        icon={getListingIcon(_locationDto.propertyType)}
-        className={'size-5 lg:size-6'} />}
-    </div>
-  }, [])
+
 
   const onIdle = () => {
     if (listingUpdateType !== listingUpdateTypeConstant.none) {
@@ -133,9 +81,9 @@ const Map = memo(({
       // Format: {lat: number, lng: number}
       position={{lat: _listingDto.latitude, lng: _listingDto.longitude}}
       onClick={() => setSelectedListingDto(_listingDto)}>
-      {renderListingIcon(_listingDto)}
+      {renderListingIconByPropertyType(_listingDto.propertyType)}
     </AdvancedMarker>)
-  }, [listingDtos, renderListingIcon])
+  }, [listingDtos])
 
   return <GoogleMap
     mapId={process.env.NEXT_PUBLIC_GOOGLE_MAP_ID}

@@ -38,21 +38,24 @@ Note: Your first message may take up to 1 minute while the service restarts from
   }
 
   const addBotMessageToChatWindow = async () => {
-    sendMessage(userMessage)
-      .then(_responseDto => {
-        const newBotMessage = {
-          sender: 'bot',
-          content: '',
-          metadata: undefined
-        }
+    setIsBotTyping(true)
 
-        if (_responseDto[0].score > 0.6 && _responseDto[0]?.metadata) {
-          newBotMessage.metadata = _responseDto[0].metadata
-        }
+    const responseDto = await sendMessage(userMessage)
 
-        setMessages((previousMessages) =>
-          [...previousMessages, newBotMessage])
-      })
+    const newBotMessage = {
+      sender: 'bot',
+      content: '',
+      metadata: undefined
+    }
+
+    if (responseDto[0].score > 0.6 && responseDto[0]?.metadata) {
+      newBotMessage.metadata = responseDto[0].metadata
+    }
+
+    setMessages((previousMessages) =>
+      [...previousMessages, newBotMessage])
+
+    setIsBotTyping(false)
   }
 
   const addUserMessageToChatWindow = () => {
@@ -78,9 +81,7 @@ Note: Your first message may take up to 1 minute while the service restarts from
           _event.preventDefault()
           addUserMessageToChatWindow()
           setUserMessage('')
-          setIsBotTyping(true)
           addBotMessageToChatWindow()
-          setIsBotTyping(false)
         }
       } else {
         // Prevent user from sending message

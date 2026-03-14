@@ -1,3 +1,16 @@
+import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/property-type'
+import {
+  ApartmentIcon,
+  Building02Icon,
+  DuplexIcon,
+  Home09Icon,
+  House01Icon, Leaf01Icon,
+  Settings01Icon
+} from '@hugeicons-pro/core-solid-standard'
+import {HugeiconsIcon} from '@hugeicons/react'
+import clsx from 'clsx'
+import React, {useCallback} from 'react'
+
 export const toListingDto = (listing) => {
   const result = {
     fullAddress: listing.formattedAddress,
@@ -69,4 +82,53 @@ export const getMinAndMaxOfLivingAndLotAreas = (
     minLotArea: _listingDtos[0].lotArea ?? Number.POSITIVE_INFINITY,
     maxLotArea: _listingDtos[0].lotArea ?? Number.NEGATIVE_INFINITY
   })
+}
+
+const getListingIconBackgroundColorByPropertyType = (_propertyType) => {
+  switch (_propertyType) {
+    case propertyTypeConstant.singleFamily:
+      return 'bg-red-600'
+    case propertyTypeConstant.multiFamily:
+      return 'bg-fuchsia-600'
+    case propertyTypeConstant.townhouse:
+      return 'bg-yellow-500'
+    case propertyTypeConstant.condo:
+      return 'bg-sky-600'
+    case propertyTypeConstant.apartment:
+      return 'bg-slate-600'
+    case propertyTypeConstant.manufactured:
+      return 'bg-orange-600'
+    default: // land
+      return 'bg-green-600' // ''
+  }
+}
+
+const getListingIconByPropertyType = (_propertyType) => {
+  switch (_propertyType) {
+    case propertyTypeConstant.singleFamily:
+      return Home09Icon //
+    case propertyTypeConstant.multiFamily:
+      return DuplexIcon //
+    case propertyTypeConstant.townhouse:
+      return House01Icon //
+    case propertyTypeConstant.condo:
+      return Building02Icon //
+    case propertyTypeConstant.apartment:
+      return ApartmentIcon //
+    case propertyTypeConstant.manufactured:
+      return Settings01Icon //
+    default: // land
+      return Leaf01Icon //
+  }
+}
+
+export const renderListingIconByPropertyType = (_propertyType) => {
+  return <div className={clsx([
+    'flex items-center justify-center rounded-full p-1.5 text-light',
+    getListingIconBackgroundColorByPropertyType(_propertyType)
+  ])}>
+    {<HugeiconsIcon
+      icon={getListingIconByPropertyType(_propertyType)}
+      className={'size-5 lg:size-6'} />}
+  </div>
 }

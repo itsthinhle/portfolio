@@ -70,7 +70,7 @@ const faq = [
     id: 'de9c77d1-7cc3-4ce2-b213-b8f2e062670b',
     type: 'faq',
     question: 'Can I create an account on this website? How do I register or login?',
-    answer: 'Account creation and login are not available on this website yet. The registration and sign in system is still under development. In the future, visitors will be able to create an account and log in to access more features. For now, you can explore the site and maybe drink a coffee while waiting ☕.'
+    answer: 'Account creation and login are still under development. For now, you can explore the site and maybe drink a coffee while waiting ☕.'
   }
 ]
 

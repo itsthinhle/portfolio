@@ -4,14 +4,18 @@ import FilterListingsPanel from '@/app/projects/sale-and-rental-listings/compone
 import SearchListingsPanel from '@/app/projects/sale-and-rental-listings/components/panels/search-listings-panel'
 import listingUpdateTypeConstant from '@/app/projects/sale-and-rental-listings/constants/listings-update-status'
 import panelConstant from '@/app/projects/sale-and-rental-listings/constants/panel'
+import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/property-type'
 import SaleAndRentalListingsContext from '@/app/projects/sale-and-rental-listings/context'
+import {renderListingIconByPropertyType} from '@/app/projects/sale-and-rental-listings/utilities'
 import InGroupButton from '@/components/buttons/in-group'
 import LoadingIcon from '@/components/icons/loading'
+import InlineTextLink from '@/components/links/inline-text'
 import Heading2 from '@/components/texts/headings/2'
+import NormalText from '@/components/texts/normal'
 import {
   Search01Icon,
   FilterHorizontalIcon,
-  Loading03Icon
+  Loading03Icon, Home09Icon
 } from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
 import {APIProvider} from '@vis.gl/react-google-maps'
@@ -118,7 +122,7 @@ export default function MapSection({
     <div className={clsx(
       'relative rounded-lg',
       'h-[70vh] sm:h-[75vh] md:h-[80vh] lg:h-auto lg:aspect-video',
-      'shadow-sm shadow-dark/25 dark:shadow-light/25'
+      'shadow-sm shadow-dark/25 dark:shadow-light/25 mb-8'
     )}>
       <SaleAndRentalListingsContext.Provider value={{
         listingDtos,
@@ -157,6 +161,39 @@ export default function MapSection({
           <LoadingIcon className={'size-12 lg:size-14'} />
         </div>}
       </SaleAndRentalListingsContext.Provider>
+    </div>
+    <NormalText className={'mb-2'}>
+      Map annotation:
+    </NormalText>
+    <div className={'grid grid-cols-2 sm:grid-cols-5 gap-6'}>
+      <div className={'flex align-middle gap-2'}>
+        {renderListingIconByPropertyType(propertyTypeConstant.singleFamily)}
+        Single Family
+      </div>
+      <div className={'flex align-middle gap-2'}>
+        {renderListingIconByPropertyType(propertyTypeConstant.multiFamily)}
+        Multi-Family
+      </div>
+      <div className={'flex align-middle gap-2'}>
+        {renderListingIconByPropertyType(propertyTypeConstant.condo)}
+        Condo
+      </div>
+      <div className={'flex align-middle gap-2'}>
+        {renderListingIconByPropertyType(propertyTypeConstant.townhouse)}
+        Townhouse
+      </div>
+      <div className={'flex align-middle gap-2'}>
+        {renderListingIconByPropertyType(propertyTypeConstant.apartment)}
+        Apartment
+      </div>
+      <div className={'flex align-middle gap-2'}>
+        {renderListingIconByPropertyType(propertyTypeConstant.manufactured)}
+        Manufactured
+      </div>
+      <div className={'flex align-middle gap-2'}>
+        {renderListingIconByPropertyType(propertyTypeConstant.land)}
+        Land
+      </div>
     </div>
   </>
 }

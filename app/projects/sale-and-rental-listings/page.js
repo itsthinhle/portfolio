@@ -56,14 +56,6 @@ export default async function SaleAndRentalListingsPage() {
             (last update 02/21/2026).
           </li>
         </ul>
-        <NormalText className={'mb-8'}>
-          Tutorial video:
-        </NormalText>
-        <iframe className={'aspect-video max-w-5xl bg-light-skeleton dark:bg-dark-skeleton mx-auto rounded-xl'}
-          src="https://www.youtube.com/embed/U_ToOJHbHPE?si=nntelKsa0JQ0kOHV"
-          title="YouTube video player" frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
         <MapSection initialListingDtos={initialListingDtos} />
       </section>
     </BlogPostLayout>
