@@ -158,7 +158,7 @@ Note: Your first message may take up to 1 minute while the service restarts from
     className={clsx([
       'fixed bottom-21 lg:bottom-23 left-4 sm:left-auto right-4 sm:right-6 lg:right-8 z-40',
       'flex flex-col',
-      'w-auto sm:w-144 h-144 rounded-lg shadow-xl',
+      'w-auto sm:w-144 h-[70vh] md:h-144 rounded-lg shadow-xl',
       'shadow-dark/25 dark:shadow-light/25 hidden'
     ])}
     onClick={(_event) => {_event.stopPropagation()}}>
