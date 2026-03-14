@@ -14,6 +14,8 @@ export default function ControlledTextAreaInput({
   rows,
   placeholder,
   onKeyDown,
+  onKeyUp,
+  readOnly = false,
   className,
 }) {
   return <>
@@ -26,10 +28,13 @@ export default function ControlledTextAreaInput({
       rows={rows}
       placeholder={placeholder}
       onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
+      readOnly={readOnly}
       className={clsx(
         'control',
         hasBorder ? 'control-boundary-width' : 'outline-none',
         errorCondition ? 'control-boundary-error' : 'control-boundary-normal',
+        {'cursor-default': readOnly},
         className
       )}
     />
