@@ -1,7 +1,7 @@
 'use server'
 import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/property-type'
 import {toListingDto} from '@/app/projects/sale-and-rental-listings/utilities'
-import statusConstant from '@/constants/status'
+import statusConstant from '@/constants/statuses'
 import apiUtility from '@/utilities/api'
 import {promises as fs} from 'fs'
 import {z} from 'zod'

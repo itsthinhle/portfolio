@@ -9,13 +9,11 @@ import SaleAndRentalListingsContext from '@/app/projects/sale-and-rental-listing
 import {renderListingIconByPropertyType} from '@/app/projects/sale-and-rental-listings/utilities'
 import InGroupButton from '@/components/buttons/in-group'
 import LoadingIcon from '@/components/icons/loading'
-import InlineTextLink from '@/components/links/inline-text'
 import Heading2 from '@/components/texts/headings/2'
 import NormalText from '@/components/texts/normal'
 import {
   Search01Icon,
-  FilterHorizontalIcon,
-  Loading03Icon, Home09Icon
+  FilterHorizontalIcon
 } from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
 import {APIProvider} from '@vis.gl/react-google-maps'
@@ -165,7 +163,7 @@ export default function MapSection({
     <NormalText className={'mb-2'}>
       Map annotation:
     </NormalText>
-    <div className={'grid grid-cols-2 sm:grid-cols-5 gap-6'}>
+    <div className={'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6'}>
       <div className={'flex align-middle gap-2'}>
         {renderListingIconByPropertyType(propertyTypeConstant.singleFamily)}
         Single Family

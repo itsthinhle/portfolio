@@ -13,7 +13,6 @@ import {AdvancedMarker} from '@vis.gl/react-google-maps'
 import clsx from 'clsx'
 import React, {
   memo,
-  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -34,10 +33,6 @@ const Map = memo(({
     listingUpdateType,
     setListingUpdateType
   } = useContext(SaleAndRentalListingsContext)
-
-
-
-
 
   const onIdle = () => {
     if (listingUpdateType !== listingUpdateTypeConstant.none) {

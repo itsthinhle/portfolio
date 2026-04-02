@@ -2,8 +2,8 @@ import BlogPostLayout from '@/components/layouts/blog-post'
 import Head from 'next/head'
 import React from 'react'
 
-const pageTitle = 'Project: Sale and Rental Listings | Thinh writes bugs'
-const pageDescription = 'Search for sale and rental listings across the US, integrating interactive data visualizations to analyze trends and insights in the housing market.'
+const pageTitle = 'Blog: Cryptocurrency Investment'
+const pageDescription = 'My journey of learning how to invest in cryptocurrency from scratch.'
 
 export const metadata = {
   title: pageTitle,
