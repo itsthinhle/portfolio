@@ -45,6 +45,16 @@ INSERT INTO app_cards VALUES (
 	'blog'
 );
 
+INSERT INTO app_cards VALUES (
+	'/blogs/english-pronunciation',
+	'2026-03-29',
+	'/blogs/english-pronunciation.jpg',
+	'English Pronunciation',
+	'My notes of learning speaking American English.',
+	'English; Language; Pronunciation',
+	'blog'
+);
+
 
 
 /* UPDATE DATA */
@@ -55,6 +65,10 @@ UPDATE app_cards SET
 	creation_date = '2025-12-13T13:10:10.366Z',
 	title = 'Sale and rental listings (USA)'
 WHERE path = '/projects/sale-and-rental-listings';
+
+UPDATE app_cards SET
+	cover_image_path = '/blogs/english-pronunciation/cover.jpg'
+WHERE path = '/blogs/english-pronunciation';
 
 
 
@@ -68,6 +82,10 @@ SELECT * FROM app_cards;
 SELECT * FROM states;
 
 SELECT * FROM cities;
+
+SELECT city from cities
+WHERE state_id = 'NJ';
+
 
 
 
