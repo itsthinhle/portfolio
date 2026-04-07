@@ -163,32 +163,32 @@ export default function MapSection({
     <NormalText className={'mb-2'}>
       Map annotation:
     </NormalText>
-    <div className={'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6'}>
-      <div className={'flex align-middle gap-2'}>
+    <div className={'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'}>
+      <div className={'flex items-center gap-2'}>
         {renderListingIconByPropertyType(propertyTypeConstant.singleFamily)}
         Single Family
       </div>
-      <div className={'flex align-middle gap-2'}>
+      <div className={'flex items-center gap-2'}>
         {renderListingIconByPropertyType(propertyTypeConstant.multiFamily)}
         Multi-Family
       </div>
-      <div className={'flex align-middle gap-2'}>
+      <div className={'flex items-center gap-2'}>
         {renderListingIconByPropertyType(propertyTypeConstant.condo)}
         Condo
       </div>
-      <div className={'flex align-middle gap-2'}>
+      <div className={'flex items-center gap-2'}>
         {renderListingIconByPropertyType(propertyTypeConstant.townhouse)}
         Townhouse
       </div>
-      <div className={'flex align-middle gap-2'}>
+      <div className={'flex items-center gap-2'}>
         {renderListingIconByPropertyType(propertyTypeConstant.apartment)}
         Apartment
       </div>
-      <div className={'flex align-middle gap-2'}>
+      <div className={'flex items-center gap-2'}>
         {renderListingIconByPropertyType(propertyTypeConstant.manufactured)}
         Manufactured
       </div>
-      <div className={'flex align-middle gap-2'}>
+      <div className={'flex items-center gap-2'}>
         {renderListingIconByPropertyType(propertyTypeConstant.land)}
         Land
       </div>

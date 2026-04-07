@@ -175,7 +175,7 @@ export const consonants = [
     containerClassName: 'border border-light-boundary dark:border-dark-boundary'
   },
   {
-    symbol: 'z (zờ)',
+    symbol: 'z (giờ)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>z</span>oo</p>,
     containerClassName: 'bg-sky-600 text-light'
   },
@@ -185,48 +185,48 @@ export const consonants = [
     containerClassName: 'border border-light-boundary dark:border-dark-boundary'
   },
   {
-    symbol: 'ʒ (giờ)',
+    symbol: 'ʒ (zờ)',
     representativeWordElement: <p>vi<span className={'underline [text-decoration-skip-ink:none]'}>s</span>ual</p>,
     containerClassName: 'bg-sky-600 text-light'
   },
   {
     symbol: 'm (em)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>m</span>an</p>,
-    containerClassName: 'border border-light-boundary dark:border-dark-boundary'
+    containerClassName: 'bg-sky-600 text-light'
   },
   {
     symbol: 'n (anh)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>n</span>o</p>,
-    containerClassName: 'border border-light-boundary dark:border-dark-boundary'
+    containerClassName: 'bg-sky-600 text-light'
   },
   {
     symbol: 'ŋ (ing)',
     representativeWordElement: <p>si<span className={'underline [text-decoration-skip-ink:none]'}>ng</span></p>,
-    containerClassName: 'border border-light-boundary dark:border-dark-boundary'
+    containerClassName: 'bg-sky-600 text-light'
   },
   {
     symbol: 'j (d)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>y</span>es</p>,
-    containerClassName: 'border border-light-boundary dark:border-dark-boundary'
+    containerClassName: 'bg-sky-600 text-light'
   },
   {
     symbol: 'l (ôu)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>l</span>ove</p>,
-    containerClassName: 'border border-light-boundary dark:border-dark-boundary'
+    containerClassName: 'bg-sky-600 text-light'
   },
   {
     symbol: 'r (ơr)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>r</span>ed</p>,
-    containerClassName: 'border border-light-boundary dark:border-dark-boundary'
+    containerClassName: 'bg-sky-600 text-light'
   },
   {
     symbol: 'w (qu)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>w</span>et</p>,
-    containerClassName: 'border border-light-boundary dark:border-dark-boundary'
+    containerClassName: 'bg-sky-600 text-light'
   },
   {
     symbol: 'h (hờ)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>h</span>at</p>,
-    containerClassName: 'bg-sky-600 text-light'
+    containerClassName: 'border border-light-boundary dark:border-dark-boundary'
   }
 ]
