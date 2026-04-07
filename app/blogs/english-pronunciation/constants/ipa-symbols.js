@@ -195,7 +195,7 @@ export const consonants = [
     containerClassName: 'bg-sky-600 text-light'
   },
   {
-    symbol: 'n (anh)',
+    symbol: 'n (en)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>n</span>o</p>,
     containerClassName: 'bg-sky-600 text-light'
   },
@@ -205,7 +205,7 @@ export const consonants = [
     containerClassName: 'bg-sky-600 text-light'
   },
   {
-    symbol: 'j (d)',
+    symbol: 'j (dờ)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>y</span>es</p>,
     containerClassName: 'bg-sky-600 text-light'
   },
@@ -215,12 +215,12 @@ export const consonants = [
     containerClassName: 'bg-sky-600 text-light'
   },
   {
-    symbol: 'r (ơr)',
+    symbol: 'r (rờ)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>r</span>ed</p>,
     containerClassName: 'bg-sky-600 text-light'
   },
   {
-    symbol: 'w (qu)',
+    symbol: 'w (quờ)',
     representativeWordElement: <p><span className={'underline [text-decoration-skip-ink:none]'}>w</span>et</p>,
     containerClassName: 'bg-sky-600 text-light'
   },
