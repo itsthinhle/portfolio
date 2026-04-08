@@ -36,6 +36,16 @@ INSERT INTO app_cards VALUES (
 );
 
 INSERT INTO app_cards VALUES (
+	'/projects/html-content-extractor',
+	'2026-04-08',
+	'/projects/web-scraping.jpg',
+	'Web scraping: Texts',
+	'Extracts text nodes from a HTML content',
+	'Cheerio',
+	'project'
+);
+
+INSERT INTO app_cards VALUES (
 	'/blogs/cryptocurrency-investment',
 	'2025-11-05',
 	'/blogs/cryptocurrency-investment.jpg',
@@ -67,7 +77,7 @@ UPDATE app_cards SET
 WHERE path = '/projects/sale-and-rental-listings';
 
 UPDATE app_cards SET
-	cover_image_path = '/blogs/english-pronunciation/cover.jpg'
+	cover_image_path = '/blogs/english-pronunciation.jpg'
 WHERE path = '/blogs/english-pronunciation';
 
 
@@ -90,4 +100,7 @@ WHERE state_id = 'NJ';
 
 
 /* DELETE DATA */
+
+DELETE FROM app_cards
+WHERE path ='/projects/web-scraping/texts'
 					

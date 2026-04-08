@@ -45,7 +45,7 @@ export default function VerticalContentCard({
     <NormalText className={'line-clamp-3 text-sm lg:text-base leading-6 mb-8'}>
       {description}
     </NormalText>
-    <div className={'flex gap-2 items-center'}>
+    <div className={'mt-auto flex gap-2 items-center'}>
       {tags.split('; ').map((_tag, _index) => {
         return (
           <Badge

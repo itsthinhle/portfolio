@@ -1,7 +1,7 @@
 import ControlErrorMessageText from '@/components/texts/messages/control-error'
 import { Portal } from '@ark-ui/react/portal'
 import { Select, createListCollection } from '@ark-ui/react/select'
-import {ArrowDown01Icon, Cancel01Icon} from '@hugeicons-pro/core-solid-standard'
+import {ArrowDown01Icon} from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
 import clsx from 'clsx'
 import React from 'react'

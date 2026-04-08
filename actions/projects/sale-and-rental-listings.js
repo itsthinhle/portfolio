@@ -20,11 +20,10 @@ export async function getInitialListingDtos() {
   }
 }
 
-export async function validateSearchForm(
-  _formData) {
+export async function validateSearchForm(_formData) {
   // Zod: Defining a schema
   // Properties are required by default
-  const SearchListingsFormSchema = z.object({
+  const formSchema = z.object({
     rentCastApiKey: z
       .string()
       .trim()
@@ -81,7 +80,7 @@ superRefine() is where you do final, cross-field checks */
     )
 
   // Validate form using Zod
-  const validatedFields = SearchListingsFormSchema.safeParse({
+  const validatedFields = formSchema.safeParse({
     rentCastApiKey: _formData.rentCastApiKey,
     state: _formData.state,
     city: _formData.city,
@@ -111,8 +110,7 @@ superRefine() is where you do final, cross-field checks */
   }
 }
 
-export async function searchListings(
-  _formData) {
+export async function searchListings(_formData) {
   const urlPrefix = 'https://api.rentcast.io/v1/listings'
   const saleUrl = `${urlPrefix}/sale`
   const rentalUrl = `${urlPrefix}/rental/long-term`

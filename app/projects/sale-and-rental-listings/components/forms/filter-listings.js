@@ -1,4 +1,3 @@
-import {getStatesIds} from '@/actions/databases/neon'
 import listingTypeConstant from '@/app/projects/sale-and-rental-listings/constants/listing-type'
 import listingUpdateTypeConstant from '@/app/projects/sale-and-rental-listings/constants/listings-update-status'
 import propertyTypeConstant from '@/app/projects/sale-and-rental-listings/constants/property-type'
