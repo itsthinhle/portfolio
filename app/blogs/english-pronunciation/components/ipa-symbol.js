@@ -8,7 +8,7 @@ export default function IpaSymbol({
 
   return <div
     className={clsx(
-      'size-23 content-center',
+      'h-18 min-w-18 lg:size-23 content-center',
       containerClassName
     )}>
     <p className="text-lg lg:text-xl font-medium">

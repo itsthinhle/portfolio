@@ -40,10 +40,10 @@ export default async function EnglishPronunciationPage() {
       <section className={'container-layout'}>
         <Heading2 className={'heading-2-my'}>Phonemic Chart</Heading2>
         <div className={'text-center mb-8'}>
-          <div className={'inline-flex flex-col gap-2'}>
+          <div className={'inline-flex flex-col gap-2 min-w-sm'}>
             {/* Vowels */}
             <div className={clsx(
-              'inline-flex gap-2',
+              'inline-flex gap-2 justify-center',
             )}>
               <div
                 className={clsx(
@@ -103,7 +103,7 @@ export default async function EnglishPronunciationPage() {
 
             {/* Consonants */}
             <div className={clsx(
-              'inline-flex gap-2',
+              'inline-flex gap-2 justify-center',
             )}>
               <div
                 className={clsx(
