@@ -79,7 +79,7 @@ export default function Form() {
       <PrimaryButton
         type={'submit'}
         className={'mt-6 w-full'}>
-        Scrape
+        Extract
       </PrimaryButton>
     </form>
     <Heading2 className={'heading-2-my'}>Output</Heading2>
