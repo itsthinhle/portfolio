@@ -1,12 +1,11 @@
 'use client'
-import {extractContents, validateForm} from '@/actions/projects/html-content-extractor'
 import PrimaryButton from '@/components/buttons/primary'
 import SecondaryButton from '@/components/buttons/secondary'
 import ControlledTextAreaInput from '@/components/inputs/controlled-text-area'
 import TextAreaInput from '@/components/inputs/textarea'
 import Heading2 from '@/components/texts/headings/2'
 import ControlLabelText from '@/components/texts/labels/control'
-import statusConstant from '@/constants/statuses'
+import * as cheerio from 'cheerio'
 import clsx from 'clsx'
 import React, {useState} from 'react'
 import {useDebouncedCallback} from 'use-debounce'
@@ -34,23 +33,24 @@ export default function Form() {
     await navigator.clipboard.writeText(results)
   }
 
+  const extractContents = (_formData) => {
+    const $ = cheerio.load(_formData.htmlContent)
+    const results = []
+    $(_formData.cssSelector).each((_, _htmlElement) => {
+      const text = $(_htmlElement).text().trim()
+      if (text) results.push(text)
+    })
+
+    return results.length > 0
+      ? results.join('\n')
+      : 'Oops! No content found. ☹️'
+  }
+
   const onFormSubmit = async (_event) => {
     _event.preventDefault()
     const formDataInterface = new FormData(_event.target)
     const formData = Object.fromEntries(formDataInterface.entries())
-
-    // Object.fromEntries: convert Form object to JS object
-    const searchFormValidation = await validateForm(formData)
-
-    if (searchFormValidation.status === statusConstant.error) {
-      setControlsErrorMessages(searchFormValidation.errors)
-      return
-    }
-
-    extractContents(formData)
-      .then(_scrapeResult => { // searchResult can be an array or object
-        setResults(_scrapeResult)
-      })
+    setResults(extractContents(formData))
   }
 
   return <>
@@ -62,8 +62,6 @@ export default function Form() {
         name={'htmlContent'}
         rows={12}
         onInputChange={_event => removeErrorMessages(['htmlContent'])}
-        errorCondition={controlsErrorMessages?.htmlContent}
-        errorMessage={controlsErrorMessages?.htmlContent?.errors?.[0]}
       />
 
       <ControlLabelText htmlFor={'cssSelector'} className={'mt-6 mb-2'}>CSS selectors *</ControlLabelText>
@@ -72,8 +70,6 @@ export default function Form() {
         name={'cssSelector'}
         rows={2}
         onInputChange={_event => removeErrorMessages(['cssSelector'])}
-        errorCondition={controlsErrorMessages?.cssSelector}
-        errorMessage={controlsErrorMessages?.cssSelector?.errors?.[0]}
       />
 
       <PrimaryButton
