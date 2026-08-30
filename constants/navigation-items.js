@@ -18,6 +18,16 @@ export const saleAndRentalListingsProject = {
   name: 'Sale and Rental Listings'
 }
 
+export const htmlDataExtractor = {
+  path: '/projects/html-data-extractor',
+  name: 'HTML data extractor'
+}
+
+export const comicImagesDownloader = {
+  path: '/projects/comic-images-downloader',
+  name: 'Comic images downloader'
+}
+
 const blogs = {
   path: '/blogs',
   name: 'Blogs'

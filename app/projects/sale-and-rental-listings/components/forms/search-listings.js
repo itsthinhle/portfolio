@@ -8,7 +8,7 @@ import CheckBox from '@/components/check-box'
 import UncontrolledComboBox from '@/components/combo-boxes/uncontrolled'
 import UncontrolledAndCreatableComboBox from '@/components/combo-boxes/uncontrolled-and-creatable'
 import NumberInput from '@/components/inputs/number'
-import TextInput from '@/components/inputs/text'
+import UncontrolledTextInput from '@/components/inputs/uncontrolled-text'
 import UncontrolledSelect from '@/components/selects/uncontrolled'
 import ControlLabelText from '@/components/texts/labels/control'
 import ControlErrorMessageText from '@/components/texts/messages/control-error'
@@ -116,7 +116,7 @@ export default function SearchListingsForm({
     <div className="mb-6 grid grid-cols-1 sm:grid-cols-8 gap-6">
       <div className="sm:col-span-6">
         <ControlLabelText htmlFor={'rentCastApiKey'} className={'mb-2'}>RentCast API key *</ControlLabelText>
-        <TextInput
+        <UncontrolledTextInput
           id="rentCastApiKey"
           name={'rentCastApiKey'}
           onInputChange={_event => removeErrorMessages(['rentCastApiKey'])}
@@ -175,7 +175,7 @@ export default function SearchListingsForm({
 
       <div className="sm:col-span-2">
         <ControlLabelText htmlFor={'zipCode'} className={'mb-2'}>Zip</ControlLabelText>
-        <TextInput
+        <UncontrolledTextInput
           id="zipCode"
           name={'zipCode'}
           onInputChange={_event => removeErrorMessages(['zipCode', 'stateAndZipValidation'])}

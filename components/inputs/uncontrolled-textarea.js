@@ -2,9 +2,10 @@ import ControlErrorMessageText from '@/components/texts/messages/control-error'
 import clsx from 'clsx'
 import React from 'react'
 
-export default function TextAreaInput({
+export default function UncontrolledTextAreaInput({
   id,
   name,
+  defaultValue,
   hasBorder = true,
   onInputChange,
   errorCondition = false,
@@ -14,12 +15,13 @@ export default function TextAreaInput({
   onKeyDown,
   onKeyUp,
   readOnly = false,
-  className,
+  className
 }) {
   return <>
     <textarea
       id={id}
       name={name}
+      defaultValue={defaultValue}
       onChange={onInputChange}
       rows={rows}
       placeholder={placeholder}

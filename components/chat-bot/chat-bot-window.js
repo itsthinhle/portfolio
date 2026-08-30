@@ -1,6 +1,6 @@
 import {sendMessage} from '@/actions/databases/upstash'
 import {metadataType} from '@/components/chat-bot/constants/metadata-type'
-import ControlledTextAreaInput from '@/components/inputs/controlled-text-area'
+import ControlledTextAreaInput from '@/components/inputs/controlled-textarea'
 import InlineTextLink from '@/components/links/inline-text'
 import {Cancel01Icon, ChatBotIcon, PauseIcon, Search01Icon, SentIcon} from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'

@@ -36,11 +36,21 @@ INSERT INTO app_cards VALUES (
 );
 
 INSERT INTO app_cards VALUES (
-	'/projects/html-content-extractor',
+	'/projects/html-data-extractor',
 	'2026-04-08',
-	'/projects/web-scraping.jpg',
-	'Web scraping: Texts',
-	'Extracts text nodes from a HTML content',
+	'/projects/html-data-extractor.png',
+	'HTML data extractor',
+	'Extracts data from a HTML node.',
+	'Cheerio',
+	'project'
+);
+
+INSERT INTO app_cards VALUES (
+	'/projects/comic-images-downloader',
+	'2026-08-29',
+	'/projects/comic-images-downloader.jpg',
+	'Comic images downloader',
+	'Download images from your favorite online comic.',
 	'Cheerio',
 	'project'
 );
@@ -74,7 +84,7 @@ INSERT INTO app_cards VALUES (
 UPDATE app_cards SET
 	creation_date = '2025-12-13T13:10:10.366Z',
 	title = 'Sale and rental listings (USA)'
-WHERE path = '/projects/sale-and-rental-listings';
+WHERE path = '/projects/html-content-extractor';
 
 UPDATE app_cards SET
 	cover_image_path = '/blogs/english-pronunciation.jpg'
@@ -88,7 +98,7 @@ WHERE path = '/blogs/english-pronunciation';
 
 SELECT * FROM app_cards;
 
--- locat
+-- location
 SELECT * FROM states;
 
 SELECT * FROM cities;
@@ -100,6 +110,9 @@ WHERE state_id = 'NJ';
 
 
 /* DELETE DATA */
+
+DELETE from app_cards
+WHERE path = '/projects/comic-images-downloader';
 
 DELETE FROM app_cards
 WHERE path ='/projects/web-scraping/texts'

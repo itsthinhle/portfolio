@@ -1,4 +1,3 @@
-import ControlErrorMessageText from '@/components/texts/messages/control-error'
 import { Portal } from '@ark-ui/react/portal'
 import { Select, createListCollection } from '@ark-ui/react/select'
 import {ArrowDown01Icon} from '@hugeicons-pro/core-solid-standard'
@@ -14,7 +13,8 @@ export default function UncontrolledSelect({
   displayValueKeyName = 'label',
   defaultValue = [''],
   hasBorder = true,
-  className
+  className,
+  onValueChange
 }) {
   const collection = createListCollection({
     items: options,
@@ -33,6 +33,7 @@ export default function UncontrolledSelect({
     name={name}
     collection={collection}
     defaultValue={defaultValue}
+    onValueChange={onValueChange}
   >
     <Select.Control className={clsx(
       'text-sm lg:text-base relative',

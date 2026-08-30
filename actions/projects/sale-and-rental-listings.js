@@ -153,5 +153,5 @@ export async function searchListings(_formData) {
     'X-Api-Key': _formData.rentCastApiKey
   }
 
-  return apiUtility.get(url, headers)
+  return apiUtility.get(url, headers).json()
 }

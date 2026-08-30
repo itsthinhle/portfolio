@@ -10,12 +10,12 @@ const index = new Index({
 export async function sendMessage(_message) {
   try {
     const embeddingServiceUrl = new URL(`${process.env.EMBEDDING_SERVICE_URL}/embed`)
-    const embeddedText = await apiUtility.post(embeddingServiceUrl, {
+    const embeddedTextResponse = await apiUtility.post(embeddingServiceUrl, {
       text: `Query: ${_message}`
     })
 
     return index.query({
-      vector: embeddedText,
+      vector: embeddedTextResponse.json(),
       topK: 1,
       includeMetadata: true
     })

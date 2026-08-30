@@ -1,17 +1,17 @@
-import Form from '@/app/projects/html-content-extractor/components/form'
+import Form from '@/app/projects/html-data-extractor/components/form'
 import BlogPostLayout from '@/components/layouts/blog-post'
 import Head from 'next/head'
 import React from 'react'
 
-const pageTitle = 'HTML content extractor'
-const pageDescription = 'Extracts text nodes from a HTML content.'
+const pageTitle = 'HTML data extractor'
+const pageDescription = 'Extracts data from a HTML node.'
 
 export const metadata = {
   title: pageTitle,
   description: pageDescription
 }
 
-export default async function WebScrapingTextsPage() {
+export default async function HtmlDataExtractor() {
   return <>
     <Head>
       <meta property="og:title" content={pageTitle} />

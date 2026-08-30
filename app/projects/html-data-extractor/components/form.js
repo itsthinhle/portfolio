@@ -1,8 +1,10 @@
 'use client'
 import PrimaryButton from '@/components/buttons/primary'
 import SecondaryButton from '@/components/buttons/secondary'
-import ControlledTextAreaInput from '@/components/inputs/controlled-text-area'
-import TextAreaInput from '@/components/inputs/textarea'
+import ControlledTextAreaInput from '@/components/inputs/controlled-textarea'
+import UncontrolledTextInput from '@/components/inputs/uncontrolled-text'
+import UncontrolledTextAreaInput from '@/components/inputs/uncontrolled-textarea'
+import UncontrolledSelect from '@/components/selects/uncontrolled'
 import Heading2 from '@/components/texts/headings/2'
 import ControlLabelText from '@/components/texts/labels/control'
 import * as cheerio from 'cheerio'
@@ -11,10 +13,18 @@ import React, {useState} from 'react'
 import {useDebouncedCallback} from 'use-debounce'
 import {Copy01Icon} from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
+import {comicImagesDownloader, htmlDataExtractor} from '@/constants/navigation-items'
+import InlineTextLink from '@/components/links/inline-text'
+
+const extractTypeOptions = [
+  {label: 'Text', value: 'text'},
+  {label: 'Attribute', value: 'attribute'},
+]
 
 export default function Form() {
-  const [controlsErrorMessages, setControlsErrorMessages] = useState({})
+  const [_, setControlsErrorMessages] = useState({})
   const [results, setResults] = useState('')
+  const [extractType, setExtractType] = useState('text')
 
   /* Update error fields */
   const removeErrorMessages = useDebouncedCallback((_fields = []) => {
@@ -36,9 +46,19 @@ export default function Form() {
   const extractContents = (_formData) => {
     const $ = cheerio.load(_formData.htmlContent)
     const results = []
+    const attributeName = _formData.attribute?.trim()
+
     $(_formData.cssSelector).each((_, _htmlElement) => {
-      const text = $(_htmlElement).text().trim()
-      if (text) results.push(text)
+      let value
+
+      if (_formData.extractType === 'attribute') {
+        if (!attributeName) return
+        value = $(_htmlElement).attr(attributeName)?.trim()
+      } else {
+        value = $(_htmlElement).text().trim()
+      }
+
+      if (value) results.push(value)
     })
 
     return results.length > 0
@@ -57,7 +77,7 @@ export default function Form() {
     <Heading2 className={'heading-2-my'}>Input</Heading2>
     <form onSubmit={onFormSubmit}>
       <ControlLabelText htmlFor={'url'} className={'mb-2'}>HTML content *</ControlLabelText>
-      <TextAreaInput
+      <UncontrolledTextAreaInput
         id="htmlContent"
         name={'htmlContent'}
         rows={12}
@@ -65,12 +85,30 @@ export default function Form() {
       />
 
       <ControlLabelText htmlFor={'cssSelector'} className={'mt-6 mb-2'}>CSS selectors *</ControlLabelText>
-      <TextAreaInput
+      <UncontrolledTextAreaInput
         id="cssSelector"
         name={'cssSelector'}
         rows={2}
         onInputChange={_event => removeErrorMessages(['cssSelector'])}
       />
+
+      <ControlLabelText htmlFor={'extractType'} className={'mt-6 mb-2'}>Extract type *</ControlLabelText>
+      <UncontrolledSelect
+        id={'extractType'}
+        name={'extractType'}
+        options={extractTypeOptions}
+        defaultValue={['text']}
+        onValueChange={_details => setExtractType(_details.value[0])}
+      />
+
+      {extractType === 'attribute' && <>
+        <ControlLabelText htmlFor={'attributeName'} className={'mt-6 mb-2'}>Attribute name*</ControlLabelText>
+        <UncontrolledTextInput
+          id="attributeName"
+          name={'attributeName'}
+          onInputChange={_event => removeErrorMessages(['attributeName'])}
+        />
+      </>}
 
       <PrimaryButton
         type={'submit'}
@@ -97,5 +135,15 @@ export default function Form() {
         <HugeiconsIcon icon={Copy01Icon} className={'size-4 lg:size-5'} />
       </SecondaryButton>
     </div>
+    <Heading2 className={'heading-2-my'}>What&#39;s next</Heading2>
+    <ul className="list-disc list-outside pl-8 mb-8 text-light-normal-text dark:text-dark-normal-text">
+      <li>
+        <InlineTextLink
+          className={'font-semibold'}
+          href={comicImagesDownloader.path}>
+          Comic images downloader
+        </InlineTextLink>
+      </li>
+    </ul>
   </>
 }
