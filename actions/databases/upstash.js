@@ -13,9 +13,10 @@ export async function sendMessage(_message) {
     const embeddedTextResponse = await apiUtility.post(embeddingServiceUrl, {
       text: `Query: ${_message}`
     })
+    const embeddedText = await embeddedTextResponse.json()
 
     return index.query({
-      vector: embeddedTextResponse.json(),
+      vector: embeddedText,
       topK: 1,
       includeMetadata: true
     })
