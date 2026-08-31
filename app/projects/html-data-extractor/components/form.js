@@ -46,7 +46,7 @@ export default function Form() {
   const extractContents = (_formData) => {
     const $ = cheerio.load(_formData.htmlContent)
     const results = []
-    const attributeName = _formData.attribute?.trim()
+    const attributeName = _formData.attributeName?.trim()
 
     $(_formData.cssSelector).each((_, _htmlElement) => {
       let value
