@@ -46,11 +46,11 @@ INSERT INTO app_cards VALUES (
 );
 
 INSERT INTO app_cards VALUES (
-	'/projects/comic-images-downloader',
+	'/projects/images-downloader-by-urls',
 	'2026-08-29',
-	'/projects/comic-images-downloader.jpg',
-	'Comic images downloader',
-	'Download images from your favorite online comic.',
+	'/projects/images-downloader-by-urls.jpg',
+	'Images downloader by URLs',
+	'Download your favorite images on the internet by URLs.',
 	'Cheerio',
 	'project'
 );
@@ -112,7 +112,7 @@ WHERE state_id = 'NJ';
 /* DELETE DATA */
 
 DELETE from app_cards
-WHERE path = '/projects/comic-images-downloader';
+WHERE path = '/projects/images-downloader-by-urls';
 
 DELETE FROM app_cards
 WHERE path ='/projects/web-scraping/texts'

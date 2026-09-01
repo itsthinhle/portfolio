@@ -49,8 +49,8 @@ export default function Form() {
       return
     }
 
-    if (imageUrls.length > 100) {
-      setResults('Too many URLs! Maximum 100 images allowed.')
+    if (imageUrls.length > 500) {
+      setResults('Too many URLs! Maximum 500 URLs allowed.')
       setIFormSubmitting(false)
       return
     }
