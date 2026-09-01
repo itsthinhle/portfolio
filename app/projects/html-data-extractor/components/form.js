@@ -13,7 +13,7 @@ import React, {useState} from 'react'
 import {useDebouncedCallback} from 'use-debounce'
 import {Copy01Icon} from '@hugeicons-pro/core-solid-standard'
 import {HugeiconsIcon} from '@hugeicons/react'
-import {comicImagesDownloader, htmlDataExtractor} from '@/constants/navigation-items'
+import {imagesDownloaderByUrls, htmlDataExtractor} from '@/constants/navigation-items'
 import InlineTextLink from '@/components/links/inline-text'
 
 const extractTypeOptions = [
@@ -141,8 +141,8 @@ export default function Form() {
       <li>
         <InlineTextLink
           className={'font-semibold'}
-          href={comicImagesDownloader.path}>
-          Comic images downloader
+          href={imagesDownloaderByUrls.path}>
+          Images downloader by URLs
         </InlineTextLink>
       </li>
     </ul>

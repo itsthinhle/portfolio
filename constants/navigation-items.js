@@ -23,7 +23,7 @@ export const htmlDataExtractor = {
   name: 'HTML data extractor'
 }
 
-export const comicImagesDownloader = {
+export const imagesDownloaderByUrls = {
   path: '/projects/images-downloader-by-urls',
   name: 'Comic images downloader'
 }
