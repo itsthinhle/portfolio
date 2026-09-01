@@ -10,9 +10,14 @@ import apiUtility from '@/utilities/api'
 import NormalText from '@/components/texts/normal'
 import InlineTextLink from '@/components/links/inline-text'
 import {htmlDataExtractor} from '@/constants/navigation-items'
+import LoadingIcon from '@/components/icons/loading'
+import {HugeiconsIcon} from '@hugeicons/react'
+import {DownloadCircle01Icon} from '@hugeicons-pro/core-solid-standard'
+import UncontrolledTextInput from '@/components/inputs/uncontrolled-text'
 
 export default function Form() {
   const [_, setControlsErrorMessages] = useState({})
+  const [isFormSubmitting, setIFormSubmitting] = useState(false)
   const [results, setResults] = useState('')
 
   /* Update error fields */
@@ -30,19 +35,38 @@ export default function Form() {
 
   const onFormSubmit = async (_event) => {
     _event.preventDefault()
+    setIFormSubmitting(true)
+
     const formDataInterface = new FormData(_event.target)
     const formData = Object.fromEntries(formDataInterface.entries())
-    const imageUrls = formData.imageUrls.split('\n')
+    const imageUrls = formData.imageUrls
+      ? formData.imageUrls.split('\n')
+      : []
+
+    if (!Array.isArray(imageUrls) || imageUrls.length === 0) {
+      setResults('No URLs provided')
+      setIFormSubmitting(false)
+      return
+    }
+
+    if (imageUrls.length > 100) {
+      setResults('Too many URLs! Maximum 100 images allowed.')
+      setIFormSubmitting(false)
+      return
+    }
 
     const response = await apiUtility.post(
-      '/api/projects/comic-images-downloader',
+      '/api/projects/images-downloader-by-urls',
       {
         imageUrls: imageUrls
       }
     )
 
     if (!response.ok) {
-      setResults('Failed when creating the zip file. Please try again!')
+      const responseErrorMessage = (await response.json()).error
+      setResults(responseErrorMessage)
+      setIFormSubmitting(false)
+      return
     }
 
     const blob = await response.blob()
@@ -51,7 +75,7 @@ export default function Form() {
 
     const link = document.createElement('a')
     link.href = url
-    link.download = 'images.zip'
+    link.download = `${formData.downloadFileName ?? 'images'}.zip`
 
     document.body.appendChild(link)
     link.click()
@@ -60,6 +84,7 @@ export default function Form() {
     URL.revokeObjectURL(url)
 
     setResults('Images are downloaded!')
+    setIFormSubmitting(false)
   }
 
   return <>
@@ -81,10 +106,23 @@ export default function Form() {
         onInputChange={_event => removeErrorMessages(['imageUrls'])}
       />
 
+      <ControlLabelText htmlFor={'downloadFileName'} className={'mt-6 mb-2'}>Download file name (.zip)</ControlLabelText>
+      <UncontrolledTextInput
+        id="downloadFileName"
+        name={'downloadFileName'}
+        defaultValue={'images'}
+        onInputChange={_event => removeErrorMessages(['downloadFileName'])}
+      />
+
       <PrimaryButton
+        ariaLabel={'Download button'}
         type={'submit'}
-        className={'mt-6 w-full'}>
-        Download
+        className={'mt-6 w-full flex items-center justify-center'}
+        isDisabled={isFormSubmitting}>
+        {isFormSubmitting ?
+            <LoadingIcon className={'size-5 lg:size-6'} />
+          : <HugeiconsIcon icon={DownloadCircle01Icon} className={'size-5 lg:size-6'} />}
+        <span className={'ml-2 hidden sm:inline'}>Download</span>
       </PrimaryButton>
     </form>
     <Heading2 className={'heading-2-my'}>Output</Heading2>

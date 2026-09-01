@@ -111,6 +111,7 @@ export default function Form() {
       </>}
 
       <PrimaryButton
+        ariaLabel={'Extract button'}
         type={'submit'}
         className={'mt-6 w-full'}>
         Extract

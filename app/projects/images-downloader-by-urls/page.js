@@ -1,17 +1,17 @@
 import BlogPostLayout from '@/components/layouts/blog-post'
 import Head from 'next/head'
 import React from 'react'
-import Form from '@/app/projects/comic-images-downloader/components/form'
+import Form from '@/app/projects/images-downloader-by-urls/components/form'
 
-const pageTitle = 'Comic images downloader'
-const pageDescription = 'Download images from your favorite online comic.'
+const pageTitle = 'Images downloader by URLs'
+const pageDescription = 'Download your favorite images on the internet by URLs.'
 
 export const metadata = {
   title: pageTitle,
   description: pageDescription
 }
 
-export default async function ComicImagesDownloader() {
+export default async function ImagesDownloaderByUrls() {
   return <>
     <Head>
       <meta property="og:title" content={pageTitle} />

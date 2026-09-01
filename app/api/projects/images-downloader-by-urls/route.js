@@ -3,14 +3,7 @@ import {getExtensionFromUrl} from '@/utilities/string'
 
 export async function POST(request) {
   try {
-    const { imageUrls } = await request.json()
-
-    if (!Array.isArray(imageUrls) || imageUrls.length === 0) {
-      return Response.json(
-        { error: 'No image URLs provided' },
-        { status: 400 }
-      )
-    }
+    const { imageUrls, downloadFileName } = await request.json()
 
     const zip = new JSZip()
 
@@ -19,7 +12,7 @@ export async function POST(request) {
 
       if (!response.ok) {
         throw new Error(
-          `Failed to download ${imageUrls[i]}: ${response.status}`
+          `Failed to download an image by this url ${imageUrls[i]}: ${response.status}`
         )
       }
 
@@ -37,12 +30,12 @@ export async function POST(request) {
       status: 200,
       headers: {
         'Content-Type': 'application/zip',
-        'Content-Disposition': 'attachment; filename="images.zip"',
+        'Content-Disposition': `attachment; filename="${downloadFileName ?? 'images'}.zip"`,
       },
     })
   } catch (error) {
     return Response.json(
-      { error: 'Failed to create image ZIP' },
+      { error: 'Failed while downloading images. Please check you URLs again.' },
       { status: 500 }
     )
   }
