@@ -7,19 +7,18 @@ export async function POST(request) {
 
     const zip = new JSZip()
 
-    for (let i = 0; i < imageUrls.length; i++) {
-      const response = await fetch(imageUrls[i])
+    for (let index = 0; index < imageUrls.length; index++) {
+      const response = await fetch(imageUrls[index])
 
       if (!response.ok) {
-        throw new Error(
-          `Failed to download an image by this url ${imageUrls[i]}: ${response.status}`
-        )
+        console.error(`Skipped this image url: ${imageUrls[index]}`)
+        continue
       }
 
       const buffer = await response.arrayBuffer()
-      const imageExtension = getExtensionFromUrl(imageUrls[i])
+      const imageExtension = getExtensionFromUrl(imageUrls[index])
 
-      zip.file(`image-${i + 1}.${imageExtension}`, buffer)
+      zip.file(`image-${index + 1}.${imageExtension}`, buffer)
     }
 
     const zipBuffer = await zip.generateAsync({
