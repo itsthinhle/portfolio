@@ -1,6 +1,6 @@
 import HorizontalContentCard from '@/components/cards/horizontal-content'
-import {getAppBlogCards} from '@/actions/databases/neon'
 import React from 'react'
+import {getAppBlogCards} from "@/databases/neon/queries/app-cards";
 
 export default async function Blogs() {
   const blogs = await getAppBlogCards()

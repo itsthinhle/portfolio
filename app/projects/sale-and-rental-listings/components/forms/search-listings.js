@@ -1,4 +1,3 @@
-import {getCityNamesByStateId, getStatesIds} from '@/actions/databases/neon'
 import {searchListings, validateSearchForm} from '@/actions/projects/sale-and-rental-listings'
 import listingUpdateTypeConstant from '@/app/projects/sale-and-rental-listings/constants/listings-update-status'
 import SaleAndRentalListingsContext from '@/app/projects/sale-and-rental-listings/context'
@@ -16,6 +15,7 @@ import statusConstant from '@/constants/statuses'
 import clsx from 'clsx'
 import React, {useContext, useEffect, useState} from 'react'
 import {useDebouncedCallback} from 'use-debounce'
+import {getCityNamesByStateId, getStatesIds} from "@/databases/neon/queries/locations";
 
 // Separate from the panel to prevent re-rendering the form
 // when making an API call to the server and receive the response

@@ -1,5 +1,5 @@
 'use client'
-import ChatBotWindow from '@/components/chat-bot/chat-bot-window'
+import Window from '@/components/chat-bot/window'
 import {
   Message01Icon
 } from '@hugeicons-pro/core-solid-standard'
@@ -7,7 +7,7 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import clsx from 'clsx'
 import { useRef } from 'react'
 
-export default function ChatBotWidget() {
+export default function Widget() {
   const chatWindowRef = useRef(null)
 
   const toggleChatWindow = () => {
@@ -27,7 +27,7 @@ export default function ChatBotWidget() {
       aria-label="Chat bot icon">
       <HugeiconsIcon icon={Message01Icon} className={'size-6 lg:size-7'} />
     </button>
-    <ChatBotWindow
+    <Window
       ref={chatWindowRef}
       onCloseButtonClick={toggleChatWindow} />
   </div>

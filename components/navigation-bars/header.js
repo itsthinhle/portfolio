@@ -39,8 +39,7 @@ export default function HeaderNavigationBar() {
       ])}>
       <Link
         aria-label={'Website logo'}
-        href={home.path}
-        prefetch={true}>
+        href={home.path}>
         <HugeiconsIcon icon={QuillWrite02Icon} size={32} />
       </Link>
       <HeaderNavigationMenu />

@@ -3,6 +3,11 @@ import Head from 'next/head'
 const pageTitle = 'Contact me | Thinh writes bugs'
 const pageDescription = 'Let\'s get in touch.'
 
+export const metadata = {
+  title: pageTitle,
+  description: pageDescription
+}
+
 export default function ContactMePage() {
   return <>
     <Head>

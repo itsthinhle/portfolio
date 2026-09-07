@@ -3,7 +3,7 @@ import React from 'react'
 /* Update the number of projects when you add more */
 export default function ProjectsSkeleton() {
   const generateBlogCards = () => {
-    let numberOfProjects = 2
+    let numberOfProjects = 3
     const cards = []
     const tagDiv = <div className={'h-7 lg:h-8 bg-light-skeleton dark:bg-dark-skeleton rounded-full grow'}></div>
 

@@ -1,4 +1,4 @@
-// This script can be execute directly via node: $node data-seeding.js
+// This script can be executed directly via node: $node data-seeding.js
 const metadata = require('./metadata/index.js')
 const { pipeline } = require('@xenova/transformers')
 const { Index } = require('@upstash/vector')
@@ -60,11 +60,11 @@ async function main() {
   const faqPoints = await createFAQPoints()
 
   // Upsert function (uncomment it to update the data --------------------
-  index.upsert([...pagePoints, ...faqPoints])
+  await index.upsert([...pagePoints, ...faqPoints])
 }
 
 // Call the async function
-main()
+await main()
 
 
 

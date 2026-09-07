@@ -19,6 +19,27 @@ CREATE TABLE app_cards (
 CREATE INDEX IF NOT EXISTS type_index
 ON app_cards(type);
 
+-- Auth.js
+CREATE TABLE users
+(
+	username VARCHAR(255) PRIMARY KEY,
+	first_name VARCHAR(255) NOT NULL,
+	last_name VARCHAR(255),
+	display_name VARCHAR(255),
+	profile_image_url TEXT,
+	role VARCHAR(50) NOT NULL DEFAULT 'normal user' CHECK (role IN ('normal user', 'admin')),
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+	
+);
+
+CREATE TABLE user_credentials (
+	username VARCHAR(255) PRIMARY KEY REFERENCES users(username) ON DELETE CASCADE,
+	password_hash TEXT NOT NULL,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
 
 
 /* INSERT DATA */

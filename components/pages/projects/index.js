@@ -1,6 +1,6 @@
 import VerticalContentCard from '@/components/cards/vertical-content'
-import {getAppProjectCards} from '@/actions/databases/neon'
 import React from 'react'
+import {getAppProjectCards} from "@/databases/neon/queries/app-cards";
 
 export default async function Projects() {
   const projects = await getAppProjectCards()

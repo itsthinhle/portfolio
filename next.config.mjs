@@ -6,6 +6,8 @@ const nextConfig = {
   // https://nextjs.org/docs/app/api-reference/config/next-config-js/serverExternalPackages
   // Indicate that these packages should not be bundled by webpack
   serverExternalPackages: ['sharp', 'onnxruntime-node'],
+  // Allow cache when querying data
+  cacheComponents: true
 }
 
 export default nextConfig

@@ -42,8 +42,7 @@ export default function HomePage() {
         <TextLink
           ariaLabel={'View my projects link'}
           className={'flex items-center gap-2 w-fit whitespace-nowrap'}
-          href={projects.path}
-          prefetch={true}>
+          href={projects.path}>
           <p>View my projects</p>
           <HugeiconsIcon icon={ArrowRight02Icon} />
         </TextLink>

@@ -17,7 +17,6 @@ const HeaderNavigationMenu = memo(() => {
             aria-label={_navigationItem.name}
             key={_index}
             href={_navigationItem.path}
-            prefetch={true}
             className={clsx([
               'flex gap-2 items-center font-semibold',
               isActiveNavigationItem(pathname, _navigationItem.path)
